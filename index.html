@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CNS Part 5 · Motor System of the Arms</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=block" rel="stylesheet">
+<style>
+  :root { --bg: #0d3a3d; --bar: #0a2b2d; --ink: #f8eedb; --accent: #f4ad08; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #0d3a3d; --bar: #0a2b2d; --ink: #f8eedb; } }
+  :root[data-theme="dark"] { --bg: #0d3a3d; --bar: #0a2b2d; --ink: #f8eedb; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font-family: "Fredoka", system-ui, sans-serif; overflow: hidden; }
+  #wrap { position: absolute; inset: 0 0 56px 0; display: flex; align-items: center; justify-content: center; }
+  canvas { display: block; max-width: 100%; max-height: 100%; aspect-ratio: 16 / 9; width: auto; height: auto; }
+  #bar { position: absolute; left: 0; right: 0; bottom: 0; height: 56px; display: flex; align-items: center; gap: 12px; padding: 0 16px; background: var(--bar); box-sizing: border-box; }
+  #bar button { font: 500 15px "Fredoka", sans-serif; color: var(--bg); background: var(--ink); border: 0; border-radius: 18px; padding: 7px 14px; cursor: pointer; min-width: 64px; }
+  #bar input[type=range] { flex: 1; min-width: 60px; accent-color: var(--accent); }
+  #time { font: 500 14px "Fredoka", sans-serif; min-width: 92px; text-align: right; font-variant-numeric: tabular-nums; }
+  #msg { position: absolute; top: 45%; width: 100%; text-align: center; font-size: 18px; }
+  body.render #bar, body.render #msg { display: none; }
+  body.render #wrap { inset: 0; }
+  body.render canvas { width: 100%; height: 100%; max-width: none; max-height: none; }
+</style>
+<script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js" } }</script>
+</head>
+<body>
+<div id="wrap"><canvas id="c" width="1920" height="1080"></canvas></div>
+<div id="msg">Building the clay set…</div>
+<div id="bar">
+  <button id="play">Play</button>
+  <input id="scrub" type="range" min="0" max="1000" value="0" step="1">
+  <span id="time">0.0 / 0.0 s</span>
+  <button id="snd">Sound on</button>
+  <button id="cap">Captions on</button>
+</div>
+<script type="module">
+  import * as THREE from 'three';
+  window.THREE = THREE;
+  window.addEventListener('error', (e) => { window.FAIL = String(e.message || e); console.error('[cns5] ' + window.FAIL); });
+  window.addEventListener('unhandledrejection', (e) => { window.FAIL = String(e.reason && e.reason.stack || e.reason); console.error('[cns5] ' + window.FAIL); });
+  const q = new URLSearchParams(location.search);
+  const RENDER = q.get('render') === '1';
+  if (RENDER) document.body.classList.add('render');
+  if (q.has('captions')) window.CAPTIONS = q.get('captions') !== '0';
+  const load = (src) => new Promise((ok, bad) => { const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = () => bad(new Error('cannot load ' + src)); document.head.appendChild(s); });
+  // the STAGE kit, TEXT3D after it, the SOUND kit, then shared/ in the order of shared/README.md (with the three v5 files)
+  for (const f of ['lib/stage.js', 'lib/text3d.js', 'lib/sound.js',
+    'shared/clay.js', 'shared/set.js', 'shared/bed.js', 'shared/props.js', 'shared/hands.js', 'shared/patient.js', 'shared/sheet.js', 'shared/caption.js', 'shared/abdo.js', 'shared/home.js',
+    'shared/patient-neuro.js', 'shared/neuro.js', 'shared/neuro-props.js',
+    'cns5/contact5.js', 'cns5/kin.js', 'cns5/cams.js', 'cns5/cns5-style.js']) await load(f);
+  // the solved poses (tools/solve.mjs writes solved.json once; ?solved=1 = load it and never solve again)
+  if (q.get('solved') === '1') { const r = await fetch('solved.json', { cache: 'no-store' }); if (!r.ok) throw new Error('solved.json is missing: run node tools/solve.mjs first'); window.SOLVED = await r.json(); }
+  if (q.get('solve') === '1') window.SOLVE_MODE = true;
+  if (q.get('only')) window.SOLVE_ONLY = q.get('only').split(',');
+  const style = window.CNS5;
+  const canvas = document.getElementById('c');
+  const W = +(q.get('w') || 1920), H = +(q.get('h') || 1080);
+  canvas.width = W; canvas.height = H;
+  const full = +(q.get('samples') || 0) || style.render.samples;
+  const LIVE = 3;                                   // low sample count while playing live
+  const S = await K.run(canvas, style, { samples: RENDER ? full : LIVE, width: W, height: H });
+  window.S = S; window.DURATION = style.duration;
+  window.seek = (t, n) => S.seek(style.seekTime ? style.seekTime(t) : t, n);
+  window.READY = true;
+  document.getElementById('msg').remove();
+  if (RENDER) { S.seek(0); }
+  else {
+    const D = style.duration, scrub = document.getElementById('scrub'), tEl = document.getElementById('time'), playB = document.getElementById('play'), sndB = document.getElementById('snd'), capB = document.getElementById('cap');
+    let t = 0, playing = false, last = 0, soundOn = true, stopSound = null, loop = true, dirty = true;
+    window.CAPTIONS = window.CAPTIONS == null ? true : window.CAPTIONS;
+    const stopS = () => { if (stopSound) { stopSound(); stopSound = null; } };
+    const startS = () => { stopS(); if (soundOn && playing) stopSound = SOUND.live((k) => style.sound(k), t, { voiceover: false }); };
+    const show = () => { scrub.value = Math.round(t / D * 1000); tEl.textContent = t.toFixed(1) + ' / ' + D.toFixed(1) + ' s'; };
+    const frame = (now) => {
+      if (playing) { t += (now - last) / 1000; if (t >= D) { if (loop) { t = 0; startS(); } else { t = D; playing = false; playB.textContent = 'Play'; stopS(); } } }
+      last = now; if (playing || dirty) { window.seek(t, playing ? LIVE : 6); dirty = false; } show();
+      requestAnimationFrame(frame);
+    };
+    playB.onclick = () => { playing = !playing; dirty = true; playB.textContent = playing ? 'Pause' : 'Play'; last = performance.now(); if (playing) startS(); else stopS(); };
+    scrub.oninput = () => { t = scrub.value / 1000 * D; dirty = true; stopS(); if (playing) startS(); };
+    sndB.onclick = () => { soundOn = !soundOn; sndB.textContent = soundOn ? 'Sound on' : 'Sound off'; if (soundOn) startS(); else stopS(); };
+    capB.onclick = () => { window.CAPTIONS = !window.CAPTIONS; dirty = true; capB.textContent = window.CAPTIONS ? 'Captions on' : 'Captions off'; };
+    requestAnimationFrame((n) => { last = n; frame(n); });
+  }
+</script>
+</body>
+</html>

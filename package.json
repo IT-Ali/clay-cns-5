@@ -1,0 +1,18 @@
+{
+  "name": "clay-cns-5",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Soft Clay CNS examination, part 5 of 11: the motor system of the arms. npm run preview / npm start render the MP4s.",
+  "type": "module",
+  "scripts": {
+    "start": "node render.mjs",
+    "preview": "node render.mjs --preview",
+    "solve": "node tools/solve.mjs",
+    "storyboard": "node tools/storyboard.mjs 16 960 540 && node tools/storyboard-html.mjs"
+  },
+  "dependencies": {
+    "ffmpeg-static": "^5.2.0",
+    "playwright-core": "1.63.0",
+    "three": "0.187.0"
+  }
+}
