@@ -134,13 +134,14 @@
       return out.toDataURL('image/jpeg', 0.9);
     },
     report() {
-      // every contact at every moment it holds, measured on the meshes
-      const res = [];
-      for (const c of W.CONTACT_SPECS) {
-        let mn = 1e9, mx = -1e9;
-        for (const t of c.ts) { window.seek(t, 1); const g = W.measureContact(c); if (!g) continue; mn = Math.min(mn, g.gap); mx = Math.max(mx, g.gap); }
-        res.push({ id: c.id, name: c.name, group: c.group, side: c.side, times: c.ts.map((x) => +x.toFixed(2)), minMM: +(mn * 100).toFixed(3), maxMM: +(mx * 100).toFixed(3) });
+      // every contact at every moment it holds, measured on the meshes (one seek per moment, all its contacts measured there)
+      const at = new Map(), st = new Map();
+      for (const c of W.CONTACT_SPECS) { st.set(c, { mn: 1e9, mx: -1e9, worst: null }); for (const t of c.ts) { const k = t.toFixed(4); if (!at.has(k)) at.set(k, { t, cs: [] }); at.get(k).cs.push(c); } }
+      for (const { t, cs } of [...at.values()].sort((a, b) => a.t - b.t)) {
+        window.seek(t, 1);
+        for (const c of cs) { const g = W.measureContact(c); if (!g) continue; const s = st.get(c); if (g.gap < s.mn) { s.mn = g.gap; if (g.gap < 0) s.worst = t; } if (g.gap > s.mx) { s.mx = g.gap; if (g.gap > 0.015) s.worst = t; } }
       }
+      const res = W.CONTACT_SPECS.map((c) => { const s = st.get(c); return { id: c.id, name: c.name, group: c.group, side: c.side, times: c.ts.map((x) => +x.toFixed(3)), minMM: +(s.mn * 100).toFixed(3), maxMM: +(s.mx * 100).toFixed(3), worstAt: s.worst }; });
       return res;
     },
   };

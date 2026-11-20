@@ -12,7 +12,7 @@ const LIMIT = 1.5;
 const row = (c) => {
   const ok = c.minMM >= 0 && c.maxMM <= LIMIT;
   const v = Math.abs(c.maxMM - c.minMM) < 0.005 ? c.minMM.toFixed(2) : c.minMM.toFixed(2) + ' – ' + c.maxMM.toFixed(2);
-  return `<tr class="${ok ? 'ok' : 'bad'}"><td>${esc(c.name)}</td><td class="num">${v} mm</td><td class="num">${c.times.length > 1 ? c.times.length + ' moments' : c.times[0].toFixed(2) + ' s'}</td><td><span class="pill">${ok ? 'pass' : 'check'}</span></td></tr>`;
+  return `<tr class="${ok ? 'ok' : 'bad'}"><td>${esc(c.name)}</td><td class="num">${v} mm</td><td class="num">${c.times.length > 1 ? c.times.length + " pose frames" : c.times[0].toFixed(2) + ' s'}</td><td><span class="pill">${ok ? 'pass' : 'check'}</span></td></tr>`;
 };
 const groups = [...new Set(REVIEW.map((r) => r.group))];
 const html = `<title>CNS Part 5 Storyboard</title>

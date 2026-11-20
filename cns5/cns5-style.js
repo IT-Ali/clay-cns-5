@@ -164,6 +164,26 @@
         two: { curl: { index: [0.05, 0.08, 0.05], middle: [0.05, 0.08, 0.05], ring: [1.5, 1.65, 1.05], little: [1.5, 1.65, 1.05] }, fan: { index: 0.02, middle: -0.02, ring: 0.05, little: 0.12 }, thumb: [0.9, 0.65, 0.55, 0.45] },   // index and middle side by side (never a V)
       };
 
+      // ---- the tone sequences (angles over time): the right arm, then the left (a little faster)
+      const toneKeys = (t0, speed) => { const out = []; let t = t0, a = Object.assign({}, TONE_BASE); for (const [dt, ch] of TONE_MOVES) { t += dt / speed; a = Object.assign({}, a, ch); out.push([t, Object.assign({}, a)]); } return out; };
+      const TONE_R = toneKeys(T.toneR.moves, T.toneR.speed), TONE_L = toneKeys(T.toneL.moves, T.toneL.speed);
+      if (TONE_R[TONE_R.length - 1][0] > T.toneR.release[0] - 0.05 || TONE_L[TONE_L.length - 1][0] > T.toneL.release[0] - 0.05) throw new Error('tone moves run past the release');
+      const toneEase = (i) => [K.ease.inOut, (x) => 1 - Math.pow(1 - x, 2.2), (x) => x * x * (3 - 2 * x), K.ease.out][i % 4];   // irregular: each move eases its own way
+      // the arm angles at every pose frame while the examiner holds his arm (the same keys and eases as his arm timeline below)
+      const angKey = (a) => ['flex', 'abd', 'elbow', 'plane', 'pron', 'wrist', 'dev'].map((k) => (a[k] || 0).toFixed(3)).join(',');
+      const toneFrameAngles = () => {
+        const out = new Map();
+        for (const [w, keys] of [[T.toneR, TONE_R], [T.toneL, TONE_L]]) {
+          const kk = [[w.offer[1], TONE_BASE, K.ease.inOut]].concat(keys.map(([t, a], i) => [t, a, toneEase(i)]), [[w.down[0], TONE_BASE, K.ease.inOut]]);
+          for (let f = Math.ceil(w.offer[1] * POSES - 1e-6); f / POSES <= w.release[1]; f++) {
+            const tp = f / POSES; let i = 0; while (i < kk.length - 1 && kk[i + 1][0] <= tp) i++;
+            const a = i === kk.length - 1 ? kk[i][1] : (kk[i][1] === kk[i + 1][1] ? kk[i][1] : KIN.lerpAngles(kk[i][1], kk[i + 1][1], kk[i + 1][2](K.clamp((tp - kk[i][0]) / (kk[i + 1][0] - kk[i][0])))));
+            out.set(angKey(a), a);
+          }
+        }
+        return [...out.values()];
+      };
+
       // ============================================================ SOLVING (tools/solve.mjs runs this once; renders load it)
       // The contact solver works on the RIGHT side (his right arm, the examiner on his right); the left side is the exact
       // mirror (z -> -z), measured again on the left meshes. Every gap is measured on the real meshes (cns5/contact5.js).
@@ -329,8 +349,34 @@
           log(`tone: elbow cup offset ${b0.so.toFixed(2)} across, ${b0.sd.toFixed(2)} along the arm: ${fmt(b0.g)}`);
           const path = []; let worst = 0;
           for (const aa of TONE_PATH) { let r = cupLay(aa, [b0.so], b0.st.pose, [b0.sd]); if (Math.max(...Object.values(r.g).map((v) => Math.abs(v - C5.TARGET))) > 0.006) { const r2 = cupLay(aa, [b0.so - 0.15, b0.so, b0.so + 0.15], b0.st.pose, [b0.sd - 0.15, b0.sd, b0.sd + 0.15]); if (r2.e < r.e) r = r2; log(`tone: cup at ${JSON.stringify(aa)} searched again: ${fmt(r.g)}`); } const fr = KIN.frames(P, aa).elbow, rel = relTo(fr, r.st.wrist, r.st.quat, r.st.back); worst = Math.max(worst, ...Object.values(r.g).map((v) => Math.abs(v - C5.TARGET))); path.push({ p: A(rel.p), q: [rel.q.x, rel.q.y, rel.q.z, rel.q.w], back: A(rel.back), pose: r.st.pose }); }
-          SOL.cupPath = path; delete SOL.cup;
+          SOL.cupPath = path; delete SOL.cup; SOL.cupBase = { so: b0.so, sd: b0.sd, pose: b0.st.pose };
           log(`tone: elbow cup solved on the ${path.length} poses of the moves (largest error from 0.5 mm: ${(worst * 100).toFixed(2)} mm)`);
+        }
+        // ---- the cup at EVERY pose frame his arm takes while it is held (the arm moves on twos, so these are the only angles
+        // it shows): no blending between solved poses, which let the fingers sink into the elbow between them.
+        // Blocks cupF0..cupF3 each solve a quarter of the frames (so they can run side by side); cupF solves all four.
+        for (let q = 0; q < 4; q++) if (want('cupF' + q) || want('cupF')) {
+          const pp = SOL.ppose.shake, frames = toneFrameAngles().filter((_, i) => i % 4 === q);
+          SOL.cupFrames = SOL.cupFrames || {}; let worst = 0, n = 0;
+          const cupLayF = (aa, offs, sides, prevPose) => {
+            poseR(aa, pp);
+            const frE = KIN.frames(P, aa).elbow, post = V(0, 1, 0).applyQuaternion(frE.q), ux = V(1, 0, 0).applyQuaternion(frE.q);
+            const c = frE.p.clone().addScaledVector(ux, -0.15), h = hitArm('R', c.clone().addScaledVector(post, 1.2), post.clone().negate());
+            const fd = Lat.clone().negate().addScaledVector(ux, 0.15);
+            return searchLay('L', 'palm', h.p, h.n, [fd], offs, sides, prevPose, (p) => surfArm('R', p, 1.8), V(0.15, -0.62, 1), { rounds: 2 }, ['palm'].concat(F4), (from, dir) => hitArm('R', from, dir));
+          };
+          const err = (r) => Math.max(...Object.values(r.g).map((v) => Math.abs(v - C5.TARGET)));
+          // the cup's place on his elbow (from the cup block; searched the same way here if this solved.json predates it)
+          if (!SOL.cupBase) { const b0 = cupLayF(TONE_BASE, [-0.3, -0.2, -0.1, 0, 0.1], [-0.35, -0.2, -0.05, 0.1], POSE.cup); SOL.cupBase = { so: b0.so, sd: b0.sd, pose: b0.st.pose }; }
+          const B = SOL.cupBase;
+          for (const aa of frames) {
+            let r = cupLayF(aa, [B.so], [B.sd], B.pose);
+            if (err(r) > 0.006) { const r2 = cupLayF(aa, [B.so - 0.15, B.so, B.so + 0.15], [B.sd - 0.15, B.sd, B.sd + 0.15], B.pose); if (r2.e < r.e) r = r2; }
+            const fr = KIN.frames(P, aa).elbow, rel = relTo(fr, r.st.wrist, r.st.quat, r.st.back);
+            worst = Math.max(worst, err(r)); n++;
+            SOL.cupFrames[angKey(aa)] = { p: A(rel.p), q: [rel.q.x, rel.q.y, rel.q.z, rel.q.w], back: A(rel.back), pose: r.st.pose, g: Object.fromEntries(Object.entries(r.g).map(([k, v]) => [k, +(v * 100).toFixed(2)])) };
+          }
+          log(`tone: elbow cup solved at ${n} pose frames (part ${q + 1} of 4; largest error from 0.5 mm: ${(worst * 100).toFixed(2)} mm)`);
         }
 
         // ---- 2. the power tests: the examiner's hand on the named point, laid on his skin (searched)
@@ -508,7 +554,8 @@
         const j = 2 * i; return pr < 0.5 ? [j, j + 1, pr * 2] : [j + 1, j + 2, (pr - 0.5) * 2];
       };
       const cupAt = (a, side, tp) => {
-        const Lp = SOL.cupPath, [j0, j1, u] = pathPos(a, side, tp), rel = blendRel(Lp[j0], Lp[j1], u);
+        const Lp = SOL.cupPath, fr0 = SOL.cupFrames && SOL.cupFrames[angKey(a)];   // solved at this very pose frame
+        const rel = fr0 || (() => { const [j0, j1, u] = pathPos(a, side, tp); return blendRel(Lp[j0], Lp[j1], u); })();
         const st = fromRel(KIN.frames(P, a).elbow, rel);
         st.back = st.back.clone().lerp(WORLD_BACK.cup[0], WORLD_BACK.cup[1]).normalize();
         return side === 'L' ? Object.assign(KIN.mirrorState(st), { left: true }) : st;
@@ -559,11 +606,6 @@
       const up = (y, z = 0, x = 0) => V(x, y, z);
       const kin = (a, pose) => ({ kin: a, pose });
 
-      // ---- the tone sequences (angles over time): the right arm, then the left (a little faster)
-      const toneKeys = (t0, speed) => { const out = []; let t = t0, a = Object.assign({}, TONE_BASE); for (const [dt, ch] of TONE_MOVES) { t += dt / speed; a = Object.assign({}, a, ch); out.push([t, Object.assign({}, a)]); } return out; };
-      const TONE_R = toneKeys(T.toneR.moves, T.toneR.speed), TONE_L = toneKeys(T.toneL.moves, T.toneL.speed);
-      if (TONE_R[TONE_R.length - 1][0] > T.toneR.release[0] - 0.05 || TONE_L[TONE_L.length - 1][0] > T.toneL.release[0] - 0.05) throw new Error('tone moves run past the release');
-      const toneEase = (i) => [K.ease.inOut, (x) => 1 - Math.pow(1 - x, 2.2), (x) => x * x * (3 - 2 * x), K.ease.out][i % 4];   // irregular: each move eases its own way
       // ---- his arms
       const testKeys = (side, w, name, extra = {}) => {
         const t = TEST[name], pose = PPOSE[t.pose], aGive = withGive(t.a, t.give, 1);
@@ -717,9 +759,9 @@
         const F4 = ['index', 'middle', 'ring', 'little'];
         for (const s of ['R', 'L']) {
           const main = s, sup = s === 'R' ? 'L' : 'R', sd = sideName(s);
-          // tone: at the start of the moves and through them (the grip and the cup follow his arm)
-          const tw = s === 'R' ? T.toneR : T.toneL, tl = s === 'R' ? TONE_R : TONE_L;
-          const tt = [tw.moves].concat(tl.filter((_, i) => i % 3 === 1).map(([t]) => t));
+          // tone: at every pose frame from the start of the moves until the examiner lets go (the grip and the cup follow his arm)
+          const tw = s === 'R' ? T.toneR : T.toneL, tt = [];
+          for (let f = Math.ceil(tw.moves * POSES - 1e-6); f / POSES < tw.release[0]; f++) tt.push(f / POSES);
           add({ id: 'shake-palm-' + s, group: 'tone', side: s, ts: tt, name: `Tone ${sd}: examiner's palm on his palm`, part: exP(main, 'palm'), surf: skin(s) });
           for (const f of F4) add({ id: `shake-ex-${f}-${s}`, group: 'tone', side: s, ts: tt, name: `Tone ${sd}: examiner's ${f} finger round the back of his hand`, part: exP(main, f), surf: skin(s), finger: f });
           add({ id: 'shake-exthumb-' + s, group: 'tone', side: s, ts: tt, name: `Tone ${sd}: examiner's thumb over the back of his hand`, part: exP(main, 'thumb'), surf: skin(s) });
