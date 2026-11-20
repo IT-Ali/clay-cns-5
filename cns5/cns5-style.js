@@ -84,6 +84,10 @@
     grip: { a: { flex: 2, abd: 10, elbow: 52, plane: 16, pron: 0 }, pose: 'grip', give: { elbow: 0.55 }, firm: 'fingerFlex' },
   };
 
+  const FING_GIVE = 0.019;     // finger abduction: his index finger gives 1.9 mm at the examiner's finger, then holds
+  // the angles of the tone moves, in order (each key, and halfway to the next): the elbow cup is solved on this path
+  const TONE_PATH = (() => { const keys = []; let a = Object.assign({}, TONE_BASE); for (const [, ch] of TONE_MOVES) { a = Object.assign({}, a, ch); keys.push(Object.assign({}, a)); } const out = []; keys.forEach((k, i) => { out.push(k); if (i < keys.length - 1) { const m = {}; for (const q of Object.keys(k)) m[q] = (k[q] + keys[i + 1][q]) / 2; out.push(m); } }); return out; })();
+
   // ================================================================ stop-motion time and helpers
   const POSES = 15;
   const poseT = (t) => Math.floor(t * POSES + 1e-3) / POSES;          // = SET.poseTime
@@ -182,12 +186,13 @@
           const fans = {}; for (const k of F4) fans[k] = fanOf(pose, k); pose.fan = fans;
           if (!pose.curl) { pose.curl = {}; for (const k of F4) pose.curl[k] = (pose.all || [0.12, 0.18, 0.1]).slice(); }
           const f0 = pose.fan[f]; let best = null;
-          for (const df of (o.fans || [0, -0.05, 0.05, -0.1, 0.1, -0.15, 0.15])) {
+          const ratios = o.ratio ? [o.ratio] : [[0.5, 1, 0.8], [0.9, 1, 0.6], [1.0, 0.6, 0.4], [0.3, 1, 1]];
+          search: for (const ratio of ratios) for (const df of (o.fans || [0, -0.05, 0.05, -0.1, 0.1, -0.15, 0.15])) {
             pose.fan[f] = f0 + df;
-            const r = C5.curlTo(hand, pose, f, S0, { lo: o.lo == null ? -0.35 : o.lo, hi: o.hi == null ? 2.9 : o.hi, ratio: o.ratio || [0.5, 1, 0.8] });
+            const r = C5.curlTo(hand, pose, f, S0, { lo: o.lo == null ? -0.35 : o.lo, hi: o.hi == null ? 2.9 : o.hi, ratio });
             const sc = Math.abs(r.gap - C5.TARGET) + 3 * Math.max(0, -r.gap) + 0.02 * Math.abs(df);
             if (!best || sc < best.sc) best = { sc, df, curl: pose.curl[f].slice(), gap: r.gap };
-            if (r.gap >= 0 && r.gap <= 0.009) break;
+            if (r.gap >= 0 && r.gap <= 0.009) break search;
           }
           pose.fan[f] = f0 + best.df; pose.curl[f] = best.curl; hand.pose(pose); hand.group.updateMatrixWorld(true);
           return best.gap;
@@ -283,25 +288,49 @@
           poseR(a, best.ppose);
           store('shake', 'hand', a, best.st);
           log(`tone: handshake chosen at ${best.deg} deg`);
+          // the examiner's fingers round the back of his hand: one curl each that stays between 0.03 and 1.5 mm on every pose
+          // of the tone moves (his skin near the wrist changes as the wrist and forearm move)
+          {
+            const ex = handOf('R'), rel0 = SOL.rel.shake, pose = clonePose(rel0.pose), base = {};
+            for (const f of F4) base[f] = pose.curl[f].slice();
+            const smp = TONE_PATH.map((aa) => { poseR(aa, SOL.ppose.shake); const st = fromRel(KIN.frames(P, aa).hand, rel0); return { st, S: C5.surface(armSkin('R'), st.wrist, 2.8) }; });
+            const gapsFor = (f) => smp.map(({ st, S }) => { ex.pose(pose); ex.group.position.copy(st.wrist); ex.group.quaternion.copy(st.quat); ex.group.updateMatrixWorld(true); return C5.gap(C5.parts(ex, f), S).gap; });
+            const msg = [];
+            for (const f of F4) {
+              const set = (t) => { pose.curl[f] = base[f].map((v, i) => v + t * [0.5, 1, 0.8][i]); };
+              let lo = -0.7, hi = 0.6; set(lo); let g = gapsFor(f);
+              if (Math.min(...g) >= 0.003) { for (let k = 0; k < 14; k++) { const m = (lo + hi) / 2; set(m); const gm = gapsFor(f); if (Math.min(...gm) >= 0.003) { lo = m; g = gm; } else hi = m; } set(lo); }
+              msg.push(`${f} ${(Math.min(...g) * 100).toFixed(2)}-${(Math.max(...g) * 100).toFixed(2)}`);
+            }
+            // the index finger, which wraps nearest his wrist, is bent again at every pose of the path (0.5 mm each)
+            { const f = 'index', b0 = pose.curl.index.slice(), ts = [], gs = [];
+              smp.forEach(({ st, S }) => { const g1 = (t) => { pose.curl[f] = b0.map((v, i) => v + t * [0.5, 1, 0.8][i]); ex.pose(pose); ex.group.position.copy(st.wrist); ex.group.quaternion.copy(st.quat); ex.group.updateMatrixWorld(true); return C5.gap(C5.parts(ex, f), S).gap; };
+                let lo = -0.8, hi = 1.0; if (g1(lo) < C5.TARGET) { ts.push(lo); gs.push(g1(lo)); return; } if (g1(hi) > C5.TARGET) { ts.push(hi); gs.push(g1(hi)); return; }
+                for (let k = 0; k < 16; k++) { const m = (lo + hi) / 2; if (g1(m) > C5.TARGET) lo = m; else hi = m; } ts.push(lo); gs.push(g1(lo)); });
+              pose.curl.index = b0; SOL.shakeIndex = { base: b0, t: ts.map((v) => +v.toFixed(5)) };
+              msg[0] = `index (bent per pose) ${(Math.min(...gs) * 100).toFixed(2)}-${(Math.max(...gs) * 100).toFixed(2)}`; }
+            SOL.rel.shake.pose = pose;
+            log(`tone: the examiner's fingers over the ${smp.length} poses of the moves (mm): ${msg.join(', ')}`);
+          }
         }
-        // ---- the cup under the back of the elbow (the examiner's other hand): solved on a grid of elbow angles and forearm
-        // turns (the skin of the elbow changes with both); at each the palm is laid on and the fingers bent round onto the skin
+        // ---- the cup under the back of the elbow (the examiner's other hand): solved at every pose of the tone moves and halfway
+        // between (the skin of the elbow changes as the elbow bends and the forearm turns); at each the palm is laid on and the
+        // fingers bent round onto the skin; the animation follows the same path
         if (want('cup')) {
           const a = TONE_BASE, pp = SOL.ppose.shake;
-          const cupLay = (aa, offs, prevPose) => {
+          const cupLay = (aa, offs, prevPose, sides) => {
             poseR(aa, pp);
             const frE = KIN.frames(P, aa).elbow, post = V(0, 1, 0).applyQuaternion(frE.q), ux = V(1, 0, 0).applyQuaternion(frE.q);
             const c = frE.p.clone().addScaledVector(ux, -0.15), h = hitArm('R', c.clone().addScaledVector(post, 1.2), post.clone().negate());
             const fd = Lat.clone().negate().addScaledVector(ux, 0.15);
-            return searchLay('L', 'palm', h.p, h.n, [fd], offs, [0], prevPose || POSE.cup, (p) => surfArm('R', p, 1.8), V(0.15, -0.62, 1), { rounds: 2 }, ['palm'].concat(F4), (from, dir) => hitArm('R', from, dir));
+            return searchLay('L', 'palm', h.p, h.n, [fd], offs, sides || [0], prevPose || POSE.cup, (p) => surfArm('R', p, 1.8), V(0.15, -0.62, 1), { rounds: 2 }, ['palm'].concat(F4), (from, dir) => hitArm('R', from, dir));
           };
-          const b0 = cupLay(a, [-0.3, -0.2, -0.1, 0, 0.1, 0.2]);
-          log(`tone: elbow cup offset ${b0.so.toFixed(2)}: ${fmt(b0.g)}`);
-          const EL = [20, 40, 55, 75, 95, 115, 130], PR = [-80, -40, 0, 40, 80];
-          const grid = []; let worst = 0;
-          for (const el of EL) { const row = []; for (const pr of PR) { const aa = Object.assign({}, a, { elbow: el, pron: pr }), r = cupLay(aa, [b0.so], b0.st.pose); const fr = KIN.frames(P, aa).elbow, rel = relTo(fr, r.st.wrist, r.st.quat, r.st.back); worst = Math.max(worst, ...Object.values(r.g).map((v) => Math.abs(v - C5.TARGET))); row.push({ p: A(rel.p), q: [rel.q.x, rel.q.y, rel.q.z, rel.q.w], back: A(rel.back), pose: r.st.pose }); } grid.push(row); }
-          SOL.cup = { EL, PR, grid };
-          log(`tone: elbow cup solved on ${EL.length * PR.length} grid points (largest error from 0.5 mm: ${(worst * 100).toFixed(2)} mm)`);
+          const b0 = cupLay(a, [-0.3, -0.2, -0.1, 0, 0.1], null, [-0.35, -0.2, -0.05, 0.1]);
+          log(`tone: elbow cup offset ${b0.so.toFixed(2)} across, ${b0.sd.toFixed(2)} along the arm: ${fmt(b0.g)}`);
+          const path = []; let worst = 0;
+          for (const aa of TONE_PATH) { let r = cupLay(aa, [b0.so], b0.st.pose, [b0.sd]); if (Math.max(...Object.values(r.g).map((v) => Math.abs(v - C5.TARGET))) > 0.006) { const r2 = cupLay(aa, [b0.so - 0.15, b0.so, b0.so + 0.15], b0.st.pose, [b0.sd - 0.15, b0.sd, b0.sd + 0.15]); if (r2.e < r.e) r = r2; log(`tone: cup at ${JSON.stringify(aa)} searched again: ${fmt(r.g)}`); } const fr = KIN.frames(P, aa).elbow, rel = relTo(fr, r.st.wrist, r.st.quat, r.st.back); worst = Math.max(worst, ...Object.values(r.g).map((v) => Math.abs(v - C5.TARGET))); path.push({ p: A(rel.p), q: [rel.q.x, rel.q.y, rel.q.z, rel.q.w], back: A(rel.back), pose: r.st.pose }); }
+          SOL.cupPath = path; delete SOL.cup;
+          log(`tone: elbow cup solved on the ${path.length} poses of the moves (largest error from 0.5 mm: ${(worst * 100).toFixed(2)} mm)`);
         }
 
         // ---- 2. the power tests: the examiner's hand on the named point, laid on his skin (searched)
@@ -334,7 +363,7 @@
         // (steadying it), the fingers of the main hand flat on the back of his
         // fist over the knuckles, pressing down
         if (want('wrist')) {
-          const a = TEST.wrist.a; poseR(a, FIST);
+          const a = withGive(TEST.wrist.a, TEST.wrist.give, 1); poseR(a, FIST);   // solved in the held position (after the give)
           const fr = KIN.frames(P, a), f = fr.r.f, E = fr.r.E, dh = V(0, 1, 0).applyQuaternion(fr.hand.q);
           const c = E.clone().addScaledVector(f, KIN.L2 - 0.85), h = hitArm('R', c.clone().addScaledVector(V(0, -1, 0), 1.4), V(0, 1, 0));
           const bS = searchLay('L', 'palm', h.p, h.n, [f.clone()], [-0.45, -0.3, -0.15, 0], [-0.08, 0, 0.08], POSE.flat, (p) => surfArm('R', p), V(-0.75, -0.15, 0.65), { rounds: 2 }, all6, (from, dir) => hitArm('R', from, dir));
@@ -373,9 +402,16 @@
           const Sg = C5.surface(gloveMeshes('R'), centreOf(), 2.0);
           for (const f of F4) settleFinger(ph, ppose, f, Sg, { lo: 0.0, hi: 2.8, ratio: [0.62, 1, 0.75], fans: [0, -0.04, 0.04, -0.08, 0.08] });
           // his thumb over the gloved fingers: its swing bisected for each opposition, the one resting at 0.5 mm kept
-          { const tm = C5.meshesUnder(ph.thumb.mcp); let bt = null;
-            for (const opp of [0.2, 0.5, 0.8, 1.1, 1.4]) { ppose.thumb = [0.3, opp, 0.3, 0.2]; ph.pose(ppose); C5.thumbTo(ph, ppose, Sg, { lo: -0.6, hi: 1.8 }); const gg = C5.gap(tm, Sg).gap, sc = Math.abs(gg - C5.TARGET) + 5 * Math.max(0, -gg); if (!bt || sc < bt.sc) bt = { sc, t: ppose.thumb.slice() }; }
-            ppose.thumb = bt.t; ph.pose(ppose); }
+          // NEURO.HAND.grip's thumb, its two joints flexed (and its swing and turn nudged) until the pad rests on the glove
+          { const tm = C5.meshesUnder(ph.thumb.mcp), tip = C5.meshesUnder(ph.thumb.ip), g0 = Hh.grip.thumb; let bt = null;
+            for (const sw of [0, 0.15, 0.3, -0.15]) for (const op of [0, 0.25, 0.5, -0.25]) for (let m = g0[2]; m <= 1.7; m += 0.1) for (let ip = g0[3]; ip <= 1.5; ip += 0.1) {
+              ppose.thumb = [g0[0] + sw, g0[1] + op, m, ip]; ph.pose(ppose); ph.group.updateMatrixWorld(true);
+              const ga = C5.gap(tm, Sg).gap; if (ga < 0) break;
+              const gp = C5.gap(tip, Sg).gap, sc = Math.abs(gp - C5.TARGET) + 0.01 * (Math.abs(sw) + Math.abs(op));
+              if (!bt || sc < bt.sc) bt = { sc, t: ppose.thumb.slice(), gp };
+            }
+            ppose.thumb = bt.t; ph.pose(ppose);
+            log(`grip: his thumb pad ${(bt.gp * 100).toFixed(2)} mm from the glove (thumb ${bt.t.map((v) => v.toFixed(2)).join(', ')})`); }
           applyArm('R', kinState('R', a, ppose));
           const g = Object.fromEntries(F4.concat(['thumb']).map((f) => [f, C5.gap(f === 'thumb' ? C5.meshesUnder(ph.thumb.mcp) : C5.meshesUnder(ph.fingers[f].mcp), Sg).gap]));
           g.palm = C5.gap(two(), C5.surface([P.arms.R.armMesh], centreOf(), 2.0)).gap;
@@ -405,6 +441,7 @@
             st = placeHand(pt); settleP();
           }
           SOL.abdf[s] = { wrist: A(st.wrist), quat: [st.quat.x, st.quat.y, st.quat.z, st.quat.w], pole: A(st.pole), pose: clonePose(ppose) };
+          const basePose = clonePose(ppose);
           const F0 = ph.fingers.index; F0.mcp.updateMatrixWorld(true);
           // his thumb side of the index finger: from the middle finger's knuckle toward the index finger's (works on both hands)
           const iK = F0.mcp.getWorldPosition(V(0, 0, 0)), mK = ph.fingers.middle.mcp.getWorldPosition(V(0, 0, 0)), iT = F0.dip.getWorldPosition(V(0, 0, 0));
@@ -412,6 +449,14 @@
           const pp = F0.mcp.localToWorld(V(F0.f.L[0] * 0.55, 0.02, 0)), Sx = C5.surface(visibleMeshes(F0.mcp), pp, 0.8);
           const hi = hitMeshes(visibleMeshes(F0.mcp), pp.clone().addScaledVector(side, 0.6), side.clone().negate());
           const hand = s, st2 = layHand(hand, 'indexPad', hi.p, hi.n, V(0, -1, 0).addScaledVector(hi.n, -0.3).add(V(0.25, 0, 0)), POSE.point, Sx, V(0.2, 0.65, 0.75 * sz), { dip: 0.55, thumb: false });
+          // the give: his index finger turned toward the middle finger (about 2 mm at the examiner's finger) and bent again
+          // onto his thigh, so it never sinks into it
+          { const lever = hi.p.distanceTo(F0.mcp.getWorldPosition(V(0, 0, 0))), pg = clonePose(basePose); pg.fan.index += FING_GIVE / lever;
+            ph.pose(pg); applyArm(s, { wrist: st.wrist, quat: st.quat, pose: pg, pole: st.pole });
+            const gI = settleFinger(ph, pg, 'index', C5.surface(thigh, pt, 2.4), { lo: -0.4, hi: 0.9, ratio: [0.6, 1, 0.7], fans: [0] });
+            SOL.abdf[s].poseGive = clonePose(pg);
+            log(`finger abduction ${s}: in the give his index finger rests ${(gI * 100).toFixed(2)} mm above the thigh`);
+            ph.pose(basePose); applyArm(s, { wrist: st.wrist, quat: st.quat, pose: basePose, pole: st.pole }); }
           SOL.rel['fing' + s] = { frame: 'world', p: A(st2.wrist), q: [st2.quat.x, st2.quat.y, st2.quat.z, st2.quat.w], back: A(st2.back), pose: st2.pose, push: A(side.clone().negate()), lever: +(hi.p.distanceTo(F0.mcp.getWorldPosition(V(0, 0, 0)))).toFixed(4) };
           const gp = C5.gap(C5.parts(handOf(hand), 'indexTip'), Sx).gap;
           log(`finger abduction ${s}: his hand on the thigh, the examiner's index pad on the thumb side of his index finger (${(gp * 100).toFixed(2)} mm)`);
@@ -443,7 +488,6 @@
       const PP = { shake: SOL.ppose.shake, grip: SOL.ppose.grip, spread: SOL.ppose.spread };
       // the examiner's hand for a stored contact, for the patient's arm at angles a, on side 'R' or 'L' (mirror)
       // the examiner's forearm: mostly from where the examiner stands (world), so it does not swing round with his hand
-      const FING_GIVE = 0.019;     // the index finger gives 1.9 mm at the examiner's finger, then holds
       const WORLD_BACK = { shake: [V(0.85, -0.3, 0.45).normalize(), 0.75], cup: [V(0.15, -0.62, 1).normalize(), 0.7], wristSup: [V(-0.75, -0.15, 0.65).normalize(), 1], fing: [V(0.2, 0.65, 0.75).normalize(), 1] };
       const exAt = (name, a, side, extra) => {
         const rel = SOL.rel[name], fr = KIN.frames(P, a)[rel.frame], st = fromRel(fr, rel);
@@ -451,23 +495,26 @@
         if (extra) st.wrist.add(extra);
         return side === 'L' ? Object.assign(KIN.mirrorState(st), { left: true }) : st;
       };
-      // the cup under the elbow: bilinear in the grid of elbow angle and forearm turn
-      const cupAt = (a, side) => {
-        const G = SOL.cup, fr = KIN.frames(P, a).elbow;
-        const idx = (arr, v) => { v = K.clamp(v, arr[0], arr[arr.length - 1]); let i = 0; while (i < arr.length - 2 && arr[i + 1] < v) i++; return [i, (v - arr[i]) / (arr[i + 1] - arr[i])]; };
-        const [i, u] = idx(G.EL, a.elbow || 0), [j, w] = idx(G.PR, a.pron || 0);
-        const c = [[G.grid[i][j], G.grid[i][j + 1]], [G.grid[i + 1][j], G.grid[i + 1][j + 1]]];
-        const lp = (k) => [0, 1, 2].map((d) => K.lerp(K.lerp(c[0][0][k][d], c[0][1][k][d], w), K.lerp(c[1][0][k][d], c[1][1][k][d], w), u));
-        const q00 = toQ(c[0][0].q), q01 = toQ(c[0][1].q), q10 = toQ(c[1][0].q), q11 = toQ(c[1][1].q);
-        const qq = q00.clone().slerp(q01, w).slerp(q10.clone().slerp(q11, w), u);
-        const pose = blendPose(blendPose(c[0][0].pose, c[0][1].pose, w), blendPose(c[1][0].pose, c[1][1].pose, w), u);
-        const st = fromRel(fr, { p: lp('p'), q: [qq.x, qq.y, qq.z, qq.w], back: lp('back'), pose });
+      // the cup under the elbow: the solution at the poses of the tone path either side of his current angles
+      const blendRel = (r1, r2, u) => { const q = toQ(r1.q).slerp(toQ(r2.q), u); return { p: r1.p.map((v, i) => K.lerp(v, r2.p[i], u)), q: [q.x, q.y, q.z, q.w], back: r1.back.map((v, i) => K.lerp(v, r2.back[i], u)), pose: blendPose(r1.pose, r2.pose, u) }; };
+      // where his arm is on the tone path: the two path poses either side and how far between them
+      const pathPos = (a, side, tp) => {
+        const keys = side === 'R' ? TONE_R : TONE_L, n = 2 * keys.length - 1;
+        if (tp == null || tp <= keys[0][0]) return [0, 0, 0];
+        if (tp >= keys[keys.length - 1][0]) return [n - 1, n - 1, 0];
+        let i = 0; while (keys[i + 1][0] <= tp) i++;
+        const a0 = keys[i][1], a1 = keys[i + 1][1]; let pr = 0;
+        for (const k of Object.keys(a1)) { const d = a1[k] - (a0[k] || 0); if (Math.abs(d) > 1e-6) { pr = K.clamp(((a[k] || 0) - (a0[k] || 0)) / d); break; } }
+        const j = 2 * i; return pr < 0.5 ? [j, j + 1, pr * 2] : [j + 1, j + 2, (pr - 0.5) * 2];
+      };
+      const cupAt = (a, side, tp) => {
+        const Lp = SOL.cupPath, [j0, j1, u] = pathPos(a, side, tp), rel = blendRel(Lp[j0], Lp[j1], u);
+        const st = fromRel(KIN.frames(P, a).elbow, rel);
         st.back = st.back.clone().lerp(WORLD_BACK.cup[0], WORLD_BACK.cup[1]).normalize();
         return side === 'L' ? Object.assign(KIN.mirrorState(st), { left: true }) : st;
       };
       const abdfState = (side, give) => {
-        const s = SOL.abdf[side], pose = clonePose(s.pose), r = SOL.rel['fing' + side];
-        if (give) pose.fan = Object.assign({}, pose.fan, { index: (pose.fan.index || 0) + (FING_GIVE / r.lever) * give });   // pushed toward the middle finger, about 2 mm at the examiner's finger
+        const s = SOL.abdf[side], pose = give ? blendPose(s.pose, s.poseGive, give) : clonePose(s.pose);   // pushed toward the middle finger, about 2 mm at the examiner's finger
         return { wrist: toV(s.wrist), quat: toQ(s.quat), pose, pole: toV(s.pole) };
       };
       const fingEx = (side, give) => {
@@ -523,7 +570,7 @@
         const p0 = w.pose[0], p1 = w.pose[1], pr0 = w.press[0];
         return [
           [p0, REST[side]], [p1, kin(t.a, pose), { arc: up(0.6, side === 'R' ? 0.4 : -0.4, 0.3) }],
-          [pr0, kin(t.a, pose)], [pr0 + 0.3, kin(aGive, pose), { ease: K.ease.out }], [w.exOut[0] + 0.05, kin(aGive, pose)],
+          [pr0, kin(t.a, pose)], [pr0 + 0.3, kin(aGive, pose), { ease: K.ease.out }], [w.down[0], kin(aGive, pose)],
           [w.down[1], REST[side], { arc: up(0.45, side === 'R' ? 0.3 : -0.3, 0.2) }],
         ];
       };
@@ -574,10 +621,15 @@
       // ---- the examiner's hands
       const EXR = ST.exRest, EXL = ST.exRestLeft;
       const REL_TEST = { abd: 'abd', elbF: 'elbF', elbE: 'elbE', wrist: 'wrist', wristSup: 'wrist', grip: 'grip' };
-      const lastAng = {};
-      const att = (name, side) => (tp) => { const a = anglesAt(side, tp); if (a) lastAng[name + side] = a; return exAt(name, a || lastAng[name + side] || TEST[REL_TEST[name]].a, side); };
-      const cup = (side) => (tp) => { const a = anglesAt(side, tp); if (a) lastAng['cup' + side] = a; return cupAt(a || lastAng['cup' + side] || TONE_BASE, side); };
-      const shakeAt = (side) => (tp) => { const a = anglesAt(side, tp); if (a) lastAng['shake' + side] = a; return exAt('shake', a || lastAng['shake' + side] || TONE_BASE, side); };
+      // while his arm is not in a joint-angle pose (moving to or from rest) the hand that is coming or going uses the test
+      // position (with its give): a fixed value, so every frame is the same whatever order frames are rendered in
+      const att = (name, side) => (tp) => { const t = TEST[REL_TEST[name]]; return exAt(name, anglesAt(side, tp) || withGive(t.a, t.give, 1), side); };
+      const cup = (side) => (tp) => cupAt(anglesAt(side, tp) || TONE_BASE, side, tp);
+      const shakeAt = (side) => (tp) => {
+        const a = anglesAt(side, tp) || TONE_BASE, st = exAt('shake', a, side), si = SOL.shakeIndex;
+        if (si) { const [j0, j1, u] = pathPos(a, side, tp), t = K.lerp(si.t[j0], si.t[j1], u); st.pose = clonePose(st.pose); st.pose.curl.index = si.base.map((v, i) => v + t * [0.5, 1, 0.8][i]); }
+        return st;
+      };
       const EK = { R: [[0, EXR.R]], L: [[0, EXR.L]] };
       {
         const tr = T.toneR, tl = T.toneL;
@@ -773,12 +825,12 @@
       // the quiet room under everything, faded in over the first 0.5 s and out over the last 0.5 s (no clicks at the joins)
       k.noise(0, { dur: D, color: 'brown', filter: 'lowpass', f: 300, gain: 0.11, a: 0.5, hold: D - 1.0, bus: 'amb' });
       k.noise(0, { dur: D, color: 'pink', filter: 'highpass', f: 4500, gain: 0.012, a: 0.5, hold: D - 1.0, bus: 'amb' });
-      // a very soft rustle of the sheet and the mattress when his arms move off or come back to rest
-      const rustle = (t, pan, g = 1, dur = 0.22) => { k.noise(t, { dur, color: 'pink', filter: 'bandpass', f: 1500, q: 0.8, gain: 0.05 * g, a: 0.04, pan }); k.noise(t + 0.02, { dur: dur * 0.7, color: 'brown', filter: 'lowpass', f: 600, gain: 0.05 * g, a: 0.03, pan }); };
-      rustle(T.toneR.offer[0], 0.25); rustle(T.toneR.down[1] - 0.12, 0.25);
-      rustle(T.toneL.offer[0], -0.25); rustle(T.toneL.down[1] - 0.12, -0.25);
-      rustle(T.drift.lift[0], 0, 1.2, 0.3); rustle(T.drift.lower[1] - 0.15, 0, 1.2, 0.3);
-      for (const w of [T.abd, T.elbF, T.elbE, T.wrist, T.grip, T.fing]) { rustle(w.R.pose[0], 0.25); rustle(w.R.down[1] - 0.12, 0.25); rustle(w.L.pose[0], -0.25); rustle(w.L.down[1] - 0.12, -0.25); }
+      // a very soft rustle of the sheet and the mattress when his arms move off or come back to rest (on the exact pose of the event)
+      const rustle = (t0, pan, g = 1, dur = 0.22) => { const t = Math.round(t0 * POSES) / POSES; k.noise(t, { dur, color: 'pink', filter: 'bandpass', f: 1500, q: 0.8, gain: 0.05 * g, a: 0.04, pan }); k.noise(t + 0.02, { dur: dur * 0.7, color: 'brown', filter: 'lowpass', f: 600, gain: 0.05 * g, a: 0.03, pan }); };
+      rustle(T.toneR.offer[0], 0.25); rustle(T.toneR.down[1], 0.25);
+      rustle(T.toneL.offer[0], -0.25); rustle(T.toneL.down[1], -0.25);
+      rustle(T.drift.lift[0], 0, 1.2, 0.3); rustle(T.drift.lower[1], 0, 1.2, 0.3);
+      for (const w of [T.abd, T.elbF, T.elbE, T.wrist, T.grip, T.fing]) { rustle(w.R.pose[0], 0.25); rustle(w.R.down[1], 0.25); rustle(w.L.pose[0], -0.25); rustle(w.L.down[1], -0.25); }
     },
   };
   root.CNS5 = style;

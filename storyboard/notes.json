@@ -1,0 +1,37 @@
+{
+ "step0": [
+  "soft-clay-REFERENCE-STYLE-SOURCE.txt: read whole (372 lines); its code is identical to styles/soft-clay.js. The full prompt (soft-clay-cns-part5-motor-arms-prompt.txt, 2032 lines) was read whole: after MY CONTENT come STORYBOARD FIRST, WHAT TO BUILD, HOW TO STAY IN THE STYLE, FLOW BETWEEN BEATS, SOUND (no voiceover: a fuller mix), the rendering note, STYLE CARD, STAGE KIT, SOUND KIT, TEXT3D and REFERENCE STYLE SOURCE; the kits embedded in it are identical to lib/.",
+  "series-shared-v5.zip: series/cvs1-style.js; shared/ abdo.js, bed.js, caption.js, clay.js, hands.js, home.js, neuro.js, neuro-props.js, patient.js, patient-neuro.js, props.js, set.js, sheet.js, README.md (contains 'v5: neuro mode'); ref/ patient_full.png, patient_face.png, patient_cns_full.png, patient_cns_face.png (plus patient_flat_full.png and patient_flat_abdomen.png). Everything required is there; shared/ is used unchanged (byte-identical to the zip).",
+  "lib/stage.js (39688 bytes, md5 980404cad405873f5891ccafbd6e2065), lib/sound.js (22800, 99b0970f88de7265655ccf2a16b5b65c) and lib/text3d.js (54931, c3aa8d0fb28b30af3ebb61a1f631bc4c) come unchanged from part 4 (IT-Ali/clay-cns-4); the zip has no lib/."
+ ],
+ "changes": [
+  "Checked against the full prompt: update(t) no longer keeps any state between calls (the examiner's hand used to remember the last arm angles while his arm moved to or from rest; it now uses the fixed test position), so frames are identical in any render order.",
+  "His arm now holds the test position until the examiner's hand has left it (no arm moving under a hand).",
+  "Every rustle starts on the exact pose frame of its event (the arm leaving or reaching the mattress), from the same schedule as the picture.",
+  "Elbow cup (tone): the palm and the index, middle, ring and little fingers wrapped round the back of the elbow, each finger searched over its joint ratios, solved on a grid of elbow angles and forearm turns; measured at several moments through the moves (table below).",
+  "Grip: his thumb starts from NEURO.HAND.grip and its two joints are flexed until its pad rests on the gloved fingers (table below)."
+ ],
+ "checks": [
+  "Contacts: every contact is measured on the meshes of the rendered frames (not the intended values): the table at the bottom lists each one, at every moment it holds (the tone contacts at several moments through the moves).",
+  "Hand rules: fingers together in every contact (each finger may turn at most 0.15 rad toward its neighbours to reach the skin), no V (the two gloved fingers of the grip side by side), no upright hand on the bed, no hand on its edge except the pointing hand of finger abduction, whose index comes down onto the side of his finger from above.",
+  "His RIGHT and LEFT: checked in the plan panel (a); every left-side test is filmed from his left with the examiner on his left (the sleeves leave the frame on that side); the bedside table is on his left near his head and no camera passes through it or the bed.",
+  "No text in the scene: only the caption plaque (off in the review panels, which carry review labels only).",
+  "The neck is the kit's slim neck (no change to shared/).",
+  "Every sign named in a caption can be seen: inspection shows both shoulders, upper arms, forearms and the backs of both hands; drift shows both palms level and his closed eyes; each power panel shows the named point and the examiner's hand."
+ ],
+ "assumptions": [
+  "He stays half-sitting at 45 degrees for the whole part (as the brief allows); 'the upper arm resting on the bed by his side' is the upper arm lying along the backrest beside his trunk.",
+  "Wrist extension: with the trunk at 45 degrees his forearm cannot lie flat on the mattress with the elbow bent, so it lies palm down beside him resting on the examiner's other palm, which steadies it from below; the fist is cocked up from there.",
+  "Finger flexion: his forearm points forward with the thumb up, so the examiner's two fingers go down through his grip from the thumb side and their tips come out under his little finger.",
+  "Finger abduction: his hand rests on the front of his thigh (on the pyjama trousers, 10 cm above the knee).",
+  "Each 'hold' is 1.5 s with the picture still apart from his quiet breathing; his only words are 'no' (beat 2), as silent visemes.",
+  "The limb gives about 2 mm under the examiner's hand and then holds (shoulder 0.55 deg, elbow 0.6 deg, wrist 1.8 deg, the hand 0.55 deg of elbow, the index finger about 2 mm); the working muscle firms by about 1 mm (no lump). Finger abduction: no firming of the first dorsal interosseous is modelled (it would read as a lump at that size).",
+  "The kit's fist leaves a see-through loop seen from the thumb side, so this part uses its own fist (the fingers bent more at the middle joints, the thumb across the front of the index and middle fingers); the kit's NEURO.HAND poses are used for the drift (together), the grip and finger abduction (spread).",
+  "Tone moves: the wrist 45 deg flexion to 38 deg extension, the forearm 72 deg supination to 55 deg pronation, the elbow 28 to 112 deg, the shoulder 4 to 30 deg out, at irregular speeds; the left arm 1.3 times faster.",
+  "Between beats the view changes by hard cuts that land on him (allowed by the brief's transition rules), and the walk round to his left and back is always a hard cut, as asked; FLOW BETWEEN BEATS' 'no hard cuts' is overridden by MY CONTENT here."
+ ],
+ "open": [
+  "The raised arm (outstretched, abduct90): the top of the shoulder reads as the kit's rounded clay joint (v5 limit), see panel f.",
+  "Sound: only the room bed and soft rustles, as MY CONTENT asks (no contact sounds or music, which SOUND (no voiceover) would otherwise suggest)."
+ ]
+}

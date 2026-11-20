@@ -1,0 +1,1448 @@
+[
+ {
+  "id": "shake-palm-R",
+  "name": "Tone right: examiner's palm on his palm",
+  "group": "tone",
+  "side": "R",
+  "times": [
+   15.8,
+   16.13,
+   17.22,
+   18.14,
+   19.19,
+   20.29,
+   21.23
+  ],
+  "minMM": 0.512,
+  "maxMM": 0.512
+ },
+ {
+  "id": "shake-ex-index-R",
+  "name": "Tone right: examiner's index finger round the back of his hand",
+  "group": "tone",
+  "side": "R",
+  "times": [
+   15.8,
+   16.13,
+   17.22,
+   18.14,
+   19.19,
+   20.29,
+   21.23
+  ],
+  "minMM": -0.48,
+  "maxMM": 1.002
+ },
+ {
+  "id": "shake-ex-middle-R",
+  "name": "Tone right: examiner's middle finger round the back of his hand",
+  "group": "tone",
+  "side": "R",
+  "times": [
+   15.8,
+   16.13,
+   17.22,
+   18.14,
+   19.19,
+   20.29,
+   21.23
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "shake-ex-ring-R",
+  "name": "Tone right: examiner's ring finger round the back of his hand",
+  "group": "tone",
+  "side": "R",
+  "times": [
+   15.8,
+   16.13,
+   17.22,
+   18.14,
+   19.19,
+   20.29,
+   21.23
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "shake-ex-little-R",
+  "name": "Tone right: examiner's little finger round the back of his hand",
+  "group": "tone",
+  "side": "R",
+  "times": [
+   15.8,
+   16.13,
+   17.22,
+   18.14,
+   19.19,
+   20.29,
+   21.23
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "shake-exthumb-R",
+  "name": "Tone right: examiner's thumb over the back of his hand",
+  "group": "tone",
+  "side": "R",
+  "times": [
+   15.8,
+   16.13,
+   17.22,
+   18.14,
+   19.19,
+   20.29,
+   21.23
+  ],
+  "minMM": 0.501,
+  "maxMM": 0.501
+ },
+ {
+  "id": "shake-his-index-R",
+  "name": "Tone right: his index finger round the examiner's hand",
+  "group": "tone",
+  "side": "R",
+  "times": [
+   15.8,
+   16.13,
+   17.22,
+   18.14,
+   19.19,
+   20.29,
+   21.23
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "shake-his-middle-R",
+  "name": "Tone right: his middle finger round the examiner's hand",
+  "group": "tone",
+  "side": "R",
+  "times": [
+   15.8,
+   16.13,
+   17.22,
+   18.14,
+   19.19,
+   20.29,
+   21.23
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "shake-his-ring-R",
+  "name": "Tone right: his ring finger round the examiner's hand",
+  "group": "tone",
+  "side": "R",
+  "times": [
+   15.8,
+   16.13,
+   17.22,
+   18.14,
+   19.19,
+   20.29,
+   21.23
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "shake-his-little-R",
+  "name": "Tone right: his little finger round the examiner's hand",
+  "group": "tone",
+  "side": "R",
+  "times": [
+   15.8,
+   16.13,
+   17.22,
+   18.14,
+   19.19,
+   20.29,
+   21.23
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "shake-histhumb-R",
+  "name": "Tone right: his thumb over the back of the examiner's hand",
+  "group": "tone",
+  "side": "R",
+  "times": [
+   15.8,
+   16.13,
+   17.22,
+   18.14,
+   19.19,
+   20.29,
+   21.23
+  ],
+  "minMM": 0.501,
+  "maxMM": 0.501
+ },
+ {
+  "id": "cup-palm-R",
+  "name": "Tone right: examiner's palm cupping the back of his elbow",
+  "group": "tone",
+  "side": "R",
+  "times": [
+   15.8,
+   16.13,
+   17.22,
+   18.14,
+   19.19,
+   20.29,
+   21.23
+  ],
+  "minMM": 0.491,
+  "maxMM": 1.855
+ },
+ {
+  "id": "cup-index-R",
+  "name": "Tone right: examiner's index finger round his elbow",
+  "group": "tone",
+  "side": "R",
+  "times": [
+   15.8,
+   16.13,
+   17.22,
+   18.14,
+   19.19,
+   20.29,
+   21.23
+  ],
+  "minMM": -0.195,
+  "maxMM": 0.53
+ },
+ {
+  "id": "cup-middle-R",
+  "name": "Tone right: examiner's middle finger round his elbow",
+  "group": "tone",
+  "side": "R",
+  "times": [
+   15.8,
+   16.13,
+   17.22,
+   18.14,
+   19.19,
+   20.29,
+   21.23
+  ],
+  "minMM": 0.115,
+  "maxMM": 0.562
+ },
+ {
+  "id": "cup-ring-R",
+  "name": "Tone right: examiner's ring finger round his elbow",
+  "group": "tone",
+  "side": "R",
+  "times": [
+   15.8,
+   16.13,
+   17.22,
+   18.14,
+   19.19,
+   20.29,
+   21.23
+  ],
+  "minMM": 0.004,
+  "maxMM": 0.553
+ },
+ {
+  "id": "cup-little-R",
+  "name": "Tone right: examiner's little finger round his elbow",
+  "group": "tone",
+  "side": "R",
+  "times": [
+   15.8,
+   16.13,
+   17.22,
+   18.14,
+   19.19,
+   20.29,
+   21.23
+  ],
+  "minMM": -0.026,
+  "maxMM": 2.235
+ },
+ {
+  "id": "abd-palm-R",
+  "name": "Shoulder abduction right: examiner's palm",
+  "group": "abd",
+  "side": "R",
+  "times": [
+   45.51
+  ],
+  "minMM": 0.517,
+  "maxMM": 0.517
+ },
+ {
+  "id": "abd-index-R",
+  "name": "Shoulder abduction right: examiner's index finger",
+  "group": "abd",
+  "side": "R",
+  "times": [
+   45.51
+  ],
+  "minMM": 0.098,
+  "maxMM": 0.098
+ },
+ {
+  "id": "abd-middle-R",
+  "name": "Shoulder abduction right: examiner's middle finger",
+  "group": "abd",
+  "side": "R",
+  "times": [
+   45.51
+  ],
+  "minMM": 0.228,
+  "maxMM": 0.228
+ },
+ {
+  "id": "abd-ring-R",
+  "name": "Shoulder abduction right: examiner's ring finger",
+  "group": "abd",
+  "side": "R",
+  "times": [
+   45.51
+  ],
+  "minMM": 0.467,
+  "maxMM": 0.467
+ },
+ {
+  "id": "abd-little-R",
+  "name": "Shoulder abduction right: examiner's little finger",
+  "group": "abd",
+  "side": "R",
+  "times": [
+   45.51
+  ],
+  "minMM": 0.531,
+  "maxMM": 0.531
+ },
+ {
+  "id": "abd-thumb-R",
+  "name": "Shoulder abduction right: examiner's thumb",
+  "group": "abd",
+  "side": "R",
+  "times": [
+   45.51
+  ],
+  "minMM": 0.446,
+  "maxMM": 0.446
+ },
+ {
+  "id": "elbF-palm-R",
+  "name": "Elbow flexion right: examiner's palm",
+  "group": "elbF",
+  "side": "R",
+  "times": [
+   53.51
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "elbF-index-R",
+  "name": "Elbow flexion right: examiner's index finger",
+  "group": "elbF",
+  "side": "R",
+  "times": [
+   53.51
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "elbF-middle-R",
+  "name": "Elbow flexion right: examiner's middle finger",
+  "group": "elbF",
+  "side": "R",
+  "times": [
+   53.51
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "elbF-ring-R",
+  "name": "Elbow flexion right: examiner's ring finger",
+  "group": "elbF",
+  "side": "R",
+  "times": [
+   53.51
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "elbF-little-R",
+  "name": "Elbow flexion right: examiner's little finger",
+  "group": "elbF",
+  "side": "R",
+  "times": [
+   53.51
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "elbF-thumb-R",
+  "name": "Elbow flexion right: examiner's thumb",
+  "group": "elbF",
+  "side": "R",
+  "times": [
+   53.51
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "elbE-palm-R",
+  "name": "Elbow extension right: examiner's palm",
+  "group": "elbE",
+  "side": "R",
+  "times": [
+   61.23
+  ],
+  "minMM": 0.501,
+  "maxMM": 0.501
+ },
+ {
+  "id": "elbE-index-R",
+  "name": "Elbow extension right: examiner's index finger",
+  "group": "elbE",
+  "side": "R",
+  "times": [
+   61.23
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "elbE-middle-R",
+  "name": "Elbow extension right: examiner's middle finger",
+  "group": "elbE",
+  "side": "R",
+  "times": [
+   61.23
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "elbE-ring-R",
+  "name": "Elbow extension right: examiner's ring finger",
+  "group": "elbE",
+  "side": "R",
+  "times": [
+   61.23
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "elbE-little-R",
+  "name": "Elbow extension right: examiner's little finger",
+  "group": "elbE",
+  "side": "R",
+  "times": [
+   61.23
+  ],
+  "minMM": 0.501,
+  "maxMM": 0.501
+ },
+ {
+  "id": "elbE-thumb-R",
+  "name": "Elbow extension right: examiner's thumb",
+  "group": "elbE",
+  "side": "R",
+  "times": [
+   61.23
+  ],
+  "minMM": 0.501,
+  "maxMM": 0.501
+ },
+ {
+  "id": "wrist-index-R",
+  "name": "Wrist extension (on the back of the fist) right: examiner's index finger",
+  "group": "wrist",
+  "side": "R",
+  "times": [
+   68.3
+  ],
+  "minMM": 0.501,
+  "maxMM": 0.501
+ },
+ {
+  "id": "wrist-middle-R",
+  "name": "Wrist extension (on the back of the fist) right: examiner's middle finger",
+  "group": "wrist",
+  "side": "R",
+  "times": [
+   68.3
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "wrist-ring-R",
+  "name": "Wrist extension (on the back of the fist) right: examiner's ring finger",
+  "group": "wrist",
+  "side": "R",
+  "times": [
+   68.3
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "wrist-little-R",
+  "name": "Wrist extension (on the back of the fist) right: examiner's little finger",
+  "group": "wrist",
+  "side": "R",
+  "times": [
+   68.3
+  ],
+  "minMM": 0.529,
+  "maxMM": 0.529
+ },
+ {
+  "id": "wristSup-palm-R",
+  "name": "Wrist extension (support under the forearm) right: examiner's palm",
+  "group": "wristSup",
+  "side": "R",
+  "times": [
+   68.3
+  ],
+  "minMM": 0.594,
+  "maxMM": 0.594
+ },
+ {
+  "id": "wristSup-index-R",
+  "name": "Wrist extension (support under the forearm) right: examiner's index finger",
+  "group": "wristSup",
+  "side": "R",
+  "times": [
+   68.3
+  ],
+  "minMM": -0.834,
+  "maxMM": -0.834
+ },
+ {
+  "id": "wristSup-middle-R",
+  "name": "Wrist extension (support under the forearm) right: examiner's middle finger",
+  "group": "wristSup",
+  "side": "R",
+  "times": [
+   68.3
+  ],
+  "minMM": 0.013,
+  "maxMM": 0.013
+ },
+ {
+  "id": "wristSup-ring-R",
+  "name": "Wrist extension (support under the forearm) right: examiner's ring finger",
+  "group": "wristSup",
+  "side": "R",
+  "times": [
+   68.3
+  ],
+  "minMM": 0.829,
+  "maxMM": 0.829
+ },
+ {
+  "id": "wristSup-little-R",
+  "name": "Wrist extension (support under the forearm) right: examiner's little finger",
+  "group": "wristSup",
+  "side": "R",
+  "times": [
+   68.3
+  ],
+  "minMM": 0.027,
+  "maxMM": 0.027
+ },
+ {
+  "id": "wristSup-thumb-R",
+  "name": "Wrist extension (support under the forearm) right: examiner's thumb",
+  "group": "wristSup",
+  "side": "R",
+  "times": [
+   68.3
+  ],
+  "minMM": 0.494,
+  "maxMM": 0.494
+ },
+ {
+  "id": "grip-his-index-R",
+  "name": "Grip right: his index finger round the gloved fingers",
+  "group": "grip",
+  "side": "R",
+  "times": [
+   75.88
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "grip-his-middle-R",
+  "name": "Grip right: his middle finger round the gloved fingers",
+  "group": "grip",
+  "side": "R",
+  "times": [
+   75.88
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "grip-his-ring-R",
+  "name": "Grip right: his ring finger round the gloved fingers",
+  "group": "grip",
+  "side": "R",
+  "times": [
+   75.88
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "grip-his-little-R",
+  "name": "Grip right: his little finger round the gloved fingers",
+  "group": "grip",
+  "side": "R",
+  "times": [
+   75.88
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "grip-histhumb-R",
+  "name": "Grip right: his thumb over the gloved fingers",
+  "group": "grip",
+  "side": "R",
+  "times": [
+   75.88
+  ],
+  "minMM": 0.002,
+  "maxMM": 0.002
+ },
+ {
+  "id": "grip-two-R",
+  "name": "Grip right: the examiner's index and middle fingers on his palm",
+  "group": "grip",
+  "side": "R",
+  "times": [
+   75.88
+  ],
+  "minMM": 0.501,
+  "maxMM": 0.501
+ },
+ {
+  "id": "fing-ex-R",
+  "name": "Finger abduction right: the pad of the examiner's index on the thumb side of his index finger",
+  "group": "fing",
+  "side": "R",
+  "times": [
+   83.22
+  ],
+  "minMM": 0.601,
+  "maxMM": 0.601
+ },
+ {
+  "id": "fing-palm-R",
+  "name": "Finger abduction right: his palm resting on his thigh",
+  "group": "fing",
+  "side": "R",
+  "times": [
+   83.22
+  ],
+  "minMM": 1.2,
+  "maxMM": 1.2
+ },
+ {
+  "id": "fing-index-R",
+  "name": "Finger abduction right: his index finger resting on his thigh",
+  "group": "fing",
+  "side": "R",
+  "times": [
+   83.22
+  ],
+  "minMM": 0.001,
+  "maxMM": 0.001
+ },
+ {
+  "id": "fing-middle-R",
+  "name": "Finger abduction right: his middle finger resting on his thigh",
+  "group": "fing",
+  "side": "R",
+  "times": [
+   83.22
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "fing-ring-R",
+  "name": "Finger abduction right: his ring finger resting on his thigh",
+  "group": "fing",
+  "side": "R",
+  "times": [
+   83.22
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "fing-little-R",
+  "name": "Finger abduction right: his little finger resting on his thigh",
+  "group": "fing",
+  "side": "R",
+  "times": [
+   83.22
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "fing-thumb-R",
+  "name": "Finger abduction right: his thumb resting on his thigh",
+  "group": "fing",
+  "side": "R",
+  "times": [
+   83.22
+  ],
+  "minMM": 0.501,
+  "maxMM": 0.501
+ },
+ {
+  "id": "shake-palm-L",
+  "name": "Tone left: examiner's palm on his palm",
+  "group": "tone",
+  "side": "L",
+  "times": [
+   23.95,
+   24.2,
+   25.04,
+   25.73,
+   26.54,
+   27.38,
+   28.09
+  ],
+  "minMM": 0.512,
+  "maxMM": 0.512
+ },
+ {
+  "id": "shake-ex-index-L",
+  "name": "Tone left: examiner's index finger round the back of his hand",
+  "group": "tone",
+  "side": "L",
+  "times": [
+   23.95,
+   24.2,
+   25.04,
+   25.73,
+   26.54,
+   27.38,
+   28.09
+  ],
+  "minMM": -0.528,
+  "maxMM": 0.992
+ },
+ {
+  "id": "shake-ex-middle-L",
+  "name": "Tone left: examiner's middle finger round the back of his hand",
+  "group": "tone",
+  "side": "L",
+  "times": [
+   23.95,
+   24.2,
+   25.04,
+   25.73,
+   26.54,
+   27.38,
+   28.09
+  ],
+  "minMM": 0.501,
+  "maxMM": 0.501
+ },
+ {
+  "id": "shake-ex-ring-L",
+  "name": "Tone left: examiner's ring finger round the back of his hand",
+  "group": "tone",
+  "side": "L",
+  "times": [
+   23.95,
+   24.2,
+   25.04,
+   25.73,
+   26.54,
+   27.38,
+   28.09
+  ],
+  "minMM": 0.501,
+  "maxMM": 0.501
+ },
+ {
+  "id": "shake-ex-little-L",
+  "name": "Tone left: examiner's little finger round the back of his hand",
+  "group": "tone",
+  "side": "L",
+  "times": [
+   23.95,
+   24.2,
+   25.04,
+   25.73,
+   26.54,
+   27.38,
+   28.09
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "shake-exthumb-L",
+  "name": "Tone left: examiner's thumb over the back of his hand",
+  "group": "tone",
+  "side": "L",
+  "times": [
+   23.95,
+   24.2,
+   25.04,
+   25.73,
+   26.54,
+   27.38,
+   28.09
+  ],
+  "minMM": 0.501,
+  "maxMM": 0.501
+ },
+ {
+  "id": "shake-his-index-L",
+  "name": "Tone left: his index finger round the examiner's hand",
+  "group": "tone",
+  "side": "L",
+  "times": [
+   23.95,
+   24.2,
+   25.04,
+   25.73,
+   26.54,
+   27.38,
+   28.09
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "shake-his-middle-L",
+  "name": "Tone left: his middle finger round the examiner's hand",
+  "group": "tone",
+  "side": "L",
+  "times": [
+   23.95,
+   24.2,
+   25.04,
+   25.73,
+   26.54,
+   27.38,
+   28.09
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "shake-his-ring-L",
+  "name": "Tone left: his ring finger round the examiner's hand",
+  "group": "tone",
+  "side": "L",
+  "times": [
+   23.95,
+   24.2,
+   25.04,
+   25.73,
+   26.54,
+   27.38,
+   28.09
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "shake-his-little-L",
+  "name": "Tone left: his little finger round the examiner's hand",
+  "group": "tone",
+  "side": "L",
+  "times": [
+   23.95,
+   24.2,
+   25.04,
+   25.73,
+   26.54,
+   27.38,
+   28.09
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "shake-histhumb-L",
+  "name": "Tone left: his thumb over the back of the examiner's hand",
+  "group": "tone",
+  "side": "L",
+  "times": [
+   23.95,
+   24.2,
+   25.04,
+   25.73,
+   26.54,
+   27.38,
+   28.09
+  ],
+  "minMM": 0.501,
+  "maxMM": 0.501
+ },
+ {
+  "id": "cup-palm-L",
+  "name": "Tone left: examiner's palm cupping the back of his elbow",
+  "group": "tone",
+  "side": "L",
+  "times": [
+   23.95,
+   24.2,
+   25.04,
+   25.73,
+   26.54,
+   27.38,
+   28.09
+  ],
+  "minMM": 0.495,
+  "maxMM": 2.067
+ },
+ {
+  "id": "cup-index-L",
+  "name": "Tone left: examiner's index finger round his elbow",
+  "group": "tone",
+  "side": "L",
+  "times": [
+   23.95,
+   24.2,
+   25.04,
+   25.73,
+   26.54,
+   27.38,
+   28.09
+  ],
+  "minMM": -0.13,
+  "maxMM": 0.54
+ },
+ {
+  "id": "cup-middle-L",
+  "name": "Tone left: examiner's middle finger round his elbow",
+  "group": "tone",
+  "side": "L",
+  "times": [
+   23.95,
+   24.2,
+   25.04,
+   25.73,
+   26.54,
+   27.38,
+   28.09
+  ],
+  "minMM": 0.121,
+  "maxMM": 0.55
+ },
+ {
+  "id": "cup-ring-L",
+  "name": "Tone left: examiner's ring finger round his elbow",
+  "group": "tone",
+  "side": "L",
+  "times": [
+   23.95,
+   24.2,
+   25.04,
+   25.73,
+   26.54,
+   27.38,
+   28.09
+  ],
+  "minMM": -0.001,
+  "maxMM": 0.489
+ },
+ {
+  "id": "cup-little-L",
+  "name": "Tone left: examiner's little finger round his elbow",
+  "group": "tone",
+  "side": "L",
+  "times": [
+   23.95,
+   24.2,
+   25.04,
+   25.73,
+   26.54,
+   27.38,
+   28.09
+  ],
+  "minMM": -0.027,
+  "maxMM": 2.471
+ },
+ {
+  "id": "abd-palm-L",
+  "name": "Shoulder abduction left: examiner's palm",
+  "group": "abd",
+  "side": "L",
+  "times": [
+   48.45
+  ],
+  "minMM": 0.512,
+  "maxMM": 0.512
+ },
+ {
+  "id": "abd-index-L",
+  "name": "Shoulder abduction left: examiner's index finger",
+  "group": "abd",
+  "side": "L",
+  "times": [
+   48.45
+  ],
+  "minMM": 0.096,
+  "maxMM": 0.096
+ },
+ {
+  "id": "abd-middle-L",
+  "name": "Shoulder abduction left: examiner's middle finger",
+  "group": "abd",
+  "side": "L",
+  "times": [
+   48.45
+  ],
+  "minMM": 0.228,
+  "maxMM": 0.228
+ },
+ {
+  "id": "abd-ring-L",
+  "name": "Shoulder abduction left: examiner's ring finger",
+  "group": "abd",
+  "side": "L",
+  "times": [
+   48.45
+  ],
+  "minMM": 0.467,
+  "maxMM": 0.467
+ },
+ {
+  "id": "abd-little-L",
+  "name": "Shoulder abduction left: examiner's little finger",
+  "group": "abd",
+  "side": "L",
+  "times": [
+   48.45
+  ],
+  "minMM": 0.531,
+  "maxMM": 0.531
+ },
+ {
+  "id": "abd-thumb-L",
+  "name": "Shoulder abduction left: examiner's thumb",
+  "group": "abd",
+  "side": "L",
+  "times": [
+   48.45
+  ],
+  "minMM": 0.446,
+  "maxMM": 0.446
+ },
+ {
+  "id": "elbF-palm-L",
+  "name": "Elbow flexion left: examiner's palm",
+  "group": "elbF",
+  "side": "L",
+  "times": [
+   56.45
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "elbF-index-L",
+  "name": "Elbow flexion left: examiner's index finger",
+  "group": "elbF",
+  "side": "L",
+  "times": [
+   56.45
+  ],
+  "minMM": 0.502,
+  "maxMM": 0.502
+ },
+ {
+  "id": "elbF-middle-L",
+  "name": "Elbow flexion left: examiner's middle finger",
+  "group": "elbF",
+  "side": "L",
+  "times": [
+   56.45
+  ],
+  "minMM": 0.502,
+  "maxMM": 0.502
+ },
+ {
+  "id": "elbF-ring-L",
+  "name": "Elbow flexion left: examiner's ring finger",
+  "group": "elbF",
+  "side": "L",
+  "times": [
+   56.45
+  ],
+  "minMM": 0.491,
+  "maxMM": 0.491
+ },
+ {
+  "id": "elbF-little-L",
+  "name": "Elbow flexion left: examiner's little finger",
+  "group": "elbF",
+  "side": "L",
+  "times": [
+   56.45
+  ],
+  "minMM": 0.494,
+  "maxMM": 0.494
+ },
+ {
+  "id": "elbF-thumb-L",
+  "name": "Elbow flexion left: examiner's thumb",
+  "group": "elbF",
+  "side": "L",
+  "times": [
+   56.45
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "elbE-palm-L",
+  "name": "Elbow extension left: examiner's palm",
+  "group": "elbE",
+  "side": "L",
+  "times": [
+   63.85
+  ],
+  "minMM": 0.501,
+  "maxMM": 0.501
+ },
+ {
+  "id": "elbE-index-L",
+  "name": "Elbow extension left: examiner's index finger",
+  "group": "elbE",
+  "side": "L",
+  "times": [
+   63.85
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "elbE-middle-L",
+  "name": "Elbow extension left: examiner's middle finger",
+  "group": "elbE",
+  "side": "L",
+  "times": [
+   63.85
+  ],
+  "minMM": 0.499,
+  "maxMM": 0.499
+ },
+ {
+  "id": "elbE-ring-L",
+  "name": "Elbow extension left: examiner's ring finger",
+  "group": "elbE",
+  "side": "L",
+  "times": [
+   63.85
+  ],
+  "minMM": 0.496,
+  "maxMM": 0.496
+ },
+ {
+  "id": "elbE-little-L",
+  "name": "Elbow extension left: examiner's little finger",
+  "group": "elbE",
+  "side": "L",
+  "times": [
+   63.85
+  ],
+  "minMM": 0.501,
+  "maxMM": 0.501
+ },
+ {
+  "id": "elbE-thumb-L",
+  "name": "Elbow extension left: examiner's thumb",
+  "group": "elbE",
+  "side": "L",
+  "times": [
+   63.85
+  ],
+  "minMM": 0.501,
+  "maxMM": 0.501
+ },
+ {
+  "id": "wrist-index-L",
+  "name": "Wrist extension (on the back of the fist) left: examiner's index finger",
+  "group": "wrist",
+  "side": "L",
+  "times": [
+   71.06
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "wrist-middle-L",
+  "name": "Wrist extension (on the back of the fist) left: examiner's middle finger",
+  "group": "wrist",
+  "side": "L",
+  "times": [
+   71.06
+  ],
+  "minMM": 0.498,
+  "maxMM": 0.498
+ },
+ {
+  "id": "wrist-ring-L",
+  "name": "Wrist extension (on the back of the fist) left: examiner's ring finger",
+  "group": "wrist",
+  "side": "L",
+  "times": [
+   71.06
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "wrist-little-L",
+  "name": "Wrist extension (on the back of the fist) left: examiner's little finger",
+  "group": "wrist",
+  "side": "L",
+  "times": [
+   71.06
+  ],
+  "minMM": 0.529,
+  "maxMM": 0.529
+ },
+ {
+  "id": "wristSup-palm-L",
+  "name": "Wrist extension (support under the forearm) left: examiner's palm",
+  "group": "wristSup",
+  "side": "L",
+  "times": [
+   71.06
+  ],
+  "minMM": 0.596,
+  "maxMM": 0.596
+ },
+ {
+  "id": "wristSup-index-L",
+  "name": "Wrist extension (support under the forearm) left: examiner's index finger",
+  "group": "wristSup",
+  "side": "L",
+  "times": [
+   71.06
+  ],
+  "minMM": -0.834,
+  "maxMM": -0.834
+ },
+ {
+  "id": "wristSup-middle-L",
+  "name": "Wrist extension (support under the forearm) left: examiner's middle finger",
+  "group": "wristSup",
+  "side": "L",
+  "times": [
+   71.06
+  ],
+  "minMM": 0.013,
+  "maxMM": 0.013
+ },
+ {
+  "id": "wristSup-ring-L",
+  "name": "Wrist extension (support under the forearm) left: examiner's ring finger",
+  "group": "wristSup",
+  "side": "L",
+  "times": [
+   71.06
+  ],
+  "minMM": 0.827,
+  "maxMM": 0.827
+ },
+ {
+  "id": "wristSup-little-L",
+  "name": "Wrist extension (support under the forearm) left: examiner's little finger",
+  "group": "wristSup",
+  "side": "L",
+  "times": [
+   71.06
+  ],
+  "minMM": 0.028,
+  "maxMM": 0.028
+ },
+ {
+  "id": "wristSup-thumb-L",
+  "name": "Wrist extension (support under the forearm) left: examiner's thumb",
+  "group": "wristSup",
+  "side": "L",
+  "times": [
+   71.06
+  ],
+  "minMM": 0.493,
+  "maxMM": 0.493
+ },
+ {
+  "id": "grip-his-index-L",
+  "name": "Grip left: his index finger round the gloved fingers",
+  "group": "grip",
+  "side": "L",
+  "times": [
+   78.77
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "grip-his-middle-L",
+  "name": "Grip left: his middle finger round the gloved fingers",
+  "group": "grip",
+  "side": "L",
+  "times": [
+   78.77
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "grip-his-ring-L",
+  "name": "Grip left: his ring finger round the gloved fingers",
+  "group": "grip",
+  "side": "L",
+  "times": [
+   78.77
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "grip-his-little-L",
+  "name": "Grip left: his little finger round the gloved fingers",
+  "group": "grip",
+  "side": "L",
+  "times": [
+   78.77
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "grip-histhumb-L",
+  "name": "Grip left: his thumb over the gloved fingers",
+  "group": "grip",
+  "side": "L",
+  "times": [
+   78.77
+  ],
+  "minMM": 0.002,
+  "maxMM": 0.002
+ },
+ {
+  "id": "grip-two-L",
+  "name": "Grip left: the examiner's index and middle fingers on his palm",
+  "group": "grip",
+  "side": "L",
+  "times": [
+   78.77
+  ],
+  "minMM": 0.501,
+  "maxMM": 0.501
+ },
+ {
+  "id": "fing-ex-L",
+  "name": "Finger abduction left: the pad of the examiner's index on the thumb side of his index finger",
+  "group": "fing",
+  "side": "L",
+  "times": [
+   85.85
+  ],
+  "minMM": 0.618,
+  "maxMM": 0.618
+ },
+ {
+  "id": "fing-palm-L",
+  "name": "Finger abduction left: his palm resting on his thigh",
+  "group": "fing",
+  "side": "L",
+  "times": [
+   85.85
+  ],
+  "minMM": 0.513,
+  "maxMM": 0.513
+ },
+ {
+  "id": "fing-index-L",
+  "name": "Finger abduction left: his index finger resting on his thigh",
+  "group": "fing",
+  "side": "L",
+  "times": [
+   85.85
+  ],
+  "minMM": -2.551,
+  "maxMM": -2.551
+ },
+ {
+  "id": "fing-middle-L",
+  "name": "Finger abduction left: his middle finger resting on his thigh",
+  "group": "fing",
+  "side": "L",
+  "times": [
+   85.85
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "fing-ring-L",
+  "name": "Finger abduction left: his ring finger resting on his thigh",
+  "group": "fing",
+  "side": "L",
+  "times": [
+   85.85
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "fing-little-L",
+  "name": "Finger abduction left: his little finger resting on his thigh",
+  "group": "fing",
+  "side": "L",
+  "times": [
+   85.85
+  ],
+  "minMM": 0.5,
+  "maxMM": 0.5
+ },
+ {
+  "id": "fing-thumb-L",
+  "name": "Finger abduction left: his thumb resting on his thigh",
+  "group": "fing",
+  "side": "L",
+  "times": [
+   85.85
+  ],
+  "minMM": 0.501,
+  "maxMM": 0.501
+ }
+]

@@ -1,0 +1,287 @@
+{
+ "BEATS": [
+  {
+   "id": "b01",
+   "n": 1,
+   "t": 4.6,
+   "change": "Starts on the CNS home shot, held still for 1 s (no caption, breathing and lamp flicker off). He breathes quietly (about 14 a minute) from then on.",
+   "camera": "From the CNS home shot, one slow push-in toward his upper body and both arms.",
+   "sound": "Quiet room bed, fading in over the first 0.5 s.",
+   "span": "0.0 - 5.0 s",
+   "text": "Motor system: the arms",
+   "name": "Position"
+  },
+  {
+   "id": "b02",
+   "n": 2,
+   "t": 9.4,
+   "change": "Hold (still, no caption: the examiner asks about pain in his arms or shoulders). He answers \"no\" (silent visemes, 6.85 s). The camera then moves slowly along both arms (7.3-12.7 s): the shoulders and deltoids, the upper arms, the forearms, then the backs of both hands with the first dorsal interosseous. Nothing twitches or shakes; no scars. The examiner's hands stay at rest.",
+   "camera": "One continuous move from the foot end above him, along both arms from the shoulders down to the backs of the hands.",
+   "sound": "Room only.",
+   "span": "5.0 - 13.0 s · hold 5.3-6.8 s",
+   "text": "Look: no wasting, no fasciculation, no tremor (ask about pain first)",
+   "name": "Inspection"
+  },
+  {
+   "id": "b03",
+   "n": 3,
+   "t": 16.6,
+   "change": "Hold (the examiner asks him to let the arm go floppy). He offers his right hand; the examiner takes it as in a handshake (palm to palm, the thumb webs together, the examiner's fingers round the little-finger edge onto the back of his hand, the thumbs crossing over the backs of the hands) and cups the back of his elbow with the other palm. From 15.8 s the examiner moves the wrist (flexion and extension), turns the forearm (supination and pronation), bends and straightens the elbow and moves the shoulder out and in, at irregular, changing speeds: smooth and loose, no catch. Released at 21.6 s.",
+   "camera": "From his right side, a little above: the whole arm from the shoulder to the hand and both gloved hands.",
+   "sound": "A soft rustle as his arm leaves the mattress and comes back.",
+   "span": "13.0 - 23.0 s · hold 13.3-14.8 s",
+   "text": "Tone: let it go floppy - wrist, forearm, elbow, shoulder: normal",
+   "name": "Tone - right arm"
+  },
+  {
+   "id": "b04",
+   "n": 4,
+   "t": 25.6,
+   "change": "Hard cut to his LEFT at 23.0 s (the examiner has walked round; the gloved hands already at rest on that side, the sleeves leaving the frame on his left). The same handshake and elbow cup on his left arm, the same moves a little faster; then a hard cut back to his right side at 29.6 s.",
+   "camera": "Across the bed from his left (never through the bed or the table).",
+   "sound": "Rustle as the arm lifts and is put back.",
+   "span": "23.0 - 29.6 s",
+   "text": "Same on the left: normal tone",
+   "name": "Tone - left arm"
+  },
+  {
+   "id": "b05",
+   "n": 5,
+   "t": 36,
+   "change": "THE KEY BEAT. Hold (the examiner asks him to hold both arms out, palms up, and close his eyes). He lifts both arms straight out in front at shoulder height, parallel, palms up, fingers together (NEURO.arm outstretched, drift 0) and closes his eyes (31.5-32.5 s); held still 32.6-39.6 s (7 s): neither arm turns in or drifts down. He opens his eyes and lowers his arms to rest. The examiner's hands stay at rest at his right side.",
+   "camera": "From the foot end, a little to his right and a little above shoulder height: both arms full length, both palms and his closed eyes.",
+   "sound": "Rustle as the arms leave and return to the mattress.",
+   "span": "29.6 - 42.0 s · hold 29.9-31.4 s",
+   "text": "Pronator drift: arms out, palms up, eyes closed - no drift",
+   "name": "Pronator drift"
+  },
+  {
+   "id": "b06",
+   "n": 6,
+   "t": 45.51,
+   "change": "Hold. right: his movement 43.8-44.5 s, the examiner's hand on 44.9 s, holds against it 44.9-46.2 s (gives 2-3 mm, then holds); hard cut to his LEFT at 47.0 s: the same (47.9-49.0 s); hard cut back to his right at 50.0 s. He lifts his arm out to the side, elbow bent (NEURO.arm abduct90, a wing); the examiner's palm presses down on the outside of the upper arm just above the elbow (over the lower deltoid).",
+   "camera": "From the front, a little above and to his side: the shoulder, the upper arm, the examiner's hand and the side of his chest.",
+   "sound": "Rustle at the start and the end of each lift.",
+   "span": "42.0 - 50.0 s · hold 42.3-43.8 s",
+   "text": "Shoulder abduction (C5): against gravity, then against my hand - full power",
+   "name": "Shoulder abduction C5"
+  },
+  {
+   "id": "b07",
+   "n": 7,
+   "t": 53.51,
+   "change": "Hold. right: his movement 51.8-52.5 s, the examiner's hand on 52.9 s, holds against it 52.9-54.2 s (gives 2-3 mm, then holds); hard cut to his LEFT at 55.0 s: the same (55.9-57.0 s); hard cut back to his right at 58.0 s. His upper arm by his side on the bed, the elbow bent to 90 degrees, the fist up and the palm side toward him; the examiner's palm on the front (palm side) of his wrist, the fingers across it; he pulls the examiner toward him: the biceps firms a little.",
+   "camera": "From his side at elbow height, a little toward his head: the whole arm and the biceps.",
+   "sound": "Rustle.",
+   "span": "50.0 - 58.0 s · hold 50.3-51.8 s",
+   "text": "Elbow flexion (C5, C6): pull me towards you - full power",
+   "name": "Elbow flexion C5 C6"
+  },
+  {
+   "id": "b08",
+   "n": 8,
+   "t": 61.23,
+   "change": "Hold. right: his movement 59.8-60.3 s, the examiner's hand on 60.7 s, holds against it 60.7-61.8 s (gives 2-3 mm, then holds); hard cut to his LEFT at 62.6 s: the same (63.4-64.4 s); hard cut back to his right at 65.0 s. The same arm position; the examiner's palm on the back of his wrist; he pushes the examiner away: the triceps firms a little.",
+   "camera": "The same side camera as beat 7.",
+   "sound": "Rustle.",
+   "span": "58.0 - 65.0 s · hold 58.2-59.7 s",
+   "text": "Elbow extension (C7): push me away - full power",
+   "name": "Elbow extension C7"
+  },
+  {
+   "id": "b09",
+   "n": 9,
+   "t": 68.3,
+   "change": "Hold. right: his movement 66.8-67.3 s, the examiner's hand on 67.7 s, holds against it 67.7-68.9 s (gives 2-3 mm, then holds); hard cut to his LEFT at 69.7 s: the same (70.5-71.6 s); hard cut back to his right at 72.5 s. His forearm palm down (resting on the examiner's other palm, which steadies it from below), the hand in a fist; he cocks the wrist up (extension) and the examiner's fingers press down on the back of the fist over the knuckles: the wrist holds.",
+   "camera": "From his side at wrist height, a little toward his head.",
+   "sound": "Rustle.",
+   "span": "65.0 - 72.5 s · hold 65.2-66.7 s",
+   "text": "Wrist extension (C6, C7): don't let me push it down - full power",
+   "name": "Wrist extension C6 C7"
+  },
+  {
+   "id": "b10",
+   "n": 10,
+   "t": 75.88,
+   "change": "Hold. right: his movement 74.3-74.9 s, the examiner's hand on 75.2 s, holds against it 75.2-76.5 s (gives 2-3 mm, then holds); hard cut to his LEFT at 77.3 s: the same (78.2-79.3 s); hard cut back to his right at 80.0 s. The examiner puts the index and middle fingers side by side (together, never a V) into his palm; his fingers close round them (NEURO.HAND.grip, solved onto the gloved fingers) and squeeze; the examiner pulls and cannot pull them out (2 mm give, then holds).",
+   "camera": "From his side and a little below: his fingers wrapped round the gloved fingers.",
+   "sound": "Rustle.",
+   "span": "72.5 - 80.0 s · hold 72.7-74.2 s",
+   "text": "Finger flexion (C8): squeeze my fingers - full power",
+   "name": "Finger flexion C8"
+  },
+  {
+   "id": "b11",
+   "n": 11,
+   "t": 83.22,
+   "change": "Hold. right: his movement 81.8-82.3 s, the examiner's hand on 82.7 s, holds against it 82.7-83.8 s (gives 2-3 mm, then holds); hard cut to his LEFT at 84.5 s: the same (85.3-86.3 s); hard cut back to his right at 87.0 s. His hand rests palm down on his thigh, fingers spread (NEURO.HAND.spread, settled onto the thigh); the pad of the examiner's index finger presses on the thumb side of his index finger, pushing it toward the middle finger; it gives about 2 mm and holds (the first dorsal interosseous).",
+   "camera": "Close-up from above (from the side of his fingertips): his whole hand and the examiner's finger.",
+   "sound": "Rustle.",
+   "span": "80.0 - 87.0 s · hold 80.2-81.7 s",
+   "text": "Finger abduction (T1): spread them, don't let me push them in - full power",
+   "name": "Finger abduction T1"
+  },
+  {
+   "id": "b12",
+   "n": 12,
+   "t": 88,
+   "change": "Hard cut back to his right side: the hands are at rest; the camera pulls back to the CNS home shot, held still for the last second (breathing and flicker off): the same frame as the first.",
+   "camera": "Pull back to the CNS home shot.",
+   "sound": "The room bed fades out over the last 0.5 s.",
+   "span": "87.0 - 90.0 s",
+   "text": "(no caption)",
+   "name": "End"
+  }
+ ],
+ "REVIEW": [
+  {
+   "id": "a-plan",
+   "group": "a) Plan",
+   "note": "His RIGHT and LEFT against the screen; the examiner on his right; the dashed place is where the examiner stands for the left-side tests.",
+   "pair": false
+  },
+  {
+   "id": "b-shakeR",
+   "group": "b) Tone grips",
+   "note": "Right: the handshake. Gaps measured on the meshes from each touching part (examiner's palm, fingers and thumb on his hand; his fingers and thumb on the glove).",
+   "pair": false
+  },
+  {
+   "id": "b-cupR",
+   "group": "b) Tone grips",
+   "note": "Right: the examiner's palm and fingers cupping the back of his elbow.",
+   "pair": false
+  },
+  {
+   "id": "b-shakeL",
+   "group": "b) Tone grips",
+   "note": "Left (the examiner on his left): the handshake with the examiner's left hand.",
+   "pair": false
+  },
+  {
+   "id": "b-cupL",
+   "group": "b) Tone grips",
+   "note": "Left: the cup under the back of his elbow.",
+   "pair": false
+  },
+  {
+   "id": "c-driftFoot",
+   "group": "c) Pronator drift",
+   "note": "From the foot end, start and end of the 7 s hold: the measured heights of both hands and the palm angles.",
+   "pair": true
+  },
+  {
+   "id": "c-driftSide",
+   "group": "c) Pronator drift",
+   "note": "From his right side, start and end of the hold.",
+   "pair": true
+  },
+  {
+   "id": "d-abdR",
+   "group": "d) Power",
+   "note": "abd right: his own movement into the test position | the examiner's hand on the named point (gaps measured on the meshes).",
+   "pair": true
+  },
+  {
+   "id": "d-abdL",
+   "group": "d) Power",
+   "note": "abd left: his own movement into the test position | the examiner's hand on the named point (gaps measured on the meshes).",
+   "pair": true
+  },
+  {
+   "id": "d-elbFR",
+   "group": "d) Power",
+   "note": "elbF right: his own movement into the test position | the examiner's hand on the named point (gaps measured on the meshes).",
+   "pair": true
+  },
+  {
+   "id": "d-elbFL",
+   "group": "d) Power",
+   "note": "elbF left: his own movement into the test position | the examiner's hand on the named point (gaps measured on the meshes).",
+   "pair": true
+  },
+  {
+   "id": "d-elbER",
+   "group": "d) Power",
+   "note": "elbE right: his own movement into the test position | the examiner's hand on the named point (gaps measured on the meshes).",
+   "pair": true
+  },
+  {
+   "id": "d-elbEL",
+   "group": "d) Power",
+   "note": "elbE left: his own movement into the test position | the examiner's hand on the named point (gaps measured on the meshes).",
+   "pair": true
+  },
+  {
+   "id": "d-wristR",
+   "group": "d) Power",
+   "note": "wrist right: his own movement into the test position | the examiner's hand on the named point (gaps measured on the meshes).",
+   "pair": true
+  },
+  {
+   "id": "d-wristL",
+   "group": "d) Power",
+   "note": "wrist left: his own movement into the test position | the examiner's hand on the named point (gaps measured on the meshes).",
+   "pair": true
+  },
+  {
+   "id": "d-gripR",
+   "group": "d) Power",
+   "note": "grip right: his own movement into the test position | the examiner's hand on the named point (gaps measured on the meshes).",
+   "pair": true
+  },
+  {
+   "id": "d-gripL",
+   "group": "d) Power",
+   "note": "grip left: his own movement into the test position | the examiner's hand on the named point (gaps measured on the meshes).",
+   "pair": true
+  },
+  {
+   "id": "d-fingR",
+   "group": "d) Power",
+   "note": "fing right: his own movement into the test position | the examiner's hand on the named point (gaps measured on the meshes).",
+   "pair": true
+  },
+  {
+   "id": "d-fingL",
+   "group": "d) Power",
+   "note": "fing left: his own movement into the test position | the examiner's hand on the named point (gaps measured on the meshes).",
+   "pair": true
+  },
+  {
+   "id": "e-gripSideR",
+   "group": "e) The grip",
+   "note": "Right hand from the side: each of his fingers and his thumb on the gloved fingers.",
+   "pair": false
+  },
+  {
+   "id": "e-gripBelowR",
+   "group": "e) The grip",
+   "note": "Right hand from below.",
+   "pair": false
+  },
+  {
+   "id": "e-gripSideL",
+   "group": "e) The grip",
+   "note": "Left hand from the side (the examiner on his left).",
+   "pair": false
+  },
+  {
+   "id": "e-gripBelowL",
+   "group": "e) The grip",
+   "note": "Left hand from below.",
+   "pair": false
+  },
+  {
+   "id": "f-raised",
+   "group": "f) The raised arm",
+   "note": "The top of the shoulder in the drift camera and in the abduction camera (the known v5 limit).",
+   "pair": true
+  }
+ ],
+ "samples": 16,
+ "size": [
+  960,
+  540
+ ]
+}
