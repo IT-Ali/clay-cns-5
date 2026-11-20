@@ -30,8 +30,8 @@
    20.29,
    21.23
   ],
-  "minMM": -0.48,
-  "maxMM": 1.002
+  "minMM": 0.5,
+  "maxMM": 0.533
  },
  {
   "id": "shake-ex-middle-R",
@@ -47,8 +47,8 @@
    20.29,
    21.23
   ],
-  "minMM": 0.5,
-  "maxMM": 0.5
+  "minMM": 0.301,
+  "maxMM": 0.301
  },
  {
   "id": "shake-ex-ring-R",
@@ -64,8 +64,8 @@
    20.29,
    21.23
   ],
-  "minMM": 0.5,
-  "maxMM": 0.5
+  "minMM": 0.301,
+  "maxMM": 0.301
  },
  {
   "id": "shake-ex-little-R",
@@ -81,8 +81,8 @@
    20.29,
    21.23
   ],
-  "minMM": 0.5,
-  "maxMM": 0.5
+  "minMM": 0.302,
+  "maxMM": 0.302
  },
  {
   "id": "shake-exthumb-R",
@@ -200,8 +200,8 @@
    20.29,
    21.23
   ],
-  "minMM": 0.491,
-  "maxMM": 1.855
+  "minMM": 0.451,
+  "maxMM": 0.589
  },
  {
   "id": "cup-index-R",
@@ -217,8 +217,8 @@
    20.29,
    21.23
   ],
-  "minMM": -0.195,
-  "maxMM": 0.53
+  "minMM": 0.183,
+  "maxMM": 0.504
  },
  {
   "id": "cup-middle-R",
@@ -234,8 +234,8 @@
    20.29,
    21.23
   ],
-  "minMM": 0.115,
-  "maxMM": 0.562
+  "minMM": 0.501,
+  "maxMM": 0.531
  },
  {
   "id": "cup-ring-R",
@@ -251,8 +251,8 @@
    20.29,
    21.23
   ],
-  "minMM": 0.004,
-  "maxMM": 0.553
+  "minMM": 0.439,
+  "maxMM": 0.515
  },
  {
   "id": "cup-little-R",
@@ -268,8 +268,8 @@
    20.29,
    21.23
   ],
-  "minMM": -0.026,
-  "maxMM": 2.235
+  "minMM": -0.749,
+  "maxMM": 0.58
  },
  {
   "id": "abd-palm-R",
@@ -488,8 +488,8 @@
   "times": [
    68.3
   ],
-  "minMM": 0.5,
-  "maxMM": 0.5
+  "minMM": 0.501,
+  "maxMM": 0.501
  },
  {
   "id": "wrist-ring-R",
@@ -510,8 +510,8 @@
   "times": [
    68.3
   ],
-  "minMM": 0.529,
-  "maxMM": 0.529
+  "minMM": 0.5,
+  "maxMM": 0.5
  },
  {
   "id": "wristSup-palm-R",
@@ -521,8 +521,8 @@
   "times": [
    68.3
   ],
-  "minMM": 0.594,
-  "maxMM": 0.594
+  "minMM": 0.506,
+  "maxMM": 0.506
  },
  {
   "id": "wristSup-index-R",
@@ -532,8 +532,8 @@
   "times": [
    68.3
   ],
-  "minMM": -0.834,
-  "maxMM": -0.834
+  "minMM": 0.5,
+  "maxMM": 0.5
  },
  {
   "id": "wristSup-middle-R",
@@ -543,8 +543,8 @@
   "times": [
    68.3
   ],
-  "minMM": 0.013,
-  "maxMM": 0.013
+  "minMM": 0.5,
+  "maxMM": 0.5
  },
  {
   "id": "wristSup-ring-R",
@@ -554,8 +554,8 @@
   "times": [
    68.3
   ],
-  "minMM": 0.829,
-  "maxMM": 0.829
+  "minMM": 0.501,
+  "maxMM": 0.501
  },
  {
   "id": "wristSup-little-R",
@@ -565,8 +565,8 @@
   "times": [
    68.3
   ],
-  "minMM": 0.027,
-  "maxMM": 0.027
+  "minMM": 0.5,
+  "maxMM": 0.5
  },
  {
   "id": "wristSup-thumb-R",
@@ -576,8 +576,8 @@
   "times": [
    68.3
   ],
-  "minMM": 0.494,
-  "maxMM": 0.494
+  "minMM": 0.5,
+  "maxMM": 0.5
  },
  {
   "id": "grip-his-index-R",
@@ -653,8 +653,8 @@
   "times": [
    83.22
   ],
-  "minMM": 0.601,
-  "maxMM": 0.601
+  "minMM": 0.852,
+  "maxMM": 0.852
  },
  {
   "id": "fing-palm-R",
@@ -675,8 +675,8 @@
   "times": [
    83.22
   ],
-  "minMM": 0.001,
-  "maxMM": 0.001
+  "minMM": 0.5,
+  "maxMM": 0.5
  },
  {
   "id": "fing-middle-R",
@@ -753,8 +753,8 @@
    27.38,
    28.09
   ],
-  "minMM": -0.528,
-  "maxMM": 0.992
+  "minMM": 0.496,
+  "maxMM": 0.503
  },
  {
   "id": "shake-ex-middle-L",
@@ -770,8 +770,8 @@
    27.38,
    28.09
   ],
-  "minMM": 0.501,
-  "maxMM": 0.501
+  "minMM": 0.302,
+  "maxMM": 0.302
  },
  {
   "id": "shake-ex-ring-L",
@@ -787,8 +787,8 @@
    27.38,
    28.09
   ],
-  "minMM": 0.501,
-  "maxMM": 0.501
+  "minMM": 0.302,
+  "maxMM": 0.302
  },
  {
   "id": "shake-ex-little-L",
@@ -804,8 +804,8 @@
    27.38,
    28.09
   ],
-  "minMM": 0.5,
-  "maxMM": 0.5
+  "minMM": 0.302,
+  "maxMM": 0.302
  },
  {
   "id": "shake-exthumb-L",
@@ -923,8 +923,8 @@
    27.38,
    28.09
   ],
-  "minMM": 0.495,
-  "maxMM": 2.067
+  "minMM": 0.438,
+  "maxMM": 0.637
  },
  {
   "id": "cup-index-L",
@@ -940,8 +940,8 @@
    27.38,
    28.09
   ],
-  "minMM": -0.13,
-  "maxMM": 0.54
+  "minMM": 0.468,
+  "maxMM": 0.506
  },
  {
   "id": "cup-middle-L",
@@ -957,8 +957,8 @@
    27.38,
    28.09
   ],
-  "minMM": 0.121,
-  "maxMM": 0.55
+  "minMM": 0.501,
+  "maxMM": 0.54
  },
  {
   "id": "cup-ring-L",
@@ -974,8 +974,8 @@
    27.38,
    28.09
   ],
-  "minMM": -0.001,
-  "maxMM": 0.489
+  "minMM": 0.487,
+  "maxMM": 0.602
  },
  {
   "id": "cup-little-L",
@@ -991,8 +991,8 @@
    27.38,
    28.09
   ],
-  "minMM": -0.027,
-  "maxMM": 2.471
+  "minMM": -7.192,
+  "maxMM": 0.768
  },
  {
   "id": "abd-palm-L",
@@ -1233,8 +1233,8 @@
   "times": [
    71.06
   ],
-  "minMM": 0.529,
-  "maxMM": 0.529
+  "minMM": 0.5,
+  "maxMM": 0.5
  },
  {
   "id": "wristSup-palm-L",
@@ -1244,8 +1244,8 @@
   "times": [
    71.06
   ],
-  "minMM": 0.596,
-  "maxMM": 0.596
+  "minMM": 0.508,
+  "maxMM": 0.508
  },
  {
   "id": "wristSup-index-L",
@@ -1255,8 +1255,8 @@
   "times": [
    71.06
   ],
-  "minMM": -0.834,
-  "maxMM": -0.834
+  "minMM": 0.5,
+  "maxMM": 0.5
  },
  {
   "id": "wristSup-middle-L",
@@ -1266,8 +1266,8 @@
   "times": [
    71.06
   ],
-  "minMM": 0.013,
-  "maxMM": 0.013
+  "minMM": 0.5,
+  "maxMM": 0.5
  },
  {
   "id": "wristSup-ring-L",
@@ -1277,8 +1277,8 @@
   "times": [
    71.06
   ],
-  "minMM": 0.827,
-  "maxMM": 0.827
+  "minMM": 0.488,
+  "maxMM": 0.488
  },
  {
   "id": "wristSup-little-L",
@@ -1288,8 +1288,8 @@
   "times": [
    71.06
   ],
-  "minMM": 0.028,
-  "maxMM": 0.028
+  "minMM": 0.51,
+  "maxMM": 0.51
  },
  {
   "id": "wristSup-thumb-L",
@@ -1299,8 +1299,8 @@
   "times": [
    71.06
   ],
-  "minMM": 0.493,
-  "maxMM": 0.493
+  "minMM": 0.499,
+  "maxMM": 0.499
  },
  {
   "id": "grip-his-index-L",
@@ -1376,8 +1376,8 @@
   "times": [
    85.85
   ],
-  "minMM": 0.618,
-  "maxMM": 0.618
+  "minMM": 0.914,
+  "maxMM": 0.914
  },
  {
   "id": "fing-palm-L",
@@ -1398,8 +1398,8 @@
   "times": [
    85.85
   ],
-  "minMM": -2.551,
-  "maxMM": -2.551
+  "minMM": 0.5,
+  "maxMM": 0.5
  },
  {
   "id": "fing-middle-L",

@@ -37,17 +37,17 @@
  {
   "id": "shake-ex-little-R",
   "t": 15.8,
-  "gapMM": 0.5
+  "gapMM": 0.302
  },
  {
   "id": "shake-ex-ring-R",
   "t": 15.8,
-  "gapMM": 0.5
+  "gapMM": 0.301
  },
  {
   "id": "shake-ex-middle-R",
   "t": 15.8,
-  "gapMM": 0.5
+  "gapMM": 0.301
  },
  {
   "id": "shake-ex-index-R",
@@ -60,14 +60,14 @@
   "gapMM": 0.5
  },
  {
-  "id": "cup-palm-R",
-  "t": 15.8,
-  "gapMM": 0.548
- },
- {
   "id": "cup-middle-R",
   "t": 15.8,
   "gapMM": 0.501
+ },
+ {
+  "id": "cup-palm-R",
+  "t": 15.8,
+  "gapMM": 0.548
  },
  {
   "id": "cup-ring-R",
@@ -117,17 +117,17 @@
  {
   "id": "shake-ex-middle-L",
   "t": 23.95,
-  "gapMM": 0.501
+  "gapMM": 0.302
  },
  {
   "id": "shake-ex-ring-L",
   "t": 23.95,
-  "gapMM": 0.501
+  "gapMM": 0.302
  },
  {
   "id": "shake-ex-little-L",
   "t": 23.95,
-  "gapMM": 0.5
+  "gapMM": 0.302
  },
  {
   "id": "shake-his-little-L",
@@ -135,14 +135,14 @@
   "gapMM": 0.5
  },
  {
-  "id": "cup-middle-L",
-  "t": 23.95,
-  "gapMM": 0.501
- },
- {
   "id": "cup-palm-L",
   "t": 23.95,
   "gapMM": 0.548
+ },
+ {
+  "id": "cup-middle-L",
+  "t": 23.95,
+  "gapMM": 0.501
  },
  {
   "id": "cup-index-L",
@@ -400,7 +400,7 @@
  {
   "id": "wristSup-thumb-R",
   "t": 68.30125000000001,
-  "gapMM": 0.494
+  "gapMM": 0.5
  },
  {
   "id": "wrist-index-R",
@@ -410,7 +410,7 @@
  {
   "id": "wrist-middle-R",
   "t": 68.30125000000001,
-  "gapMM": 0.5
+  "gapMM": 0.501
  },
  {
   "id": "wrist-ring-R",
@@ -420,37 +420,37 @@
  {
   "id": "wrist-little-R",
   "t": 68.30125000000001,
-  "gapMM": 0.529
- },
- {
-  "id": "wristSup-middle-R",
-  "t": 68.30125000000001,
-  "gapMM": 0.013
- },
- {
-  "id": "wristSup-index-R",
-  "t": 68.30125000000001,
-  "gapMM": -0.834
- },
- {
-  "id": "wristSup-little-R",
-  "t": 68.30125000000001,
-  "gapMM": 0.027
+  "gapMM": 0.5
  },
  {
   "id": "wristSup-ring-R",
   "t": 68.30125000000001,
-  "gapMM": 0.829
+  "gapMM": 0.501
+ },
+ {
+  "id": "wristSup-middle-R",
+  "t": 68.30125000000001,
+  "gapMM": 0.5
+ },
+ {
+  "id": "wristSup-index-R",
+  "t": 68.30125000000001,
+  "gapMM": 0.5
+ },
+ {
+  "id": "wristSup-little-R",
+  "t": 68.30125000000001,
+  "gapMM": 0.5
  },
  {
   "id": "wristSup-palm-R",
   "t": 68.30125000000001,
-  "gapMM": 0.594
+  "gapMM": 0.506
  },
  {
   "id": "wrist-little-L",
   "t": 71.0575,
-  "gapMM": 0.529
+  "gapMM": 0.5
  },
  {
   "id": "wrist-ring-L",
@@ -470,32 +470,32 @@
  {
   "id": "wristSup-thumb-L",
   "t": 71.0575,
-  "gapMM": 0.493
+  "gapMM": 0.499
  },
  {
   "id": "wristSup-palm-L",
   "t": 71.0575,
-  "gapMM": 0.596
- },
- {
-  "id": "wristSup-ring-L",
-  "t": 71.0575,
-  "gapMM": 0.827
+  "gapMM": 0.508
  },
  {
   "id": "wristSup-little-L",
   "t": 71.0575,
-  "gapMM": 0.028
+  "gapMM": 0.51
  },
  {
   "id": "wristSup-index-L",
   "t": 71.0575,
-  "gapMM": -0.834
+  "gapMM": 0.5
  },
  {
   "id": "wristSup-middle-L",
   "t": 71.0575,
-  "gapMM": 0.013
+  "gapMM": 0.5
+ },
+ {
+  "id": "wristSup-ring-L",
+  "t": 71.0575,
+  "gapMM": 0.488
  },
  {
   "id": "grip-two-R",
@@ -558,14 +558,74 @@
   "gapMM": 0.5
  },
  {
+  "id": "fing-palm-R",
+  "t": 83.225,
+  "gapMM": 1.2
+ },
+ {
+  "id": "fing-thumb-R",
+  "t": 83.225,
+  "gapMM": 0.501
+ },
+ {
   "id": "fing-ex-R",
   "t": 83.225,
-  "gapMM": 0.601
+  "gapMM": 0.852
+ },
+ {
+  "id": "fing-index-R",
+  "t": 83.225,
+  "gapMM": 0.5
+ },
+ {
+  "id": "fing-middle-R",
+  "t": 83.225,
+  "gapMM": 0.5
+ },
+ {
+  "id": "fing-ring-R",
+  "t": 83.225,
+  "gapMM": 0.5
+ },
+ {
+  "id": "fing-little-R",
+  "t": 83.225,
+  "gapMM": 0.5
  },
  {
   "id": "fing-ex-L",
   "t": 85.85,
-  "gapMM": 0.618
+  "gapMM": 0.914
+ },
+ {
+  "id": "fing-thumb-L",
+  "t": 85.85,
+  "gapMM": 0.501
+ },
+ {
+  "id": "fing-palm-L",
+  "t": 85.85,
+  "gapMM": 0.513
+ },
+ {
+  "id": "fing-little-L",
+  "t": 85.85,
+  "gapMM": 0.5
+ },
+ {
+  "id": "fing-ring-L",
+  "t": 85.85,
+  "gapMM": 0.5
+ },
+ {
+  "id": "fing-middle-L",
+  "t": 85.85,
+  "gapMM": 0.5
+ },
+ {
+  "id": "fing-index-L",
+  "t": 85.85,
+  "gapMM": 0.5
  },
  {
   "id": "grip-two-R",
