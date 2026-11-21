@@ -36,7 +36,7 @@ npm rebuild ffmpeg-static
 npm run preview
 ```
 
-   It writes `out\preview\beats\cns5_preview_beat05_*.mp4` and `..._beat10_*.mp4`, `out\preview\check.json` (first vs
+   It writes `out\preview\beats\cns5_preview_beat03_*.mp4`, `..._beat04_*`, `..._beat05_*` and `..._beat10_*.mp4`, `out\preview\check.json` (first vs
    last frame pixel difference, mean loudness, duration) and `out\preview\sheet.jpg` (a frame every 2 s that was
    rendered, with its time stamp). The frames are kept in `out\preview\frames`, so it can be stopped and run again.
    Other beats: `npm run preview -- --beats 3,7`; the whole part as one MP4: `npm run preview -- --beats all`. To send the
