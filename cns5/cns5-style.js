@@ -146,9 +146,10 @@
       // straight ahead of the shoulder: the two arms parallel, the hands exactly shoulder-width apart (the kit brings each hand
       // 2.5 cm in, which reads as a V from the foot end)
       const DRIFT_ARM = (s) => { const a = NEURO.arm(P, s, 'outstretched', { drift: 0 }), sh = P.shoulder(s); a.wrist = a.wrist.clone(); a.wrist.z = sh.z; return a; };
-      // his fist: the kit's fist leaves a see-through loop seen from the thumb side, so the fingers bend more at the middle
-      // joints (the tips into the palm) and the thumb lies across the front of the index and middle fingers (searched)
-      const FIST = { curl: { index: [1.58, 2.25, 0.65], middle: [1.6, 2.25, 0.65], ring: [1.64, 2.2, 0.65], little: [1.68, 2.15, 0.62] }, spread: 0, thumb: [1.2, 1.8, 0.2, 0] };
+      // his fist (searched on the meshes, tools/fist-search.js): each fingertip curled onto the palm (0.5 mm, no finger bone
+      // inside it); the thumb across the middle bones of the index and middle fingers, its shaft in front of the index so no
+      // ring or loop shows from the thumb side (the kit's fist, and this part's first fist, read as an 'OK' ring from there)
+      const FIST = { curl: { index: [1.7, 1.75, 1.2], middle: [1.5, 2, 1], ring: [1.65, 1.85, 1], little: [1.5, 1.8, 0.8] }, spread: 0, thumb: [0.601, 0.365, 0.337, 1.146] };
       const PPOSE = { relaxed: Hh.relaxed, fist: FIST, grip: Hh.grip, spread: Hh.spread, together: Hh.together };
       const kinState = (side, a, pose) => KIN.arm(P, side, a, pose);
       const applyArm = (side, st) => HOME.applyArm(P, side, st);
@@ -837,6 +838,12 @@
           lay('elbE', T.elbE, 'Elbow extension', main, ['palm', 'index', 'middle', 'ring', 'little', 'thumb']);
           lay('wrist', T.wrist, 'Wrist extension (on the back of the fist)', main, F4);
           lay('wristSup', T.wrist, 'Wrist extension (support under the forearm)', sup, ['palm', 'index', 'middle', 'ring', 'little', 'thumb']);
+          // his own fist (shoulder abduction, elbow flexion and extension, wrist extension): the thumb across the middle bones of
+          // the index and middle fingers, and each fingertip on his palm
+          const fistT = [holdT(T.abd), holdT(T.elbF), holdT(T.elbE), holdT(T.wrist)];
+          const midBones = () => ['index', 'middle'].flatMap((f) => P.arms[s].hand.fingers[f].pip.children.filter((m) => m.isMesh));
+          add({ id: 'fist-thumb-' + s, group: 'fist', side: s, ts: fistT, name: `His fist ${sd}: his thumb across the middle bones of his index and middle fingers`, part: hisPad(s, 'thumb'), surf: midBones, his: true });
+          for (const f of F4) add({ id: `fist-${f}-${s}`, group: 'fist', side: s, ts: fistT, name: `His fist ${sd}: the tip of his ${f} finger on his palm`, part: hisPad(s, f), surf: () => [P.arms[s].armMesh], his: true, finger: f });
           const gt = [holdT(T.grip)];
           for (const f of F4) add({ id: `grip-his-${f}-${s}`, group: 'grip', side: s, ts: gt, name: `Grip ${sd}: his ${f} finger round the gloved fingers`, part: hisF(s, f), pad: hisPad(s, f), surf: glove(main), finger: f, his: true });
           add({ id: 'grip-histhumb-' + s, group: 'grip', side: s, ts: gt, name: `Grip ${sd}: his thumb over the gloved fingers`, part: hisF(s, 'thumb'), pad: hisPad(s, 'thumb'), surf: glove(main), his: true });
