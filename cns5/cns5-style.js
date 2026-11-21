@@ -370,10 +370,13 @@
           // the cup's place on his elbow (from the cup block; searched the same way here if this solved.json predates it)
           if (!SOL.cupBase) { const b0 = cupLayF(TONE_BASE, [-0.3, -0.2, -0.1, 0, 0.1], [-0.35, -0.2, -0.05, 0.1], POSE.cup); SOL.cupBase = { so: b0.so, sd: b0.sd, pose: b0.st.pose }; }
           const B = SOL.cupBase;
-          // a part left touching at under 0.03 mm (or just inside) is lifted off along the skin normal to 0.05 mm
+          // a palm left touching at under 0.03 mm (or just inside) is lifted off along the skin normal to 0.05 mm; then every
+          // finger outside 0.03-1.2 mm is settled onto the skin again (the fingers wrap round the elbow, so the lift moves them)
           const liftClear = (r) => {
             const S0 = surfArm('R', r.at, 1.8), need = ['palm'].concat(F4);
-            for (let k = 0; k < 4; k++) { const lo = Math.min(...need.map((x) => r.g[x])); if (lo >= 0.0003) break; r.st.wrist.addScaledVector(r.n, 0.0005 - lo); applyEx('L', r.st); r.g = handGaps('L', S0, need); }
+            for (let k = 0; k < 4 && r.g.palm < 0.0003; k++) { r.st.wrist.addScaledVector(r.n, 0.0005 - r.g.palm); applyEx('L', r.st); r.g = handGaps('L', S0, need); }
+            for (const f of F4) if (r.g[f] < 0.0003 || r.g[f] > 0.012) { applyEx('L', r.st); settleFinger(handOf('L'), r.st.pose, f, S0); applyEx('L', r.st); }
+            r.g = handGaps('L', S0, need);
             return r;
           };
           const solveFrame = (aa) => {
