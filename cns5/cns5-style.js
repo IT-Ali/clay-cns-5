@@ -222,14 +222,16 @@
           const ratios = o.ratio ? [o.ratio] : [[0.5, 1, 0.8], [0.9, 1, 0.6], [1.0, 0.6, 0.4], [0.3, 1, 1]];
           search: for (const ratio of ratios) for (const df of (o.fans || [0, -0.05, 0.05, -0.1, 0.1, -0.15, 0.15])) {
             pose.fan[f] = f0 + df;
-            const r = C5.curlTo(hand, pose, f, S0, { lo: o.lo == null ? -0.35 : o.lo, hi: o.hi == null ? 2.9 : o.hi, ratio });
+            // o.cap: no joint past what a finger can bend (knuckle 1.6, middle joint 1.9, end joint 1.4 rad)
+            const hi = Math.min(o.hi == null ? 2.9 : o.hi, o.cap ? Math.min(1.6 / ratio[0], 1.9 / ratio[1], 1.4 / ratio[2]) : 9);
+            const r = C5.curlTo(hand, pose, f, S0, { lo: o.lo == null ? -0.35 : o.lo, hi, ratio });
             const sc = Math.abs(r.gap - C5.TARGET) + 3 * Math.max(0, -r.gap) + 0.02 * Math.abs(df);
             if (!best || sc < best.sc) best = { sc, df, curl: pose.curl[f].slice(), gap: r.gap };
             if (r.gap >= 0 && r.gap <= 0.009) break search;
           }
           pose.fan[f] = f0 + best.df; pose.curl[f] = best.curl; hand.pose(pose); hand.group.updateMatrixWorld(true);
           // the pad too: a finger touching only along its middle bones has its two end joints bent further until the pad rests on the skin
-          if (C5.gap(padMeshes(hand, f), S0).gap > PAD_MAX) padTo(hand, pose, f, [S0]);
+          if (o.pad !== false && C5.gap(padMeshes(hand, f), S0).gap > PAD_MAX) padTo(hand, pose, f, [S0]);
           return C5.gap(C5.parts(hand, f), S0).gap;
         };
         // lay a gloved hand on a surface: the contact settled to 0.5 mm along n, then each finger (and the thumb) onto it
@@ -251,7 +253,7 @@
           for (let k = 0; k < (o.rounds || 3); k++) {
             if (k) openUp();
             down();
-            for (const f of fingers) settleFinger(hand, pose, f, S0, { fans: k ? [0, -0.05, 0.05] : undefined });
+            for (const f of fingers) settleFinger(hand, pose, f, S0, { fans: k ? [0, -0.05, 0.05] : undefined, cap: o.cap });
             if (o.thumb !== false && contact !== 'indexPad') C5.thumbTo(hand, pose, S0, { lo: -0.9, hi: 1.2 });
           }
           if (o.thumb !== false && contact !== 'indexPad' && C5.gap(C5.parts(hand, 'thumb'), S0).gap < C5.TARGET) C5.thumbTo(hand, pose, S0, { lo: -1.8, hi: 1.2 });
@@ -304,14 +306,16 @@
             settleEx();
             for (let k = 0; k < 3; k++) {
               let S0 = Sp();
-              for (const f of F4) settleFinger(ex, pose, f, S0, { lo: 0, hi: 2.9 });
+              for (const f of F4) settleFinger(ex, pose, f, S0, { lo: 0, hi: 2.9, pad: false });
               C5.thumbTo(ex, pose, S0, { lo: -0.9, hi: 1.3 });
               const S1 = Se();
-              for (const f of F4) settleFinger(ph, ppose, f, S1, { lo: 0, hi: 2.4, ratio: [0.55, 1, 0.7] });
+              for (const f of F4) settleFinger(ph, ppose, f, S1, { lo: 0, hi: 2.4, ratio: [0.55, 1, 0.7], pad: false });
               C5.thumbTo(ph, ppose, S1, { lo: -0.3, hi: 1.3 });
               applyArm('R', kinState('R', a, ppose));
               settleEx();
             }
+            // then the pads: his fingers' pads onto the back of the examiner's hand (the examiner's are done over the whole path below)
+            { const S1 = Se(); for (const f of F4) if (C5.gap(padMeshes(ph, f), S1).gap > PAD_MAX) padTo(ph, ppose, f, [S1]); applyArm('R', kinState('R', a, ppose)); }
             ex.pose(pose); ex.group.updateMatrixWorld(true);
             const Sp0 = Sp(), Se0 = Se();
             const g = Object.assign(handGaps('R', Sp0, ['palm', 'thumb'].concat(F4)), Object.fromEntries(F4.concat(['thumb']).map((f) => ['his' + f, C5.gap(f === 'thumb' ? C5.meshesUnder(ph.thumb.mcp) : C5.meshesUnder(ph.fingers[f].mcp), Se0).gap])));
@@ -355,18 +359,25 @@
         // ---- the cup under the back of the elbow (the examiner's other hand): here only where it sits (searched at the start of
         // the moves); it is then solved at every pose frame of the moves (cupF below), as the skin of the elbow changes when the
         // elbow bends and the forearm turns: at each the palm is laid on and the fingers (and their pads) bent round onto the skin
+        // lay the cup at arm angles aa: the hand turned th (deg) about the skin normal from 'fingers across the elbow toward his
+        // side', slid so (along) and sd (across); the palm, every finger and every pad scored; no finger joint past its limit
+        const CUP_NEED = ['palm'].concat(F4, F4.map((f) => f + 'Tip'));
+        const cupLay = (aa, ths, offs, sides, prevPose) => {
+          poseR(aa, SOL.ppose.shake);
+          const frE = KIN.frames(P, aa).elbow, post = V(0, 1, 0).applyQuaternion(frE.q), ux = V(1, 0, 0).applyQuaternion(frE.q);
+          const c = frE.p.clone().addScaledVector(ux, -0.15), h = hitArm('R', c.clone().addScaledVector(post, 1.2), post.clone().negate());
+          const fd0 = Lat.clone().negate().addScaledVector(ux, 0.15), fds = ths.map((th) => fd0.clone().applyAxisAngle(post, th * Math.PI / 180));
+          const r = searchLay('L', 'palm', h.p, h.n, fds, offs, sides, prevPose || POSE.cup, (p) => surfArm('R', p, 1.8), V(0.15, -0.62, 1), { rounds: 2, cap: true }, CUP_NEED, (from, dir) => hitArm('R', from, dir));
+          r.th = ths[fds.findIndex((d) => d.distanceTo(r.fd) < 1e-9)];
+          return r;
+        };
+        // a cup is good when the palm and every finger are 0.03-1.2 mm from the skin and every pad within 1.2 mm
+        const cupBad = (r) => CUP_NEED.some((k) => r.g[k] < 0.0003 || r.g[k] > 0.012);
         if (want('cup')) {
-          const a = TONE_BASE, pp = SOL.ppose.shake;
-          const cupLay = (aa, offs, prevPose, sides) => {
-            poseR(aa, pp);
-            const frE = KIN.frames(P, aa).elbow, post = V(0, 1, 0).applyQuaternion(frE.q), ux = V(1, 0, 0).applyQuaternion(frE.q);
-            const c = frE.p.clone().addScaledVector(ux, -0.15), h = hitArm('R', c.clone().addScaledVector(post, 1.2), post.clone().negate());
-            const fd = Lat.clone().negate().addScaledVector(ux, 0.15);
-            return searchLay('L', 'palm', h.p, h.n, [fd], offs, sides || [0], prevPose || POSE.cup, (p) => surfArm('R', p, 1.8), V(0.15, -0.62, 1), { rounds: 2 }, ['palm'].concat(F4), (from, dir) => hitArm('R', from, dir));
-          };
-          const b0 = cupLay(a, [-0.3, -0.2, -0.1, 0, 0.1], null, [-0.35, -0.2, -0.05, 0.1]);
-          log(`tone: elbow cup offset ${b0.so.toFixed(2)} across, ${b0.sd.toFixed(2)} along the arm: ${fmt(b0.g)}`);
-          SOL.cupBase = { so: b0.so, sd: b0.sd, pose: b0.st.pose }; delete SOL.cupPath; delete SOL.cup; delete SOL.cupFrames;   // the frames are solved again from this base (cupF)
+          const a = TONE_BASE;
+          const b0 = cupLay(a, [-60, -40, -20, 0, 20, 40, 60], [-0.2, -0.1, 0, 0.1], [-0.3, -0.15, 0, 0.15]);
+          log(`tone: elbow cup turned ${b0.th} deg, offset ${b0.so.toFixed(2)} along, ${b0.sd.toFixed(2)} across: ${fmt(b0.g)}`);
+          SOL.cupBase = { th: b0.th, so: b0.so, sd: b0.sd, pose: b0.st.pose }; delete SOL.cupPath; delete SOL.cup; delete SOL.cupFrames;   // the frames are solved again from this base (cupF)
         }
         // ---- the cup at EVERY pose frame his arm takes while it is held (the arm moves on twos, so these are the only angles
         // it shows): no blending between solved poses, which let the fingers sink into the elbow between them.
@@ -374,30 +385,23 @@
         // solves again only the stored frames with a part outside 0.03-1.5 mm.
         for (let q = 0; q < 4; q++) if (want('cupF' + q) || want('cupF') || want('cupFix')) {
           const pp = SOL.ppose.shake, frames = toneFrameAngles().filter((_, i) => i % 4 === q);
-          SOL.cupFrames = SOL.cupFrames || {}; let worst = 0, n = 0;
-          const cupLayF = (aa, offs, sides, prevPose) => {
-            poseR(aa, pp);
-            const frE = KIN.frames(P, aa).elbow, post = V(0, 1, 0).applyQuaternion(frE.q), ux = V(1, 0, 0).applyQuaternion(frE.q);
-            const c = frE.p.clone().addScaledVector(ux, -0.15), h = hitArm('R', c.clone().addScaledVector(post, 1.2), post.clone().negate());
-            const fd = Lat.clone().negate().addScaledVector(ux, 0.15);
-            return searchLay('L', 'palm', h.p, h.n, [fd], offs, sides, prevPose, (p) => surfArm('R', p, 1.8), V(0.15, -0.62, 1), { rounds: 2 }, ['palm'].concat(F4), (from, dir) => hitArm('R', from, dir));
-          };
+          SOL.cupFrames = SOL.cupFrames || {}; let worst = 0, padW = 0, n = 0;
           const err = (r) => Math.max(...['palm'].concat(F4).map((k) => Math.abs(r.g[k] - C5.TARGET)));
           // the cup's place on his elbow (from the cup block; searched the same way here if this solved.json predates it)
-          if (!SOL.cupBase) { const b0 = cupLayF(TONE_BASE, [-0.3, -0.2, -0.1, 0, 0.1], [-0.35, -0.2, -0.05, 0.1], POSE.cup); SOL.cupBase = { so: b0.so, sd: b0.sd, pose: b0.st.pose }; }
+          if (!SOL.cupBase || SOL.cupBase.th == null) throw new Error('cupF needs the cup base: run node tools/solve.mjs --only cup first');
           const B = SOL.cupBase;
           // a palm left touching at under 0.03 mm (or just inside) is lifted off along the skin normal to 0.05 mm; then every
           // finger outside 0.03-1.2 mm is settled onto the skin again (the fingers wrap round the elbow, so the lift moves them)
           const liftClear = (r) => {
             const S0 = surfArm('R', r.at, 1.8), need = ['palm'].concat(F4);
             for (let k = 0; k < 4 && r.g.palm < 0.0003; k++) { r.st.wrist.addScaledVector(r.n, 0.0005 - r.g.palm); applyEx('L', r.st); r.g = handGaps('L', S0, need); }
-            for (const f of F4) if (r.g[f] < 0.0003 || r.g[f] > 0.012 || C5.gap(padMeshes(handOf('L'), f), S0).gap > PAD_MAX) { applyEx('L', r.st); settleFinger(handOf('L'), r.st.pose, f, S0); applyEx('L', r.st); }
+            for (const f of F4) if (r.g[f] < 0.0003 || r.g[f] > 0.012 || C5.gap(padMeshes(handOf('L'), f), S0).gap > PAD_MAX) { applyEx('L', r.st); settleFinger(handOf('L'), r.st.pose, f, S0, { cap: true }); applyEx('L', r.st); }
             r.g = handGaps('L', S0, need); for (const f of F4) r.g[f + 'Pad'] = C5.gap(padMeshes(handOf('L'), f), S0).gap;
             return r;
           };
           const solveFrame = (aa) => {
-            let r = cupLayF(aa, [B.so], [B.sd], B.pose);
-            if (err(r) > 0.006) { const r2 = cupLayF(aa, [B.so - 0.15, B.so, B.so + 0.15], [B.sd - 0.15, B.sd, B.sd + 0.15], B.pose); if (r2.e < r.e) r = r2; }
+            let r = cupLay(aa, [B.th], [B.so], [B.sd], B.pose);
+            if (cupBad(r)) { const r2 = cupLay(aa, [B.th - 20, B.th, B.th + 20], [B.so - 0.15, B.so, B.so + 0.15], [B.sd - 0.15, B.sd, B.sd + 0.15], B.pose); if (r2.e < r.e) r = r2; }
             return liftClear(r);
           };
           // cupFix: only the frames already in solved.json with a part outside 0.03-1.5 mm
@@ -406,10 +410,10 @@
             if (fixOnly) { const old = SOL.cupFrames[angKey(aa)]; if (old && Object.values(old.g).every((v) => v >= 0.03 && v <= 1.5)) continue; }
             const r = solveFrame(aa);
             const fr = KIN.frames(P, aa).elbow, rel = relTo(fr, r.st.wrist, r.st.quat, r.st.back);
-            worst = Math.max(worst, err(r)); n++;
+            worst = Math.max(worst, err(r)); padW = Math.max(padW, ...F4.map((f) => r.g[f + 'Pad'])); n++;
             SOL.cupFrames[angKey(aa)] = { p: A(rel.p), q: [rel.q.x, rel.q.y, rel.q.z, rel.q.w], back: A(rel.back), pose: r.st.pose, g: Object.fromEntries(Object.entries(r.g).map(([k, v]) => [k, +(v * 100).toFixed(2)])) };
           }
-          log(`tone: elbow cup solved at ${n} pose frames (part ${q + 1} of 4; largest error from 0.5 mm: ${(worst * 100).toFixed(2)} mm)`);
+          log(`tone: elbow cup solved at ${n} pose frames (part ${q + 1} of 4; largest error from 0.5 mm: ${(worst * 100).toFixed(2)} mm; pads up to ${(padW * 100).toFixed(2)} mm)`);
         }
 
         // ---- 2. the power tests: the examiner's hand on the named point, laid on his skin (searched)
