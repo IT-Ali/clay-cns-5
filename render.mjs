@@ -4,15 +4,17 @@
 //                         (SET.RENDER: 64 samples, 1920x1080, 30 fps):
 //                           out/cns5_captions.mp4, out/cns5_clean.mp4
 //                           out/beats/cns5_beatNN_<name>_captions.mp4 / _clean.mp4
-//   npm run preview       the preview on the GPU: 960x540, 30 fps, 8 samples, captions on, the full part as one MP4
+//   npm run preview       the preview on the GPU: 960x540, 30 fps, 8 samples, captions on: beats 5 and 10 (one MP4 each)
+//                         and the first and last frames; npm run preview -- --beats all = the whole part as one MP4
 //                           out/preview/cns5_preview.mp4 (frames in out/preview/frames, separate from the final render)
 //                           out/preview/check.json (first vs last frame pixel difference, mean loudness, duration)
 //                           out/preview/sheet.jpg (a frame every 2 s with its time stamp)
-//   npm run preview -- --beats 5,10    only those beats (out/preview/beats/cns5_preview_beatNN.mp4)
+//   npm run preview -- --beats 3,7    other beats (out/preview/beats/cns5_preview_beatNN.mp4)
 //
 // Both LOAD solved.json (made once with node tools/solve.mjs) and never solve; they stop with a clear message if it is
 // missing or out of date. Frames already on disk are skipped, so if a render stops, running it again carries on.
 // Other options: --samples N  --w W --h H  --frames a-b[,c-d]  --frames-only (stop after the frames)  --out DIR
+//                --test N (only the first N frames of each chosen beat, encoded to short test MP4s)
 //                --remake (remake the MP4s from the frames on disk)
 //                --software (no GPU: SwiftShader, very slow)   CHROME_PATH=... to use a particular Chrome
 import { fileURLToPath } from 'node:url';
@@ -53,8 +55,13 @@ const beatFrames = (b) => [Math.round(b.t0 * FPS), Math.round(b.t1 * FPS) - 1];
 // which frames: all, a range, or some beats
 let ranges = [[0, NF - 1]];
 if (opt('frames', '')) ranges = opt('frames').split(',').map((r) => { const [a, b] = r.split('-').map(Number); return [a, b == null || isNaN(b) ? a : b]; });
-const beatsSel = (opt('beats', '') || opt('beat', '')).split(',').filter(Boolean).map(Number);
-if (beatsSel.length) ranges = beatsSel.map((n) => beatFrames(info.beats.find((b) => b.n === n)));
+// the preview's default: beats 5 and 10, plus the first and the last frame (for check.json); --beats all = the whole part
+const beatsArg = opt('beats', '') || opt('beat', '') || (PREVIEW && !opt('frames', '') ? '5,10' : '');
+const beatsSel = beatsArg === 'all' ? [] : beatsArg.split(',').filter(Boolean).map(Number);
+if (beatsSel.length) ranges = beatsSel.map((n) => beatFrames(info.beats.find((b) => b.n === n))).concat(PREVIEW ? [[0, 0], [NF - 1, NF - 1]] : []);
+// --test N: only the first N frames of each chosen beat (a quick check of the whole pipeline: frames, sound, MP4, checks)
+const TEST = +opt('test', 0);
+if (TEST) ranges = (beatsSel.length ? beatsSel : info.beats.map((b) => b.n)).map((n) => { const [a] = beatFrames(info.beats.find((b) => b.n === n)); return [a, a + TEST - 1]; });
 
 // 1. the frames (skipping those already rendered); the captioned frame is the clean picture with the caption plaque on top
 const todo = [];
@@ -105,7 +112,7 @@ let made = 0;
 for (const v of VERSIONS) {
   for (const b of info.beats) {
     if (beatsSel.length && !beatsSel.includes(b.n)) continue;
-    const [s, e] = beatFrames(b), n = e - s + 1, name = b.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const [s, e] = beatFrames(b), n = TEST ? TEST : e - s + 1, name = b.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + (TEST ? '_test' : '');
     const file = PREVIEW ? path.join(OUT, 'beats', `cns5_preview_beat${String(b.n).padStart(2, '0')}_${name}.mp4`) : path.join(OUT, 'beats', `cns5_beat${String(b.n).padStart(2, '0')}_${name}_${v}.mp4`);
     if (PREVIEW && !beatsSel.length) continue;              // the preview of the whole part is one MP4
     if (!have(v, s, n) || (fs.existsSync(file) && !flag('remake'))) continue;
@@ -123,7 +130,7 @@ if (PREVIEW) {
     const raw = (f) => { const tmp = path.join(OUT, 'tmp.rgb'); ff(['-i', f, '-f', 'rawvideo', '-pix_fmt', 'rgb24', tmp]); const b = fs.readFileSync(tmp); fs.unlinkSync(tmp); return b; };
     const A = raw(f0), Bb = raw(fl); let diff = 0, sum = 0; for (let i = 0; i < A.length; i++) { const d = Math.abs(A[i] - Bb[i]); sum += d; if (d) diff++; }
     check.firstVsLast = { differingValues: diff, meanAbsDiff: +(sum / A.length).toFixed(5), identical: diff === 0 };
-  }
+  } else check.firstVsLast = 'first or last frame not rendered in this run (see home-check.json)';
   const full = path.join(OUT, 'cns5_preview.mp4');
   const probe = fs.existsSync(full) ? full : (fs.readdirSync(path.join(OUT, 'beats')).map((f) => path.join(OUT, 'beats', f)).find((f) => f.endsWith('.mp4')));
   if (probe) {
