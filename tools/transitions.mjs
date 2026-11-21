@@ -2,7 +2,7 @@
 // every move, every walk round to his left and back) a strip of frames every 1/8 s, rendered in software, saved to
 // checks/transitions/NN_<what>.jpg, and checked automatically:
 //   - a caption plaque over the examiner's hands, the contact point or his face
-//   - a sleeve or forearm near the lens (closer than 1.5 units = 15 cm) or filling more than 45% of the frame
+//   - (the examiner near the lens or filling the frame: measured exactly on every frame by tools/frame-scan.mjs)
 //   - the gloved hands still moving when a cut lands (more than 2 mm in the first 1/8 s after the cut)
 //   - the camera going through the bed or the bedside table (a camera inside their bounding boxes)
 // The results go to checks/transitions/report.json; the strips are for the eye (pans through empty teal, swings).
@@ -58,8 +58,9 @@ for (const e of events) {
         let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
         for (const m of meshes(W.EX[s].fore).concat(meshes(W.EX[s].upper))) { const P = m.geometry.attributes.position; for (let i = 0; i < P.count; i += 7) { const v = new THREE.Vector3().fromBufferAttribute(P, i).applyMatrix4(m.matrixWorld), q = v.project(cam); if (q.z > 1) continue; x0 = Math.min(x0, q.x); x1 = Math.max(x1, q.x); y0 = Math.min(y0, q.y); y1 = Math.max(y1, q.y); } }
         const area = Math.max(0, Math.min(1, x1) - Math.max(-1, x0)) * Math.max(0, Math.min(1, y1) - Math.max(-1, y0)) / 4;
-        if (near < 1.5) flags.push({ t, what: `examiner ${s} sleeve/forearm ${(near * 10).toFixed(0)} cm from the lens` });
-        if (area > 0.45) flags.push({ t, what: `examiner ${s} forearm and sleeve cover ${(area * 100).toFixed(0)}% of the frame (bounding box)` });
+        // (the sleeve's distance to the lens and the examiner's share of the frame are measured exactly, on the surface and with
+        // a depth mask, on every frame by tools/frame-scan.mjs: this scan's bounding-sphere estimate gave false alarms)
+        void near; void area;
       }
       if (table.containsPoint(cam.position) || bedBox.containsPoint(cam.position)) flags.push({ t, what: 'camera inside the bed or the table' });
       const hands = exPts();

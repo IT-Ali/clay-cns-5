@@ -17,6 +17,7 @@ fs.writeFileSync(path.join(OUT, 'readme_home.png'), Buffer.from((await ref.evalu
 const D = +/const D = ([\d.]+)/.exec(fs.readFileSync(path.join(ROOT, 'cns5', 'cns5-style.js'), 'utf8'))[1];   // the part's length
 const NF = Math.round(D * 30), last = NF - 1;
 const fr = path.join(OUT, 'render');
+fs.rmSync(fr, { recursive: true, force: true });   // never reuse frames of an older build
 const r = spawnSync(process.execPath, [path.join(ROOT, 'render.mjs'), '--preview', '--software', '--samples', String(N), '--frames', `0-0,${last}-${last}`, '--frames-only', '--out', fr], { stdio: 'inherit' });
 if (r.status !== 0) process.exit(1);
 const f0 = path.join(fr, 'frames', 'captions', '000000.png'), fN = path.join(fr, 'frames', 'captions', String(last).padStart(6, '0') + '.png');

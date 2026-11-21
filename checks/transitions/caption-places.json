@@ -399,7 +399,7 @@
    "top": {
     "face": 0,
     "hands": 0,
-    "exHands": 0
+    "exHands": 4
    },
    "bottom": {
     "face": 0,
@@ -409,12 +409,12 @@
    "tl": {
     "face": 0,
     "hands": 0,
-    "exHands": 18
+    "exHands": 20
    },
    "tr": {
     "face": 0,
     "hands": 0,
-    "exHands": 19
+    "exHands": 21
    },
    "bl": {
     "face": 0,

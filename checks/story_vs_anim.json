@@ -8,9 +8,9 @@
   "animFile": "checks/story_vs_anim/render/frames/captions/000498.png",
   "panelFile": "storyboard/img/b03.jpg",
   "animT": 16.6,
-  "meanDiff": 1.8618,
-  "maxDiff": 73,
-  "differingPixels": 499685,
+  "meanDiff": 25.4446,
+  "maxDiff": 249,
+  "differingPixels": 503400,
   "pixels": 518400
  },
  {
@@ -36,9 +36,9 @@
   "animFile": "checks/story_vs_anim/render/frames/captions/001365.png",
   "panelFile": "storyboard/img/b06.jpg",
   "animT": 45.5,
-  "meanDiff": 1.8515,
-  "maxDiff": 81,
-  "differingPixels": 503038,
+  "meanDiff": 32.5246,
+  "maxDiff": 252,
+  "differingPixels": 505553,
   "pixels": 518400
  },
  {
@@ -50,9 +50,9 @@
   "animFile": "checks/story_vs_anim/render/frames/captions/001605.png",
   "panelFile": "storyboard/img/b07.jpg",
   "animT": 53.5,
-  "meanDiff": 1.6538,
-  "maxDiff": 68,
-  "differingPixels": 497260,
+  "meanDiff": 17.38,
+  "maxDiff": 255,
+  "differingPixels": 501145,
   "pixels": 518400
  },
  {

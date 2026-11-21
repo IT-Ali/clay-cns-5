@@ -1,7 +1,7 @@
 {
  "frames": [
-  680,
-  730
+  0,
+  2699
  ],
  "fps": 30,
  "limits": {
@@ -11,21 +11,543 @@
  "flags": 0,
  "flagged": [],
  "perSecond": {
-  "22": {
+  "0": {
+   "minNearCm": 251.6,
+   "maxExaminerPct": 3.7,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "1": {
+   "minNearCm": 236.6,
+   "maxExaminerPct": 3.7,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "2": {
+   "minNearCm": 199.6,
+   "maxExaminerPct": 3.5,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "3": {
+   "minNearCm": 165.2,
+   "maxExaminerPct": 2.3,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "4": {
+   "minNearCm": 150.8,
+   "maxExaminerPct": 0,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "5": {
+   "minNearCm": 150.7,
+   "maxExaminerPct": 0,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "6": {
+   "minNearCm": 150.7,
+   "maxExaminerPct": 0,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "7": {
+   "minNearCm": 125.5,
+   "maxExaminerPct": 0,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "8": {
+   "minNearCm": 104.4,
+   "maxExaminerPct": 0,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "9": {
+   "minNearCm": 106,
+   "maxExaminerPct": 0,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "10": {
+   "minNearCm": 112,
+   "maxExaminerPct": 0,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "11": {
+   "minNearCm": 102.8,
+   "maxExaminerPct": 0,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "12": {
+   "minNearCm": 97.2,
+   "maxExaminerPct": 0.4,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "13": {
    "minNearCm": 118.9,
    "maxExaminerPct": 1.3,
    "captionOverFace": 0,
    "cupMiss": 0
   },
+  "14": {
+   "minNearCm": 117.7,
+   "maxExaminerPct": 1.7,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "15": {
+   "minNearCm": 105,
+   "maxExaminerPct": 8.1,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "16": {
+   "minNearCm": 105.1,
+   "maxExaminerPct": 8.3,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "17": {
+   "minNearCm": 104.9,
+   "maxExaminerPct": 7.8,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "18": {
+   "minNearCm": 104.9,
+   "maxExaminerPct": 8.4,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "19": {
+   "minNearCm": 104.8,
+   "maxExaminerPct": 12.5,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "20": {
+   "minNearCm": 99.1,
+   "maxExaminerPct": 10.5,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "21": {
+   "minNearCm": 101.7,
+   "maxExaminerPct": 8.1,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "22": {
+   "minNearCm": 116.2,
+   "maxExaminerPct": 1.9,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
   "23": {
    "minNearCm": 105,
-   "maxExaminerPct": 9.9,
+   "maxExaminerPct": 7.8,
    "captionOverFace": 0,
    "cupMiss": 0
   },
   "24": {
    "minNearCm": 105.1,
-   "maxExaminerPct": 11.8,
+   "maxExaminerPct": 8.3,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "25": {
+   "minNearCm": 105,
+   "maxExaminerPct": 7.9,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "26": {
+   "minNearCm": 104.8,
+   "maxExaminerPct": 12.9,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "27": {
+   "minNearCm": 99.2,
+   "maxExaminerPct": 11.1,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "28": {
+   "minNearCm": 101.7,
+   "maxExaminerPct": 7.7,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "29": {
+   "minNearCm": 118.9,
+   "maxExaminerPct": 1.3,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "30": {
+   "minNearCm": 631.9,
+   "maxExaminerPct": 0.1,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "31": {
+   "minNearCm": 631.9,
+   "maxExaminerPct": 0.1,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "32": {
+   "minNearCm": 631.9,
+   "maxExaminerPct": 0.1,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "33": {
+   "minNearCm": 631.9,
+   "maxExaminerPct": 0.1,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "34": {
+   "minNearCm": 631.9,
+   "maxExaminerPct": 0.1,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "35": {
+   "minNearCm": 631.9,
+   "maxExaminerPct": 0.1,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "36": {
+   "minNearCm": 631.9,
+   "maxExaminerPct": 0.1,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "37": {
+   "minNearCm": 631.9,
+   "maxExaminerPct": 0.1,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "38": {
+   "minNearCm": 631.9,
+   "maxExaminerPct": 0.1,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "39": {
+   "minNearCm": 631.9,
+   "maxExaminerPct": 0.1,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "40": {
+   "minNearCm": 631.9,
+   "maxExaminerPct": 0.1,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "41": {
+   "minNearCm": 631.9,
+   "maxExaminerPct": 0.1,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "42": {
+   "minNearCm": 120.7,
+   "maxExaminerPct": 0,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "43": {
+   "minNearCm": 120.7,
+   "maxExaminerPct": 0,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "44": {
+   "minNearCm": 77.3,
+   "maxExaminerPct": 13.3,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "45": {
+   "minNearCm": 92.7,
+   "maxExaminerPct": 11.5,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "46": {
+   "minNearCm": 77,
+   "maxExaminerPct": 13.4,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "47": {
+   "minNearCm": 77.4,
+   "maxExaminerPct": 13.1,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "48": {
+   "minNearCm": 92.7,
+   "maxExaminerPct": 11.5,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "49": {
+   "minNearCm": 76.3,
+   "maxExaminerPct": 13.1,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "50": {
+   "minNearCm": 80.8,
+   "maxExaminerPct": 0,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "51": {
+   "minNearCm": 80.8,
+   "maxExaminerPct": 0,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "52": {
+   "minNearCm": 40.2,
+   "maxExaminerPct": 15.9,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "53": {
+   "minNearCm": 40.5,
+   "maxExaminerPct": 15.8,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "54": {
+   "minNearCm": 40.5,
+   "maxExaminerPct": 15.7,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "55": {
+   "minNearCm": 40.2,
+   "maxExaminerPct": 15.8,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "56": {
+   "minNearCm": 40.4,
+   "maxExaminerPct": 15.8,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "57": {
+   "minNearCm": 40.5,
+   "maxExaminerPct": 15.7,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "58": {
+   "minNearCm": 80.8,
+   "maxExaminerPct": 0,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "59": {
+   "minNearCm": 80.8,
+   "maxExaminerPct": 0,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "60": {
+   "minNearCm": 67.7,
+   "maxExaminerPct": 9.9,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "61": {
+   "minNearCm": 67.7,
+   "maxExaminerPct": 9.9,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "62": {
+   "minNearCm": 76.8,
+   "maxExaminerPct": 6.5,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "63": {
+   "minNearCm": 67.7,
+   "maxExaminerPct": 9.9,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "64": {
+   "minNearCm": 67.7,
+   "maxExaminerPct": 9.9,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "65": {
+   "minNearCm": 56.8,
+   "maxExaminerPct": 0.8,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "66": {
+   "minNearCm": 56.8,
+   "maxExaminerPct": 0.8,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "67": {
+   "minNearCm": 43,
+   "maxExaminerPct": 19.7,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "68": {
+   "minNearCm": 43.8,
+   "maxExaminerPct": 19.5,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "69": {
+   "minNearCm": 42.6,
+   "maxExaminerPct": 19,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "70": {
+   "minNearCm": 43,
+   "maxExaminerPct": 14.5,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "71": {
+   "minNearCm": 43.8,
+   "maxExaminerPct": 14.3,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "72": {
+   "minNearCm": 42.5,
+   "maxExaminerPct": 9.6,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "73": {
+   "minNearCm": 51.3,
+   "maxExaminerPct": 6.7,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "74": {
+   "minNearCm": 18.3,
+   "maxExaminerPct": 17.1,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "75": {
+   "minNearCm": 18.3,
+   "maxExaminerPct": 12.2,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "76": {
+   "minNearCm": 18.3,
+   "maxExaminerPct": 13.2,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "77": {
+   "minNearCm": 18.3,
+   "maxExaminerPct": 6.7,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "78": {
+   "minNearCm": 18.3,
+   "maxExaminerPct": 12.8,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "79": {
+   "minNearCm": 18.3,
+   "maxExaminerPct": 13.3,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "80": {
+   "minNearCm": 72.6,
+   "maxExaminerPct": 3.8,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "81": {
+   "minNearCm": 72.6,
+   "maxExaminerPct": 3.8,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "82": {
+   "minNearCm": 26.3,
+   "maxExaminerPct": 30.9,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "83": {
+   "minNearCm": 26.3,
+   "maxExaminerPct": 27.6,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "84": {
+   "minNearCm": 31.1,
+   "maxExaminerPct": 25.9,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "85": {
+   "minNearCm": 25.4,
+   "maxExaminerPct": 19.4,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "86": {
+   "minNearCm": 25.4,
+   "maxExaminerPct": 19.4,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "87": {
+   "minNearCm": 100.7,
+   "maxExaminerPct": 3.5,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "88": {
+   "minNearCm": 160.4,
+   "maxExaminerPct": 4,
+   "captionOverFace": 0,
+   "cupMiss": 0
+  },
+  "89": {
+   "minNearCm": 251.6,
+   "maxExaminerPct": 3.7,
    "captionOverFace": 0,
    "cupMiss": 0
   }

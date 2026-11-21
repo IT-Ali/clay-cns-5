@@ -10,6 +10,7 @@ const SB = JSON.parse(fs.readFileSync(path.join(ROOT, 'storyboard', 'panels.json
 const N = SB.samples || 16, [W, H] = SB.size || [960, 540], FPS = 30;
 const OUT = path.join(ROOT, 'checks', 'story_vs_anim'); fs.mkdirSync(OUT, { recursive: true });
 const items = beats.map((n) => { const p = SB.BEATS.find((b) => b.n === n); return { n, id: p.id, name: p.name, t: p.t, frame: Math.round(p.t * FPS) }; });
+fs.rmSync(path.join(OUT, 'render'), { recursive: true, force: true });   // never reuse frames of an older build
 const r = spawnSync(process.execPath, [path.join(ROOT, 'render.mjs'), '--preview', '--software', '--w', String(W), '--h', String(H), '--samples', String(N),
   '--frames', items.map((i) => `${i.frame}-${i.frame}`).join(','), '--frames-only', '--out', path.join(OUT, 'render')], { stdio: 'inherit' });
 if (r.status !== 0) process.exit(1);
