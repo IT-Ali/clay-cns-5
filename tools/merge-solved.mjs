@@ -6,7 +6,7 @@ import fs from 'node:fs'; import path from 'node:path';
 const f = path.join(ROOT, 'solved.json'), sol = JSON.parse(fs.readFileSync(f, 'utf8'));
 for (const p of process.argv.slice(2)) {
   const s = JSON.parse(fs.readFileSync(p, 'utf8'));
-  sol.cupFrames = Object.assign(sol.cupFrames || {}, s.cupFrames || {}); if (s.cupBase && !sol.cupBase) sol.cupBase = s.cupBase;
+  sol.cupFrames = Object.assign(sol.cupFrames || {}, s.cupFrames || {}); if (s.cupBase) sol.cupBase = s.cupBase;
   for (const l of s.log || []) if (/pose frames/.test(l)) { sol.log.push(l); console.log(l); }
 }
 sol.hash = inputsHash(); sol.solvedAt = new Date().toISOString();
