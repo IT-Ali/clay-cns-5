@@ -93,8 +93,10 @@
    21.467,
    21.533
   ],
-  "minMM": 0.512,
-  "maxMM": 0.512,
+  "minMM": 0.188,
+  "maxMM": 0.188,
+  "padMinMM": null,
+  "padMaxMM": null,
   "worstAt": null
  },
  {
@@ -191,8 +193,10 @@
    21.467,
    21.533
   ],
-  "minMM": 0.486,
-  "maxMM": 0.943,
+  "minMM": 0.501,
+  "maxMM": 0.501,
+  "padMinMM": 0.501,
+  "padMaxMM": 0.501,
   "worstAt": null
  },
  {
@@ -289,8 +293,10 @@
    21.467,
    21.533
   ],
-  "minMM": 0.301,
-  "maxMM": 0.301,
+  "minMM": 0.03,
+  "maxMM": 0.03,
+  "padMinMM": 0.773,
+  "padMaxMM": 0.773,
   "worstAt": null
  },
  {
@@ -389,6 +395,8 @@
   ],
   "minMM": 0.301,
   "maxMM": 0.301,
+  "padMinMM": 0.301,
+  "padMaxMM": 0.301,
   "worstAt": null
  },
  {
@@ -485,8 +493,10 @@
    21.467,
    21.533
   ],
-  "minMM": 0.302,
-  "maxMM": 0.302,
+  "minMM": 0.301,
+  "maxMM": 0.301,
+  "padMinMM": 0.301,
+  "padMaxMM": 0.301,
   "worstAt": null
  },
  {
@@ -583,8 +593,10 @@
    21.467,
    21.533
   ],
-  "minMM": 0.501,
-  "maxMM": 0.501,
+  "minMM": 0.612,
+  "maxMM": 0.612,
+  "padMinMM": 0.612,
+  "padMaxMM": 0.612,
   "worstAt": null
  },
  {
@@ -681,8 +693,10 @@
    21.467,
    21.533
   ],
-  "minMM": 0.5,
-  "maxMM": 0.5,
+  "minMM": 0.508,
+  "maxMM": 0.508,
+  "padMinMM": 0.508,
+  "padMaxMM": 0.508,
   "worstAt": null
  },
  {
@@ -779,9 +793,11 @@
    21.467,
    21.533
   ],
-  "minMM": 0.5,
-  "maxMM": 0.5,
-  "worstAt": null
+  "minMM": 0.03,
+  "maxMM": 0.03,
+  "padMinMM": 1.768,
+  "padMaxMM": 1.768,
+  "worstAt": 21.533333333333335
  },
  {
   "id": "shake-his-ring-R",
@@ -877,8 +893,10 @@
    21.467,
    21.533
   ],
-  "minMM": 0.5,
-  "maxMM": 0.5,
+  "minMM": 0.514,
+  "maxMM": 0.514,
+  "padMinMM": 0.78,
+  "padMaxMM": 0.78,
   "worstAt": null
  },
  {
@@ -975,8 +993,10 @@
    21.467,
    21.533
   ],
-  "minMM": 0.5,
-  "maxMM": 0.5,
+  "minMM": 0.492,
+  "maxMM": 0.492,
+  "padMinMM": 0.492,
+  "padMaxMM": 0.492,
   "worstAt": null
  },
  {
@@ -1073,8 +1093,10 @@
    21.467,
    21.533
   ],
-  "minMM": 0.501,
-  "maxMM": 0.501,
+  "minMM": 0.615,
+  "maxMM": 0.615,
+  "padMinMM": 0.615,
+  "padMaxMM": 0.615,
   "worstAt": null
  },
  {
@@ -1171,8 +1193,10 @@
    21.467,
    21.533
   ],
-  "minMM": 0.027,
-  "maxMM": 1.071,
+  "minMM": 0.501,
+  "maxMM": 0.516,
+  "padMinMM": null,
+  "padMaxMM": null,
   "worstAt": null
  },
  {
@@ -1269,8 +1293,10 @@
    21.467,
    21.533
   ],
-  "minMM": 0.328,
-  "maxMM": 0.936,
+  "minMM": 0.149,
+  "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.501,
   "worstAt": null
  },
  {
@@ -1367,8 +1393,10 @@
    21.467,
    21.533
   ],
-  "minMM": 0.484,
-  "maxMM": 0.501,
+  "minMM": 0.5,
+  "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.712,
   "worstAt": null
  },
  {
@@ -1465,8 +1493,10 @@
    21.467,
    21.533
   ],
-  "minMM": 0.043,
-  "maxMM": 0.501,
+  "minMM": 0.5,
+  "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -1564,7 +1594,9 @@
    21.533
   ],
   "minMM": 0.5,
-  "maxMM": 0.889,
+  "maxMM": 0.814,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.814,
   "worstAt": null
  },
  {
@@ -1577,6 +1609,8 @@
   ],
   "minMM": 0.517,
   "maxMM": 0.517,
+  "padMinMM": null,
+  "padMaxMM": null,
   "worstAt": null
  },
  {
@@ -1589,6 +1623,8 @@
   ],
   "minMM": 0.098,
   "maxMM": 0.098,
+  "padMinMM": 0.098,
+  "padMaxMM": 0.098,
   "worstAt": null
  },
  {
@@ -1601,6 +1637,8 @@
   ],
   "minMM": 0.228,
   "maxMM": 0.228,
+  "padMinMM": 0.228,
+  "padMaxMM": 0.228,
   "worstAt": null
  },
  {
@@ -1613,6 +1651,8 @@
   ],
   "minMM": 0.467,
   "maxMM": 0.467,
+  "padMinMM": 0.467,
+  "padMaxMM": 0.467,
   "worstAt": null
  },
  {
@@ -1625,6 +1665,8 @@
   ],
   "minMM": 0.531,
   "maxMM": 0.531,
+  "padMinMM": 0.531,
+  "padMaxMM": 0.531,
   "worstAt": null
  },
  {
@@ -1637,6 +1679,8 @@
   ],
   "minMM": 0.446,
   "maxMM": 0.446,
+  "padMinMM": 0.446,
+  "padMaxMM": 0.446,
   "worstAt": null
  },
  {
@@ -1647,8 +1691,10 @@
   "times": [
    53.508
   ],
-  "minMM": 0.5,
-  "maxMM": 0.5,
+  "minMM": 0.446,
+  "maxMM": 0.446,
+  "padMinMM": null,
+  "padMaxMM": null,
   "worstAt": null
  },
  {
@@ -1659,8 +1705,10 @@
   "times": [
    53.508
   ],
-  "minMM": 0.5,
-  "maxMM": 0.5,
+  "minMM": 0.501,
+  "maxMM": 0.501,
+  "padMinMM": 0.501,
+  "padMaxMM": 0.501,
   "worstAt": null
  },
  {
@@ -1671,8 +1719,10 @@
   "times": [
    53.508
   ],
-  "minMM": 0.5,
-  "maxMM": 0.5,
+  "minMM": 0.501,
+  "maxMM": 0.501,
+  "padMinMM": 0.501,
+  "padMaxMM": 0.501,
   "worstAt": null
  },
  {
@@ -1685,6 +1735,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -1695,8 +1747,10 @@
   "times": [
    53.508
   ],
-  "minMM": 0.5,
-  "maxMM": 0.5,
+  "minMM": 0.501,
+  "maxMM": 0.501,
+  "padMinMM": 0.501,
+  "padMaxMM": 0.501,
   "worstAt": null
  },
  {
@@ -1709,7 +1763,9 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
-  "worstAt": null
+  "padMinMM": 3.248,
+  "padMaxMM": 3.248,
+  "worstAt": 53.507999999999996
  },
  {
   "id": "elbE-palm-R",
@@ -1721,6 +1777,8 @@
   ],
   "minMM": 0.501,
   "maxMM": 0.501,
+  "padMinMM": null,
+  "padMaxMM": null,
   "worstAt": null
  },
  {
@@ -1733,6 +1791,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -1745,6 +1805,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -1757,6 +1819,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -1769,6 +1833,8 @@
   ],
   "minMM": 0.501,
   "maxMM": 0.501,
+  "padMinMM": 0.501,
+  "padMaxMM": 0.501,
   "worstAt": null
  },
  {
@@ -1781,6 +1847,8 @@
   ],
   "minMM": 0.501,
   "maxMM": 0.501,
+  "padMinMM": 0.501,
+  "padMaxMM": 0.501,
   "worstAt": null
  },
  {
@@ -1793,6 +1861,8 @@
   ],
   "minMM": 0.501,
   "maxMM": 0.501,
+  "padMinMM": 0.501,
+  "padMaxMM": 0.501,
   "worstAt": null
  },
  {
@@ -1805,6 +1875,8 @@
   ],
   "minMM": 0.501,
   "maxMM": 0.501,
+  "padMinMM": 0.501,
+  "padMaxMM": 0.501,
   "worstAt": null
  },
  {
@@ -1817,6 +1889,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 1.091,
+  "padMaxMM": 1.091,
   "worstAt": null
  },
  {
@@ -1829,6 +1903,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -1841,6 +1917,8 @@
   ],
   "minMM": 0.506,
   "maxMM": 0.506,
+  "padMinMM": null,
+  "padMaxMM": null,
   "worstAt": null
  },
  {
@@ -1853,6 +1931,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -1865,6 +1945,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -1877,6 +1959,8 @@
   ],
   "minMM": 0.501,
   "maxMM": 0.501,
+  "padMinMM": 0.501,
+  "padMaxMM": 0.501,
   "worstAt": null
  },
  {
@@ -1889,6 +1973,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -1901,6 +1987,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -1913,6 +2001,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -1925,6 +2015,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -1937,6 +2029,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -1949,6 +2043,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -1961,6 +2057,8 @@
   ],
   "minMM": 0.002,
   "maxMM": 0.002,
+  "padMinMM": 0.05,
+  "padMaxMM": 0.05,
   "worstAt": null
  },
  {
@@ -1973,6 +2071,8 @@
   ],
   "minMM": 0.501,
   "maxMM": 0.501,
+  "padMinMM": null,
+  "padMaxMM": null,
   "worstAt": null
  },
  {
@@ -1985,6 +2085,8 @@
   ],
   "minMM": 0.852,
   "maxMM": 0.852,
+  "padMinMM": null,
+  "padMaxMM": null,
   "worstAt": null
  },
  {
@@ -1997,6 +2099,8 @@
   ],
   "minMM": 1.2,
   "maxMM": 1.2,
+  "padMinMM": null,
+  "padMaxMM": null,
   "worstAt": null
  },
  {
@@ -2009,6 +2113,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -2021,6 +2127,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -2033,6 +2141,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -2045,6 +2155,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -2057,6 +2169,8 @@
   ],
   "minMM": 0.501,
   "maxMM": 0.501,
+  "padMinMM": 0.501,
+  "padMaxMM": 0.501,
   "worstAt": null
  },
  {
@@ -2133,8 +2247,10 @@
    28.333,
    28.4
   ],
-  "minMM": 0.512,
-  "maxMM": 0.512,
+  "minMM": 0.188,
+  "maxMM": 0.188,
+  "padMinMM": null,
+  "padMaxMM": null,
   "worstAt": null
  },
  {
@@ -2211,8 +2327,10 @@
    28.333,
    28.4
   ],
-  "minMM": 0.486,
-  "maxMM": 0.828,
+  "minMM": 0.501,
+  "maxMM": 0.502,
+  "padMinMM": 0.501,
+  "padMaxMM": 0.502,
   "worstAt": null
  },
  {
@@ -2289,8 +2407,10 @@
    28.333,
    28.4
   ],
-  "minMM": 0.302,
-  "maxMM": 0.302,
+  "minMM": 0.031,
+  "maxMM": 0.031,
+  "padMinMM": 0.776,
+  "padMaxMM": 0.776,
   "worstAt": null
  },
  {
@@ -2367,8 +2487,10 @@
    28.333,
    28.4
   ],
-  "minMM": 0.302,
-  "maxMM": 0.302,
+  "minMM": 0.301,
+  "maxMM": 0.301,
+  "padMinMM": 0.301,
+  "padMaxMM": 0.301,
   "worstAt": null
  },
  {
@@ -2445,8 +2567,10 @@
    28.333,
    28.4
   ],
-  "minMM": 0.302,
-  "maxMM": 0.302,
+  "minMM": 0.301,
+  "maxMM": 0.301,
+  "padMinMM": 0.301,
+  "padMaxMM": 0.301,
   "worstAt": null
  },
  {
@@ -2523,8 +2647,10 @@
    28.333,
    28.4
   ],
-  "minMM": 0.501,
-  "maxMM": 0.501,
+  "minMM": 0.612,
+  "maxMM": 0.612,
+  "padMinMM": 0.612,
+  "padMaxMM": 0.612,
   "worstAt": null
  },
  {
@@ -2601,8 +2727,10 @@
    28.333,
    28.4
   ],
-  "minMM": 0.5,
-  "maxMM": 0.5,
+  "minMM": 0.508,
+  "maxMM": 0.508,
+  "padMinMM": 0.508,
+  "padMaxMM": 0.508,
   "worstAt": null
  },
  {
@@ -2679,9 +2807,11 @@
    28.333,
    28.4
   ],
-  "minMM": 0.5,
-  "maxMM": 0.5,
-  "worstAt": null
+  "minMM": 0.03,
+  "maxMM": 0.03,
+  "padMinMM": 1.768,
+  "padMaxMM": 1.768,
+  "worstAt": 28.4
  },
  {
   "id": "shake-his-ring-L",
@@ -2757,8 +2887,10 @@
    28.333,
    28.4
   ],
-  "minMM": 0.5,
-  "maxMM": 0.5,
+  "minMM": 0.514,
+  "maxMM": 0.514,
+  "padMinMM": 0.78,
+  "padMaxMM": 0.78,
   "worstAt": null
  },
  {
@@ -2835,8 +2967,10 @@
    28.333,
    28.4
   ],
-  "minMM": 0.5,
-  "maxMM": 0.5,
+  "minMM": 0.492,
+  "maxMM": 0.492,
+  "padMinMM": 0.492,
+  "padMaxMM": 0.492,
   "worstAt": null
  },
  {
@@ -2913,8 +3047,10 @@
    28.333,
    28.4
   ],
-  "minMM": 0.501,
-  "maxMM": 0.501,
+  "minMM": 0.615,
+  "maxMM": 0.615,
+  "padMinMM": 0.615,
+  "padMaxMM": 0.615,
   "worstAt": null
  },
  {
@@ -2991,8 +3127,10 @@
    28.333,
    28.4
   ],
-  "minMM": 0.049,
-  "maxMM": 1.067,
+  "minMM": 0.502,
+  "maxMM": 0.515,
+  "padMinMM": null,
+  "padMaxMM": null,
   "worstAt": null
  },
  {
@@ -3069,8 +3207,10 @@
    28.333,
    28.4
   ],
-  "minMM": 0.491,
-  "maxMM": 0.659,
+  "minMM": 0.15,
+  "maxMM": 0.5,
+  "padMinMM": 0.499,
+  "padMaxMM": 0.501,
   "worstAt": null
  },
  {
@@ -3147,8 +3287,10 @@
    28.333,
    28.4
   ],
-  "minMM": 0.483,
+  "minMM": 0.5,
   "maxMM": 0.501,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.713,
   "worstAt": null
  },
  {
@@ -3225,8 +3367,10 @@
    28.333,
    28.4
   ],
-  "minMM": 0.478,
-  "maxMM": 0.509,
+  "minMM": 0.5,
+  "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -3303,8 +3447,10 @@
    28.333,
    28.4
   ],
-  "minMM": 0.492,
+  "minMM": 0.486,
   "maxMM": 0.7,
+  "padMinMM": 0.486,
+  "padMaxMM": 0.7,
   "worstAt": null
  },
  {
@@ -3317,6 +3463,8 @@
   ],
   "minMM": 0.512,
   "maxMM": 0.512,
+  "padMinMM": null,
+  "padMaxMM": null,
   "worstAt": null
  },
  {
@@ -3329,6 +3477,8 @@
   ],
   "minMM": 0.096,
   "maxMM": 0.096,
+  "padMinMM": 0.096,
+  "padMaxMM": 0.096,
   "worstAt": null
  },
  {
@@ -3341,6 +3491,8 @@
   ],
   "minMM": 0.228,
   "maxMM": 0.228,
+  "padMinMM": 0.228,
+  "padMaxMM": 0.228,
   "worstAt": null
  },
  {
@@ -3353,6 +3505,8 @@
   ],
   "minMM": 0.467,
   "maxMM": 0.467,
+  "padMinMM": 0.467,
+  "padMaxMM": 0.467,
   "worstAt": null
  },
  {
@@ -3365,6 +3519,8 @@
   ],
   "minMM": 0.531,
   "maxMM": 0.531,
+  "padMinMM": 0.531,
+  "padMaxMM": 0.531,
   "worstAt": null
  },
  {
@@ -3377,6 +3533,8 @@
   ],
   "minMM": 0.446,
   "maxMM": 0.446,
+  "padMinMM": 0.446,
+  "padMaxMM": 0.446,
   "worstAt": null
  },
  {
@@ -3387,8 +3545,10 @@
   "times": [
    56.448
   ],
-  "minMM": 0.5,
-  "maxMM": 0.5,
+  "minMM": 0.446,
+  "maxMM": 0.446,
+  "padMinMM": null,
+  "padMaxMM": null,
   "worstAt": null
  },
  {
@@ -3399,8 +3559,10 @@
   "times": [
    56.448
   ],
-  "minMM": 0.502,
-  "maxMM": 0.502,
+  "minMM": 0.501,
+  "maxMM": 0.501,
+  "padMinMM": 0.501,
+  "padMaxMM": 0.501,
   "worstAt": null
  },
  {
@@ -3411,8 +3573,10 @@
   "times": [
    56.448
   ],
-  "minMM": 0.502,
-  "maxMM": 0.502,
+  "minMM": 0.511,
+  "maxMM": 0.511,
+  "padMinMM": 0.511,
+  "padMaxMM": 0.511,
   "worstAt": null
  },
  {
@@ -3423,8 +3587,10 @@
   "times": [
    56.448
   ],
-  "minMM": 0.491,
-  "maxMM": 0.491,
+  "minMM": 0.505,
+  "maxMM": 0.505,
+  "padMinMM": 0.505,
+  "padMaxMM": 0.505,
   "worstAt": null
  },
  {
@@ -3435,8 +3601,10 @@
   "times": [
    56.448
   ],
-  "minMM": 0.494,
-  "maxMM": 0.494,
+  "minMM": 0.503,
+  "maxMM": 0.503,
+  "padMinMM": 0.503,
+  "padMaxMM": 0.503,
   "worstAt": null
  },
  {
@@ -3449,7 +3617,9 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
-  "worstAt": null
+  "padMinMM": 3.248,
+  "padMaxMM": 3.248,
+  "worstAt": 56.44799999999999
  },
  {
   "id": "elbE-palm-L",
@@ -3461,6 +3631,8 @@
   ],
   "minMM": 0.501,
   "maxMM": 0.501,
+  "padMinMM": null,
+  "padMaxMM": null,
   "worstAt": null
  },
  {
@@ -3473,6 +3645,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -3485,6 +3659,8 @@
   ],
   "minMM": 0.499,
   "maxMM": 0.499,
+  "padMinMM": 0.499,
+  "padMaxMM": 0.499,
   "worstAt": null
  },
  {
@@ -3497,6 +3673,8 @@
   ],
   "minMM": 0.496,
   "maxMM": 0.496,
+  "padMinMM": 0.496,
+  "padMaxMM": 0.496,
   "worstAt": null
  },
  {
@@ -3509,6 +3687,8 @@
   ],
   "minMM": 0.501,
   "maxMM": 0.501,
+  "padMinMM": 0.501,
+  "padMaxMM": 0.501,
   "worstAt": null
  },
  {
@@ -3521,6 +3701,8 @@
   ],
   "minMM": 0.501,
   "maxMM": 0.501,
+  "padMinMM": 0.501,
+  "padMaxMM": 0.501,
   "worstAt": null
  },
  {
@@ -3533,6 +3715,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -3545,6 +3729,8 @@
   ],
   "minMM": 0.498,
   "maxMM": 0.498,
+  "padMinMM": 0.498,
+  "padMaxMM": 0.498,
   "worstAt": null
  },
  {
@@ -3557,6 +3743,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 1.091,
+  "padMaxMM": 1.091,
   "worstAt": null
  },
  {
@@ -3569,6 +3757,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -3581,6 +3771,8 @@
   ],
   "minMM": 0.508,
   "maxMM": 0.508,
+  "padMinMM": null,
+  "padMaxMM": null,
   "worstAt": null
  },
  {
@@ -3593,6 +3785,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -3605,6 +3799,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -3617,6 +3813,8 @@
   ],
   "minMM": 0.488,
   "maxMM": 0.488,
+  "padMinMM": 0.488,
+  "padMaxMM": 0.488,
   "worstAt": null
  },
  {
@@ -3629,6 +3827,8 @@
   ],
   "minMM": 0.51,
   "maxMM": 0.51,
+  "padMinMM": 0.51,
+  "padMaxMM": 0.51,
   "worstAt": null
  },
  {
@@ -3641,6 +3841,8 @@
   ],
   "minMM": 0.499,
   "maxMM": 0.499,
+  "padMinMM": 0.499,
+  "padMaxMM": 0.499,
   "worstAt": null
  },
  {
@@ -3653,6 +3855,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -3665,6 +3869,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -3677,6 +3883,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -3689,6 +3897,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -3701,6 +3911,8 @@
   ],
   "minMM": 0.002,
   "maxMM": 0.002,
+  "padMinMM": 0.05,
+  "padMaxMM": 0.05,
   "worstAt": null
  },
  {
@@ -3713,6 +3925,8 @@
   ],
   "minMM": 0.501,
   "maxMM": 0.501,
+  "padMinMM": null,
+  "padMaxMM": null,
   "worstAt": null
  },
  {
@@ -3725,6 +3939,8 @@
   ],
   "minMM": 0.914,
   "maxMM": 0.914,
+  "padMinMM": null,
+  "padMaxMM": null,
   "worstAt": null
  },
  {
@@ -3737,6 +3953,8 @@
   ],
   "minMM": 0.513,
   "maxMM": 0.513,
+  "padMinMM": null,
+  "padMaxMM": null,
   "worstAt": null
  },
  {
@@ -3749,6 +3967,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -3761,6 +3981,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -3773,6 +3995,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -3785,6 +4009,8 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
   "worstAt": null
  },
  {
@@ -3797,6 +4023,8 @@
   ],
   "minMM": 0.501,
   "maxMM": 0.501,
+  "padMinMM": 0.501,
+  "padMaxMM": 0.501,
   "worstAt": null
  }
 ]
