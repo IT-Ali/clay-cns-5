@@ -18,52 +18,7 @@
    "from": "upper",
    "to": "inspHands",
    "frames": 47,
-   "flags": [
-    {
-     "t": 7.6,
-     "what": "caption over his face"
-    },
-    {
-     "t": 7.725,
-     "what": "caption over his face"
-    },
-    {
-     "t": 7.85,
-     "what": "caption over his face"
-    },
-    {
-     "t": 7.975,
-     "what": "caption over his face"
-    },
-    {
-     "t": 8.1,
-     "what": "caption over his face"
-    },
-    {
-     "t": 8.225,
-     "what": "caption over his face"
-    },
-    {
-     "t": 8.35,
-     "what": "caption over his face"
-    },
-    {
-     "t": 8.475,
-     "what": "caption over his face"
-    },
-    {
-     "t": 8.6,
-     "what": "caption over his face"
-    },
-    {
-     "t": 8.725,
-     "what": "caption over his face"
-    },
-    {
-     "t": 8.85,
-     "what": "caption over his face"
-    }
-   ]
+   "flags": []
   },
   {
    "name": "03_cut_13.00_to_toneR",
@@ -79,12 +34,7 @@
    "t": 23,
    "to": "toneL",
    "frames": 11,
-   "flags": [
-    {
-     "t": 22.5,
-     "what": "caption over his face"
-    }
-   ]
+   "flags": []
   },
   {
    "name": "05_cut_29.60_to_drift",
@@ -108,52 +58,7 @@
    "t": 47,
    "to": "abdL",
    "frames": 11,
-   "flags": [
-    {
-     "t": 46.5,
-     "what": "caption over his face"
-    },
-    {
-     "t": 46.625,
-     "what": "caption over his face"
-    },
-    {
-     "t": 46.75,
-     "what": "caption over his face"
-    },
-    {
-     "t": 46.875,
-     "what": "caption over his face"
-    },
-    {
-     "t": 47,
-     "what": "caption over his face"
-    },
-    {
-     "t": 47.125,
-     "what": "caption over his face"
-    },
-    {
-     "t": 47.25,
-     "what": "caption over his face"
-    },
-    {
-     "t": 47.375,
-     "what": "caption over his face"
-    },
-    {
-     "t": 47.5,
-     "what": "caption over his face"
-    },
-    {
-     "t": 47.625,
-     "what": "caption over his face"
-    },
-    {
-     "t": 47.75,
-     "what": "caption over his face"
-    }
-   ]
+   "flags": []
   },
   {
    "name": "08_cut_50.00_to_elbR",
@@ -315,5 +220,15 @@
    "examinerPct": 35
   },
   "flagged": []
- }
+ },
+ "explained": [
+  {
+   "flag": "caption over examiner hand L at 85.225 s and 86.625 s (21_cut_84.60_to_fingL, 22_cut_87.00_to_endR)",
+   "why": "the finger abduction glove passes behind the top caption for a few frames as it comes in and goes out by the top edge (its new path); every other place covers a glove for longer (checks/transitions/caption-places.json: top 4 sampled frames, the corners 20-32, bottom 61); his face and the contact are never covered"
+  },
+  {
+   "flag": "frameScan",
+   "why": "0 flags on all 2700 frames: no examiner surface within 15 cm of the lens, never more than 35 % examiner (max 29.4 %), no caption over his face, every elbow-cup frame found"
+  }
+ ]
 }
