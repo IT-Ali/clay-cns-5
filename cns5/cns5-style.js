@@ -207,13 +207,30 @@
         const PAD_MAX = 0.012;   // a pad further than 1.2 mm from the skin is bent onto it
         // bend the two end joints of a finger (the middle one 0.6 as much as the end one) until its pad is at the target gap on
         // every surface of Ss, with no part of the finger sinking in; place(i) puts the hand where surface i is measured
+        // bend a finger's joints along direction D (added to its curl, per unit t) until its pad is at the target gap on every
+        // surface of Ss with no part of the finger sinking in; the end joints first (D = 0, 0.6, 1), and if the pad still hangs
+        // off (the finger already touching along its middle bone), the other mixes; no joint past its limit. The thumb: its two
+        // outer joints (pose.thumb[2], [3]). place(i) puts the hand where surface i is measured.
+        const PAD_DIRS = [[0, 0.6, 1], [0, 1, 0.6], [-0.3, 0.8, 0.8], [-0.5, 1, 1], [0.3, 0.3, 1]];
+        const THUMB_DIRS = [[0.5, 1], [1, 0.5], [0, 1]];
         const padTo = (hand, pose, f, Ss, place = () => {}) => {
-          const c0 = pose.curl[f].slice(), tMax = Math.max(0, Math.min(1.6, (1.95 - c0[1]) / 0.6, 1.45 - c0[2]));
-          const at = (t) => { pose.curl[f] = [c0[0], c0[1] + 0.6 * t, c0[2] + t]; let pad = -1e9, whole = 1e9; Ss.forEach((S, i) => { place(i); hand.pose(pose); hand.group.updateMatrixWorld(true); pad = Math.max(pad, C5.gap(padMeshes(hand, f), S).gap); whole = Math.min(whole, C5.gap(C5.parts(hand, f), S).gap); }); return { pad, whole }; };
-          let lo = 0, hi = tMax;
-          const rHi = at(hi); if (rHi.pad > C5.TARGET && rHi.whole >= 0.0003) lo = hi;
-          else for (let k = 0; k < 16; k++) { const m = (lo + hi) / 2, r = at(m); if (r.pad > C5.TARGET && r.whole >= 0.0003) lo = m; else hi = m; }
-          const r = at(lo); place(0); hand.pose(pose); hand.group.updateMatrixWorld(true); return r;
+          const thumb = f === 'thumb', c0 = thumb ? pose.thumb.slice() : pose.curl[f].slice(), LIM = thumb ? [9, 9, 1.3, 1.4] : [1.6, 1.9, 1.45];
+          const whole = () => (thumb ? C5.parts(hand, 'thumb') : C5.parts(hand, f));
+          let best = null;
+          for (const D of (thumb ? THUMB_DIRS : PAD_DIRS)) {
+            const setT = (t) => { if (thumb) pose.thumb = [c0[0], c0[1], c0[2] + D[0] * t, c0[3] + D[1] * t]; else pose.curl[f] = c0.map((v, i) => v + D[i] * t); };
+            const at = (t) => { setT(t); let pad = -1e9, wh = 1e9; Ss.forEach((S, i) => { place(i); hand.pose(pose); hand.group.updateMatrixWorld(true); pad = Math.max(pad, C5.gap(padMeshes(hand, f), S).gap); wh = Math.min(wh, C5.gap(whole(), S).gap); }); return { pad, whole: wh }; };
+            const idx = thumb ? [2, 3] : [0, 1, 2], dd = thumb ? D : D;
+            let tMax = 1.6; idx.forEach((j, k) => { const d = dd[k]; if (d > 0) tMax = Math.min(tMax, (LIM[j] - c0[j]) / d); });
+            tMax = Math.max(0, tMax);
+            let lo = 0, hi = tMax;
+            const rHi = at(hi); if (rHi.pad > C5.TARGET && rHi.whole >= 0.0003) lo = hi;
+            else for (let k = 0; k < 16; k++) { const m = (lo + hi) / 2, r = at(m); if (r.pad > C5.TARGET && r.whole >= 0.0003) lo = m; else hi = m; }
+            const r = at(lo); if (!best || r.pad < best.r.pad) best = { r, t: lo, D };
+            if (r.pad <= PAD_MAX) break;
+          }
+          if (thumb) pose.thumb = [c0[0], c0[1], c0[2] + best.D[0] * best.t, c0[3] + best.D[1] * best.t]; else pose.curl[f] = c0.map((v, i) => v + best.D[i] * best.t);
+          place(0); hand.pose(pose); hand.group.updateMatrixWorld(true); return best.r;
         };
         const settleFinger = (hand, pose, f, S0, o = {}) => {
           const fans = {}; for (const k of F4) fans[k] = fanOf(pose, k); pose.fan = fans;
@@ -257,6 +274,8 @@
             if (o.thumb !== false && contact !== 'indexPad') C5.thumbTo(hand, pose, S0, { lo: -0.9, hi: 1.2 });
           }
           if (o.thumb !== false && contact !== 'indexPad' && C5.gap(C5.parts(hand, 'thumb'), S0).gap < C5.TARGET) C5.thumbTo(hand, pose, S0, { lo: -1.8, hi: 1.2 });
+          // the thumb's pad onto the skin too (its outer joints bent) when it touches only along its base
+          if (o.thumb !== false && contact !== 'indexPad' && C5.gap(padMeshes(hand, 'thumb'), S0).gap > PAD_MAX) padTo(hand, pose, 'thumb', [S0]);
           hand.pose(pose); hand.group.updateMatrixWorld(true);
           return { wrist: hand.group.position.clone(), quat: hand.group.quaternion.clone(), pose, back: back.clone().normalize() };
         };
