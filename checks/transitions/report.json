@@ -71,36 +71,7 @@
    "t": 13,
    "to": "toneR",
    "frames": 11,
-   "flags": [
-    {
-     "t": 13,
-     "what": "examiner L sleeve/forearm 7 cm from the lens"
-    },
-    {
-     "t": 13.125,
-     "what": "examiner L sleeve/forearm 7 cm from the lens"
-    },
-    {
-     "t": 13.25,
-     "what": "examiner L sleeve/forearm 7 cm from the lens"
-    },
-    {
-     "t": 13.375,
-     "what": "examiner L sleeve/forearm 7 cm from the lens"
-    },
-    {
-     "t": 13.5,
-     "what": "examiner L sleeve/forearm 7 cm from the lens"
-    },
-    {
-     "t": 13.625,
-     "what": "examiner L sleeve/forearm 7 cm from the lens"
-    },
-    {
-     "t": 13.75,
-     "what": "examiner L sleeve/forearm 7 cm from the lens"
-    }
-   ]
+   "flags": []
   },
   {
    "name": "04_cut_23.00_to_toneL",
@@ -112,50 +83,6 @@
     {
      "t": 22.5,
      "what": "caption over his face"
-    },
-    {
-     "t": 22.5,
-     "what": "examiner L sleeve/forearm 7 cm from the lens"
-    },
-    {
-     "t": 22.625,
-     "what": "examiner L sleeve/forearm 7 cm from the lens"
-    },
-    {
-     "t": 22.75,
-     "what": "examiner L sleeve/forearm 7 cm from the lens"
-    },
-    {
-     "t": 22.875,
-     "what": "examiner L sleeve/forearm 7 cm from the lens"
-    },
-    {
-     "t": 23,
-     "what": "examiner R sleeve/forearm 7 cm from the lens"
-    },
-    {
-     "t": 23.125,
-     "what": "examiner R sleeve/forearm 7 cm from the lens"
-    },
-    {
-     "t": 23.25,
-     "what": "examiner R sleeve/forearm 6 cm from the lens"
-    },
-    {
-     "t": 23.375,
-     "what": "examiner R sleeve/forearm -2 cm from the lens"
-    },
-    {
-     "t": 23.5,
-     "what": "examiner R sleeve/forearm -12 cm from the lens"
-    },
-    {
-     "t": 23.625,
-     "what": "examiner R sleeve/forearm -13 cm from the lens"
-    },
-    {
-     "t": 23.75,
-     "what": "examiner R sleeve/forearm -13 cm from the lens"
     }
    ]
   },
@@ -165,24 +92,7 @@
    "t": 29.6,
    "to": "drift",
    "frames": 11,
-   "flags": [
-    {
-     "t": 29.1,
-     "what": "examiner R sleeve/forearm 7 cm from the lens"
-    },
-    {
-     "t": 29.225,
-     "what": "examiner R sleeve/forearm 7 cm from the lens"
-    },
-    {
-     "t": 29.35,
-     "what": "examiner R sleeve/forearm 7 cm from the lens"
-    },
-    {
-     "t": 29.475,
-     "what": "examiner R sleeve/forearm 7 cm from the lens"
-    }
-   ]
+   "flags": []
   },
   {
    "name": "06_cut_42.00_to_abdR",
@@ -240,16 +150,8 @@
      "what": "caption over his face"
     },
     {
-     "t": 47.625,
-     "what": "examiner L sleeve/forearm 15 cm from the lens"
-    },
-    {
      "t": 47.75,
      "what": "caption over his face"
-    },
-    {
-     "t": 47.75,
-     "what": "examiner L sleeve/forearm 2 cm from the lens"
     }
    ]
   },
@@ -259,64 +161,7 @@
    "t": 50,
    "to": "elbR",
    "frames": 11,
-   "flags": [
-    {
-     "t": 50,
-     "what": "examiner R sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 50,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 50.125,
-     "what": "examiner R sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 50.125,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 50.25,
-     "what": "examiner R sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 50.25,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 50.375,
-     "what": "examiner R sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 50.375,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 50.5,
-     "what": "examiner R sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 50.5,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 50.625,
-     "what": "examiner R sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 50.625,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 50.75,
-     "what": "examiner R sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 50.75,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    }
-   ]
+   "flags": []
   },
   {
    "name": "09_cut_55.00_to_elbL",
@@ -324,96 +169,7 @@
    "t": 55,
    "to": "elbL",
    "frames": 11,
-   "flags": [
-    {
-     "t": 54.5,
-     "what": "examiner R sleeve/forearm -20 cm from the lens"
-    },
-    {
-     "t": 54.5,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 54.625,
-     "what": "examiner R sleeve/forearm 8 cm from the lens"
-    },
-    {
-     "t": 54.625,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 54.75,
-     "what": "examiner R sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 54.75,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 54.875,
-     "what": "examiner R sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 54.875,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 55,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 55,
-     "what": "examiner L sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 55.125,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 55.125,
-     "what": "examiner L sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 55.25,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 55.25,
-     "what": "examiner L sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 55.375,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 55.375,
-     "what": "examiner L sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 55.5,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 55.5,
-     "what": "examiner L sleeve/forearm 9 cm from the lens"
-    },
-    {
-     "t": 55.625,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 55.625,
-     "what": "examiner L sleeve/forearm -22 cm from the lens"
-    },
-    {
-     "t": 55.75,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 55.75,
-     "what": "examiner L sleeve/forearm -61 cm from the lens"
-    }
-   ]
+   "flags": []
   },
   {
    "name": "10_cut_58.00_to_elbR",
@@ -421,96 +177,7 @@
    "t": 58,
    "to": "elbR",
    "frames": 11,
-   "flags": [
-    {
-     "t": 57.5,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 57.5,
-     "what": "examiner L sleeve/forearm 10 cm from the lens"
-    },
-    {
-     "t": 57.625,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 57.625,
-     "what": "examiner L sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 57.75,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 57.75,
-     "what": "examiner L sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 57.875,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 57.875,
-     "what": "examiner L sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 58,
-     "what": "examiner R sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 58,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 58.125,
-     "what": "examiner R sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 58.125,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 58.25,
-     "what": "examiner R sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 58.25,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 58.375,
-     "what": "examiner R sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 58.375,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 58.5,
-     "what": "examiner R sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 58.5,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 58.625,
-     "what": "examiner R sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 58.625,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 58.75,
-     "what": "examiner R sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 58.75,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    }
-   ]
+   "flags": []
   },
   {
    "name": "11_cut_62.60_to_elbL",
@@ -518,96 +185,7 @@
    "t": 62.6,
    "to": "elbL",
    "frames": 11,
-   "flags": [
-    {
-     "t": 62.1,
-     "what": "examiner R sleeve/forearm -18 cm from the lens"
-    },
-    {
-     "t": 62.1,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 62.225,
-     "what": "examiner R sleeve/forearm 8 cm from the lens"
-    },
-    {
-     "t": 62.225,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 62.35,
-     "what": "examiner R sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 62.35,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 62.475,
-     "what": "examiner R sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 62.475,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 62.6,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 62.6,
-     "what": "examiner L sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 62.725,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 62.725,
-     "what": "examiner L sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 62.85,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 62.85,
-     "what": "examiner L sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 62.975,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 62.975,
-     "what": "examiner L sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 63.1,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 63.1,
-     "what": "examiner L sleeve/forearm 4 cm from the lens"
-    },
-    {
-     "t": 63.225,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 63.225,
-     "what": "examiner L sleeve/forearm -29 cm from the lens"
-    },
-    {
-     "t": 63.35,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 63.35,
-     "what": "examiner L sleeve/forearm -41 cm from the lens"
-    }
-   ]
+   "flags": []
   },
   {
    "name": "12_cut_65.00_to_wristR",
@@ -615,96 +193,7 @@
    "t": 65,
    "to": "wristR",
    "frames": 11,
-   "flags": [
-    {
-     "t": 64.5,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 64.5,
-     "what": "examiner L sleeve/forearm -42 cm from the lens"
-    },
-    {
-     "t": 64.625,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 64.625,
-     "what": "examiner L sleeve/forearm -31 cm from the lens"
-    },
-    {
-     "t": 64.75,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 64.75,
-     "what": "examiner L sleeve/forearm 1 cm from the lens"
-    },
-    {
-     "t": 64.875,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 64.875,
-     "what": "examiner L sleeve/forearm 12 cm from the lens"
-    },
-    {
-     "t": 65,
-     "what": "examiner R sleeve/forearm 5 cm from the lens"
-    },
-    {
-     "t": 65,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 65.125,
-     "what": "examiner R sleeve/forearm 5 cm from the lens"
-    },
-    {
-     "t": 65.125,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 65.25,
-     "what": "examiner R sleeve/forearm 5 cm from the lens"
-    },
-    {
-     "t": 65.25,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 65.375,
-     "what": "examiner R sleeve/forearm 5 cm from the lens"
-    },
-    {
-     "t": 65.375,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 65.5,
-     "what": "examiner R sleeve/forearm 5 cm from the lens"
-    },
-    {
-     "t": 65.5,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 65.625,
-     "what": "examiner R sleeve/forearm 5 cm from the lens"
-    },
-    {
-     "t": 65.625,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 65.75,
-     "what": "examiner R sleeve/forearm 5 cm from the lens"
-    },
-    {
-     "t": 65.75,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    }
-   ]
+   "flags": []
   },
   {
    "name": "13_cut_69.73_to_wristL",
@@ -712,96 +201,7 @@
    "t": 69.73333333333333,
    "to": "wristL",
    "frames": 11,
-   "flags": [
-    {
-     "t": 69.233,
-     "what": "examiner R sleeve/forearm -15 cm from the lens"
-    },
-    {
-     "t": 69.233,
-     "what": "examiner L sleeve/forearm -46 cm from the lens"
-    },
-    {
-     "t": 69.358,
-     "what": "examiner R sleeve/forearm 3 cm from the lens"
-    },
-    {
-     "t": 69.358,
-     "what": "examiner L sleeve/forearm -43 cm from the lens"
-    },
-    {
-     "t": 69.483,
-     "what": "examiner R sleeve/forearm 5 cm from the lens"
-    },
-    {
-     "t": 69.483,
-     "what": "examiner L sleeve/forearm -23 cm from the lens"
-    },
-    {
-     "t": 69.608,
-     "what": "examiner R sleeve/forearm 5 cm from the lens"
-    },
-    {
-     "t": 69.608,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 69.733,
-     "what": "examiner R sleeve/forearm 5 cm from the lens"
-    },
-    {
-     "t": 69.733,
-     "what": "examiner L sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 69.858,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 69.858,
-     "what": "examiner L sleeve/forearm 5 cm from the lens"
-    },
-    {
-     "t": 69.983,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 69.983,
-     "what": "examiner L sleeve/forearm 5 cm from the lens"
-    },
-    {
-     "t": 70.108,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 70.108,
-     "what": "examiner L sleeve/forearm 5 cm from the lens"
-    },
-    {
-     "t": 70.233,
-     "what": "examiner R sleeve/forearm -32 cm from the lens"
-    },
-    {
-     "t": 70.233,
-     "what": "examiner L sleeve/forearm 1 cm from the lens"
-    },
-    {
-     "t": 70.358,
-     "what": "examiner R sleeve/forearm -46 cm from the lens"
-    },
-    {
-     "t": 70.358,
-     "what": "examiner L sleeve/forearm -24 cm from the lens"
-    },
-    {
-     "t": 70.483,
-     "what": "examiner R sleeve/forearm -46 cm from the lens"
-    },
-    {
-     "t": 70.483,
-     "what": "examiner L sleeve/forearm -42 cm from the lens"
-    }
-   ]
+   "flags": []
   },
   {
    "name": "14_cut_72.53_to_gripWideR",
@@ -809,96 +209,7 @@
    "t": 72.53333333333333,
    "to": "gripWideR",
    "frames": 11,
-   "flags": [
-    {
-     "t": 72.033,
-     "what": "examiner R sleeve/forearm -44 cm from the lens"
-    },
-    {
-     "t": 72.033,
-     "what": "examiner L sleeve/forearm -0 cm from the lens"
-    },
-    {
-     "t": 72.158,
-     "what": "examiner R sleeve/forearm -22 cm from the lens"
-    },
-    {
-     "t": 72.158,
-     "what": "examiner L sleeve/forearm 5 cm from the lens"
-    },
-    {
-     "t": 72.283,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 72.283,
-     "what": "examiner L sleeve/forearm 5 cm from the lens"
-    },
-    {
-     "t": 72.408,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 72.408,
-     "what": "examiner L sleeve/forearm 5 cm from the lens"
-    },
-    {
-     "t": 72.533,
-     "what": "examiner R sleeve/forearm -17 cm from the lens"
-    },
-    {
-     "t": 72.533,
-     "what": "examiner L sleeve/forearm 5 cm from the lens"
-    },
-    {
-     "t": 72.658,
-     "what": "examiner R sleeve/forearm -50 cm from the lens"
-    },
-    {
-     "t": 72.658,
-     "what": "examiner L sleeve/forearm -55 cm from the lens"
-    },
-    {
-     "t": 72.783,
-     "what": "examiner R sleeve/forearm -50 cm from the lens"
-    },
-    {
-     "t": 72.783,
-     "what": "examiner L sleeve/forearm -55 cm from the lens"
-    },
-    {
-     "t": 72.908,
-     "what": "examiner R sleeve/forearm -50 cm from the lens"
-    },
-    {
-     "t": 72.908,
-     "what": "examiner L sleeve/forearm -55 cm from the lens"
-    },
-    {
-     "t": 73.033,
-     "what": "examiner R sleeve/forearm -50 cm from the lens"
-    },
-    {
-     "t": 73.033,
-     "what": "examiner L sleeve/forearm -55 cm from the lens"
-    },
-    {
-     "t": 73.158,
-     "what": "examiner R sleeve/forearm -50 cm from the lens"
-    },
-    {
-     "t": 73.158,
-     "what": "examiner L sleeve/forearm -55 cm from the lens"
-    },
-    {
-     "t": 73.283,
-     "what": "examiner R sleeve/forearm -50 cm from the lens"
-    },
-    {
-     "t": 73.283,
-     "what": "examiner L sleeve/forearm -55 cm from the lens"
-    }
-   ]
+   "flags": []
   },
   {
    "name": "15_move_74.25-74.86_gripWideR_to_gripR",
@@ -908,80 +219,7 @@
    "from": "gripWideR",
    "to": "gripR",
    "frames": 9,
-   "flags": [
-    {
-     "t": 74,
-     "what": "examiner R sleeve/forearm -50 cm from the lens"
-    },
-    {
-     "t": 74,
-     "what": "examiner L sleeve/forearm -55 cm from the lens"
-    },
-    {
-     "t": 74.125,
-     "what": "examiner R sleeve/forearm -50 cm from the lens"
-    },
-    {
-     "t": 74.125,
-     "what": "examiner L sleeve/forearm -55 cm from the lens"
-    },
-    {
-     "t": 74.25,
-     "what": "examiner R sleeve/forearm -50 cm from the lens"
-    },
-    {
-     "t": 74.25,
-     "what": "examiner L sleeve/forearm -55 cm from the lens"
-    },
-    {
-     "t": 74.375,
-     "what": "examiner R sleeve/forearm -46 cm from the lens"
-    },
-    {
-     "t": 74.375,
-     "what": "examiner L sleeve/forearm -51 cm from the lens"
-    },
-    {
-     "t": 74.5,
-     "what": "examiner R sleeve/forearm -35 cm from the lens"
-    },
-    {
-     "t": 74.5,
-     "what": "examiner L sleeve/forearm -41 cm from the lens"
-    },
-    {
-     "t": 74.625,
-     "what": "examiner R sleeve/forearm -21 cm from the lens"
-    },
-    {
-     "t": 74.625,
-     "what": "examiner L sleeve/forearm -28 cm from the lens"
-    },
-    {
-     "t": 74.75,
-     "what": "examiner R sleeve/forearm -11 cm from the lens"
-    },
-    {
-     "t": 74.75,
-     "what": "examiner L sleeve/forearm -15 cm from the lens"
-    },
-    {
-     "t": 74.875,
-     "what": "examiner R sleeve/forearm -21 cm from the lens"
-    },
-    {
-     "t": 74.875,
-     "what": "examiner L sleeve/forearm -11 cm from the lens"
-    },
-    {
-     "t": 75,
-     "what": "examiner R sleeve/forearm -49 cm from the lens"
-    },
-    {
-     "t": 75,
-     "what": "examiner L sleeve/forearm -11 cm from the lens"
-    }
-   ]
+   "flags": []
   },
   {
    "name": "16_move_76.82-77.26_gripR_to_gripWideR",
@@ -991,72 +229,7 @@
    "from": "gripR",
    "to": "gripWideR",
    "frames": 8,
-   "flags": [
-    {
-     "t": 76.568,
-     "what": "examiner R sleeve/forearm -61 cm from the lens"
-    },
-    {
-     "t": 76.568,
-     "what": "examiner L sleeve/forearm -11 cm from the lens"
-    },
-    {
-     "t": 76.693,
-     "what": "examiner R sleeve/forearm -56 cm from the lens"
-    },
-    {
-     "t": 76.693,
-     "what": "examiner L sleeve/forearm -11 cm from the lens"
-    },
-    {
-     "t": 76.818,
-     "what": "examiner R sleeve/forearm -32 cm from the lens"
-    },
-    {
-     "t": 76.818,
-     "what": "examiner L sleeve/forearm -11 cm from the lens"
-    },
-    {
-     "t": 76.943,
-     "what": "examiner R sleeve/forearm -19 cm from the lens"
-    },
-    {
-     "t": 76.943,
-     "what": "examiner L sleeve/forearm -21 cm from the lens"
-    },
-    {
-     "t": 77.068,
-     "what": "examiner R sleeve/forearm -34 cm from the lens"
-    },
-    {
-     "t": 77.068,
-     "what": "examiner L sleeve/forearm -40 cm from the lens"
-    },
-    {
-     "t": 77.193,
-     "what": "examiner R sleeve/forearm -48 cm from the lens"
-    },
-    {
-     "t": 77.193,
-     "what": "examiner L sleeve/forearm -53 cm from the lens"
-    },
-    {
-     "t": 77.318,
-     "what": "examiner R sleeve/forearm -50 cm from the lens"
-    },
-    {
-     "t": 77.318,
-     "what": "examiner L sleeve/forearm -55 cm from the lens"
-    },
-    {
-     "t": 77.443,
-     "what": "examiner R sleeve/forearm -55 cm from the lens"
-    },
-    {
-     "t": 77.443,
-     "what": "examiner L sleeve/forearm -50 cm from the lens"
-    }
-   ]
+   "flags": []
   },
   {
    "name": "17_cut_77.40_to_gripWideL",
@@ -1064,96 +237,7 @@
    "t": 77.4,
    "to": "gripWideL",
    "frames": 11,
-   "flags": [
-    {
-     "t": 76.9,
-     "what": "examiner R sleeve/forearm -22 cm from the lens"
-    },
-    {
-     "t": 76.9,
-     "what": "examiner L sleeve/forearm -16 cm from the lens"
-    },
-    {
-     "t": 77.025,
-     "what": "examiner R sleeve/forearm -28 cm from the lens"
-    },
-    {
-     "t": 77.025,
-     "what": "examiner L sleeve/forearm -33 cm from the lens"
-    },
-    {
-     "t": 77.15,
-     "what": "examiner R sleeve/forearm -44 cm from the lens"
-    },
-    {
-     "t": 77.15,
-     "what": "examiner L sleeve/forearm -50 cm from the lens"
-    },
-    {
-     "t": 77.275,
-     "what": "examiner R sleeve/forearm -50 cm from the lens"
-    },
-    {
-     "t": 77.275,
-     "what": "examiner L sleeve/forearm -55 cm from the lens"
-    },
-    {
-     "t": 77.4,
-     "what": "examiner R sleeve/forearm -55 cm from the lens"
-    },
-    {
-     "t": 77.4,
-     "what": "examiner L sleeve/forearm -50 cm from the lens"
-    },
-    {
-     "t": 77.525,
-     "what": "examiner R sleeve/forearm -53 cm from the lens"
-    },
-    {
-     "t": 77.525,
-     "what": "examiner L sleeve/forearm -48 cm from the lens"
-    },
-    {
-     "t": 77.65,
-     "what": "examiner R sleeve/forearm -42 cm from the lens"
-    },
-    {
-     "t": 77.65,
-     "what": "examiner L sleeve/forearm -36 cm from the lens"
-    },
-    {
-     "t": 77.775,
-     "what": "examiner R sleeve/forearm -25 cm from the lens"
-    },
-    {
-     "t": 77.775,
-     "what": "examiner L sleeve/forearm -19 cm from the lens"
-    },
-    {
-     "t": 77.9,
-     "what": "examiner R sleeve/forearm -12 cm from the lens"
-    },
-    {
-     "t": 77.9,
-     "what": "examiner L sleeve/forearm -9 cm from the lens"
-    },
-    {
-     "t": 78.025,
-     "what": "examiner R sleeve/forearm -11 cm from the lens"
-    },
-    {
-     "t": 78.025,
-     "what": "examiner L sleeve/forearm -30 cm from the lens"
-    },
-    {
-     "t": 78.15,
-     "what": "examiner R sleeve/forearm -11 cm from the lens"
-    },
-    {
-     "t": 78.15,
-     "what": "examiner L sleeve/forearm -57 cm from the lens"
-    }
-   ]
+   "flags": []
   },
   {
    "name": "18_move_77.45-77.95_gripWideL_to_gripL",
@@ -1163,80 +247,7 @@
    "from": "gripWideL",
    "to": "gripL",
    "frames": 9,
-   "flags": [
-    {
-     "t": 77.2,
-     "what": "examiner R sleeve/forearm -48 cm from the lens"
-    },
-    {
-     "t": 77.2,
-     "what": "examiner L sleeve/forearm -54 cm from the lens"
-    },
-    {
-     "t": 77.325,
-     "what": "examiner R sleeve/forearm -50 cm from the lens"
-    },
-    {
-     "t": 77.325,
-     "what": "examiner L sleeve/forearm -55 cm from the lens"
-    },
-    {
-     "t": 77.45,
-     "what": "examiner R sleeve/forearm -55 cm from the lens"
-    },
-    {
-     "t": 77.45,
-     "what": "examiner L sleeve/forearm -50 cm from the lens"
-    },
-    {
-     "t": 77.575,
-     "what": "examiner R sleeve/forearm -50 cm from the lens"
-    },
-    {
-     "t": 77.575,
-     "what": "examiner L sleeve/forearm -44 cm from the lens"
-    },
-    {
-     "t": 77.7,
-     "what": "examiner R sleeve/forearm -35 cm from the lens"
-    },
-    {
-     "t": 77.7,
-     "what": "examiner L sleeve/forearm -29 cm from the lens"
-    },
-    {
-     "t": 77.825,
-     "what": "examiner R sleeve/forearm -19 cm from the lens"
-    },
-    {
-     "t": 77.825,
-     "what": "examiner L sleeve/forearm -13 cm from the lens"
-    },
-    {
-     "t": 77.95,
-     "what": "examiner R sleeve/forearm -11 cm from the lens"
-    },
-    {
-     "t": 77.95,
-     "what": "examiner L sleeve/forearm -15 cm from the lens"
-    },
-    {
-     "t": 78.075,
-     "what": "examiner R sleeve/forearm -11 cm from the lens"
-    },
-    {
-     "t": 78.075,
-     "what": "examiner L sleeve/forearm -47 cm from the lens"
-    },
-    {
-     "t": 78.2,
-     "what": "examiner R sleeve/forearm -11 cm from the lens"
-    },
-    {
-     "t": 78.2,
-     "what": "examiner L sleeve/forearm -60 cm from the lens"
-    }
-   ]
+   "flags": []
   },
   {
    "name": "19_move_79.67-80.04_gripL_to_fingR",
@@ -1246,48 +257,7 @@
    "from": "gripL",
    "to": "fingR",
    "frames": 7,
-   "flags": [
-    {
-     "t": 79.416,
-     "what": "examiner R sleeve/forearm -11 cm from the lens"
-    },
-    {
-     "t": 79.416,
-     "what": "examiner L sleeve/forearm -61 cm from the lens"
-    },
-    {
-     "t": 79.541,
-     "what": "examiner R sleeve/forearm -11 cm from the lens"
-    },
-    {
-     "t": 79.541,
-     "what": "examiner L sleeve/forearm -56 cm from the lens"
-    },
-    {
-     "t": 79.666,
-     "what": "examiner R sleeve/forearm -11 cm from the lens"
-    },
-    {
-     "t": 79.666,
-     "what": "examiner L sleeve/forearm -47 cm from the lens"
-    },
-    {
-     "t": 79.791,
-     "what": "examiner R sleeve/forearm -24 cm from the lens"
-    },
-    {
-     "t": 79.791,
-     "what": "examiner L sleeve/forearm -29 cm from the lens"
-    },
-    {
-     "t": 79.916,
-     "what": "examiner R sleeve/forearm -46 cm from the lens"
-    },
-    {
-     "t": 79.916,
-     "what": "examiner L sleeve/forearm -41 cm from the lens"
-    }
-   ]
+   "flags": []
   },
   {
    "name": "20_cut_80.00_to_fingR",
@@ -1295,40 +265,7 @@
    "t": 80,
    "to": "fingR",
    "frames": 11,
-   "flags": [
-    {
-     "t": 79.5,
-     "what": "examiner R sleeve/forearm -11 cm from the lens"
-    },
-    {
-     "t": 79.5,
-     "what": "examiner L sleeve/forearm -60 cm from the lens"
-    },
-    {
-     "t": 79.625,
-     "what": "examiner R sleeve/forearm -11 cm from the lens"
-    },
-    {
-     "t": 79.625,
-     "what": "examiner L sleeve/forearm -47 cm from the lens"
-    },
-    {
-     "t": 79.75,
-     "what": "examiner R sleeve/forearm -18 cm from the lens"
-    },
-    {
-     "t": 79.75,
-     "what": "examiner L sleeve/forearm -22 cm from the lens"
-    },
-    {
-     "t": 79.875,
-     "what": "examiner R sleeve/forearm -39 cm from the lens"
-    },
-    {
-     "t": 79.875,
-     "what": "examiner L sleeve/forearm -34 cm from the lens"
-    }
-   ]
+   "flags": []
   },
   {
    "name": "21_cut_84.60_to_fingL",
@@ -1340,14 +277,6 @@
     {
      "t": 85.225,
      "what": "caption over examiner hand L"
-    },
-    {
-     "t": 85.35,
-     "what": "examiner L sleeve/forearm 14 cm from the lens"
-    },
-    {
-     "t": 85.35,
-     "what": "examiner L forearm and sleeve cover 69% of the frame (bounding box)"
     }
    ]
   },
@@ -1359,52 +288,8 @@
    "frames": 11,
    "flags": [
     {
-     "t": 86.5,
-     "what": "examiner L sleeve/forearm 14 cm from the lens"
-    },
-    {
-     "t": 86.5,
-     "what": "examiner L forearm and sleeve cover 68% of the frame (bounding box)"
-    },
-    {
      "t": 86.625,
      "what": "caption over examiner hand L"
-    },
-    {
-     "t": 87,
-     "what": "examiner R sleeve/forearm 11 cm from the lens"
-    },
-    {
-     "t": 87.125,
-     "what": "examiner R sleeve/forearm 11 cm from the lens"
-    },
-    {
-     "t": 87.25,
-     "what": "examiner R sleeve/forearm 11 cm from the lens"
-    },
-    {
-     "t": 87.375,
-     "what": "examiner R sleeve/forearm 10 cm from the lens"
-    },
-    {
-     "t": 87.5,
-     "what": "examiner R sleeve/forearm 9 cm from the lens"
-    },
-    {
-     "t": 87.625,
-     "what": "examiner R sleeve/forearm 7 cm from the lens"
-    },
-    {
-     "t": 87.625,
-     "what": "examiner L sleeve/forearm 15 cm from the lens"
-    },
-    {
-     "t": 87.75,
-     "what": "examiner R sleeve/forearm 7 cm from the lens"
-    },
-    {
-     "t": 87.75,
-     "what": "examiner L sleeve/forearm 13 cm from the lens"
     }
    ]
   },
@@ -1416,56 +301,7 @@
    "from": "endR",
    "to": "home",
    "frames": 19,
-   "flags": [
-    {
-     "t": 87,
-     "what": "examiner R sleeve/forearm 11 cm from the lens"
-    },
-    {
-     "t": 87.125,
-     "what": "examiner R sleeve/forearm 11 cm from the lens"
-    },
-    {
-     "t": 87.25,
-     "what": "examiner R sleeve/forearm 11 cm from the lens"
-    },
-    {
-     "t": 87.375,
-     "what": "examiner R sleeve/forearm 10 cm from the lens"
-    },
-    {
-     "t": 87.5,
-     "what": "examiner R sleeve/forearm 9 cm from the lens"
-    },
-    {
-     "t": 87.625,
-     "what": "examiner R sleeve/forearm 7 cm from the lens"
-    },
-    {
-     "t": 87.625,
-     "what": "examiner L sleeve/forearm 15 cm from the lens"
-    },
-    {
-     "t": 87.75,
-     "what": "examiner R sleeve/forearm 7 cm from the lens"
-    },
-    {
-     "t": 87.75,
-     "what": "examiner L sleeve/forearm 13 cm from the lens"
-    },
-    {
-     "t": 87.875,
-     "what": "examiner R sleeve/forearm 9 cm from the lens"
-    },
-    {
-     "t": 87.875,
-     "what": "examiner L sleeve/forearm 14 cm from the lens"
-    },
-    {
-     "t": 88,
-     "what": "examiner R sleeve/forearm 14 cm from the lens"
-    }
-   ]
+   "flags": []
   }
  ],
  "frameScan": {
