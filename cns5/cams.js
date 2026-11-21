@@ -41,6 +41,9 @@
       wristR: shot(mid(wr.E, hand(wr), 0.6), V(-0.3, 0.18, 1), 9.0, { ap: 0.012 }),
       // beat 10: from his side and a little below
       gripR: shot(hand(grip).add(V(-0.2, 0.1, 0)), V(0.12, -0.25, 1), 6.2, { ap: 0.008 }),
+      // beat 10, before and after the grip: the same side, wider, his resting arm and the raised forearm both in frame (the
+      // camera follows the arm in and out, so the close shot never shows empty teal)
+      gripWideR: shot(mid(hand(grip), restW.R, 0.35).add(V(-0.3, 0.2, 0)), V(0.12, 0.02, 1), 12.5, { ap: 0.012 }),
       // beat 11: close-up from above, his whole hand and the examiner's finger
       fingR: shot(fingHand.clone().add(V(0.1, 0.05, -0.12)), V(0.55, 1, 0.08), 6.4, { ap: 0.008 }),
       // beat 12: the start of the pull back (his right side)
@@ -49,14 +52,15 @@
     // the left-side shots: across the bed from his LEFT
     CAM.toneL = mir(CAM.toneR);
     CAM.abdL = mir(CAM.abdR);
-    CAM.elbL = mir(CAM.elbR); CAM.wristL = mir(CAM.wristR); CAM.gripL = mir(CAM.gripR); CAM.fingL = mir(CAM.fingR);
+    CAM.elbL = mir(CAM.elbR); CAM.wristL = mir(CAM.wristR); CAM.gripL = mir(CAM.gripR); CAM.gripWideL = mir(CAM.gripWideR); CAM.fingL = mir(CAM.fingR);
     const cut = { cut: true };
     const CAM_KEYS = [
       [0, 'home'], [1.0, 'home'], [T.push[1], 'upper'],
       [T.inspect[0], 'upper'], [8.6, 'inspSh'], [10.0, 'inspArm'], [11.3, 'inspFore'], [T.inspect[1], 'inspHands'],
       [13.0, 'toneR', cut], [23.0, 'toneL', cut], [29.6, 'drift', cut],
       [42.0, 'abdR', cut], [T.abd.cutL, 'abdL', cut], [50.0, 'elbR', cut], [T.elbF.cutL, 'elbL', cut], [58.0, 'elbR', cut], [T.elbE.cutL, 'elbL', cut],
-      [65.0, 'wristR', cut], [T.wrist.cutL, 'wristL', cut], [72.5, 'gripR', cut], [T.grip.cutL, 'gripL', cut], [80.0, 'fingR', cut], [T.fing.cutL, 'fingL', cut],
+      [65.0, 'wristR', cut], [T.wrist.cutL, 'wristL', cut], [72.5, 'gripWideR', cut], [T.grip.R.pose[0], 'gripWideR'], [T.grip.R.pose[1], 'gripR'], [T.grip.R.down[0], 'gripR'], [T.grip.R.down[1], 'gripWideR'],
+      [T.grip.cutL, 'gripWideL', cut], [T.grip.L.pose[0], 'gripWideL'], [T.grip.L.pose[1], 'gripL'], [T.grip.L.down[0], 'gripL'], [T.grip.L.down[1], 'gripWideL'], [80.0, 'fingR', cut], [T.fing.cutL, 'fingL', cut],
       [T.end.cam, 'endR', cut], [T.end.pull[0], 'endR'], [T.end.pull[1], 'home'], [90, 'home'],
     ];
     // the shadow maps tightened round the subject of the close shots (crisp contact shadows)
