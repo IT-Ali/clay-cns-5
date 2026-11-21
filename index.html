@@ -49,12 +49,12 @@
   for (const f of ['lib/stage.js', 'lib/text3d.js', 'lib/sound.js',
     'shared/clay.js', 'shared/set.js', 'shared/bed.js', 'shared/props.js', 'shared/hands.js', 'shared/patient.js', 'shared/sheet.js', 'shared/caption.js', 'shared/abdo.js', 'shared/home.js',
     'shared/patient-neuro.js', 'shared/neuro.js', 'shared/neuro-props.js',
-    'cns5/contact5.js', 'cns5/kin.js', 'cns5/cams.js', 'cns5/cns5-style.js']) await load(f);
+    ...(q.get('scene') === 'homeref' ? ['check/homeref-style.js'] : ['cns5/contact5.js', 'cns5/kin.js', 'cns5/cams.js', 'cns5/cns5-style.js'])]) await load(f);
   // the solved poses (tools/solve.mjs writes solved.json once; ?solved=1 = load it and never solve again)
   if (q.get('solved') === '1') { const r = await fetch('solved.json', { cache: 'no-store' }); if (!r.ok) throw new Error('solved.json is missing: run node tools/solve.mjs first'); window.SOLVED = await r.json(); }
   if (q.get('solve') === '1') window.SOLVE_MODE = true;
   if (q.get('only')) window.SOLVE_ONLY = q.get('only').split(',');
-  const style = window.CNS5;
+  const style = q.get('scene') === 'homeref' ? window.HOMEREF : window.CNS5;   // ?scene=homeref: the README's CNS home shot alone (tools/home-check.mjs)
   const canvas = document.getElementById('c');
   const W = +(q.get('w') || 1920), H = +(q.get('h') || 1080);
   canvas.width = W; canvas.height = H;

@@ -142,6 +142,10 @@
 
       // ------------------------------------------------------------ the patient's arm states
       const REST = { R: HOME.restArm('R', 'reclined45', SH), L: HOME.restArm('L', 'reclined45', SH) };
+      // pronator drift: the kit's 'outstretched' arm (horizontal at shoulder height, palm up, fingers together) with the hand
+      // straight ahead of the shoulder: the two arms parallel, the hands exactly shoulder-width apart (the kit brings each hand
+      // 2.5 cm in, which reads as a V from the foot end)
+      const DRIFT_ARM = (s) => { const a = NEURO.arm(P, s, 'outstretched', { drift: 0 }), sh = P.shoulder(s); a.wrist = a.wrist.clone(); a.wrist.z = sh.z; return a; };
       // his fist: the kit's fist leaves a see-through loop seen from the thumb side, so the fingers bend more at the middle
       // joints (the tips into the palm) and the thumb lies across the front of the index and middle fingers (searched)
       const FIST = { curl: { index: [1.58, 2.25, 0.65], middle: [1.6, 2.25, 0.65], ring: [1.64, 2.2, 0.65], little: [1.68, 2.15, 0.62] }, spread: 0, thumb: [1.2, 1.8, 0.2, 0] };
@@ -684,7 +688,7 @@
         Lk.push([T.toneL.down[0], shake(TONE_BASE)], [T.toneL.down[1], REST.L, { arc: up(0.3, -0.2) }]);
         // pronator drift: both arms straight out in front at shoulder height, parallel, palms up, fingers together
         for (const s of ['R', 'L']) {
-          const out = Object.assign(NEURO.arm(P, s, 'outstretched', { drift: 0 }), {});
+          const out = DRIFT_ARM(s);
           const dk = ARM_KEYS[s];
           dk.push([T.drift.lift[0], REST[s]], [T.drift.lift[1], out, { arc: up(0.5, 0, 0.6) }], [T.drift.lower[0], out], [T.drift.lower[1], REST[s], { arc: up(0.4, 0, 0.5) }]);
         }
@@ -854,7 +858,7 @@
         return C5.gap(part, S0, opts);
       };
 
-      Object.assign(root.CNS5_WORLD = root.CNS5_WORLD || {}, { S, P, SH, EX, bed, table, L, ST, SOL, C5, KIN, NEURO, HANDS, T, BEATS, CAPTIONS, TEST, armAt, exAtT, anglesAt, exAt, cupAt, abdfState, fingEx, armSkin, gloveMeshes, legMeshes, visibleMeshes, faceAt, applyEx, applyArm, REST, TONE_BASE, kinState, PP, firmAmt, CONTACT_SPECS, measureContact, handOf });
+      Object.assign(root.CNS5_WORLD = root.CNS5_WORLD || {}, { DRIFT_ARM, S, P, SH, EX, bed, table, L, ST, SOL, C5, KIN, NEURO, HANDS, T, BEATS, CAPTIONS, TEST, armAt, exAtT, anglesAt, exAt, cupAt, abdfState, fingEx, armSkin, gloveMeshes, legMeshes, visibleMeshes, faceAt, applyEx, applyArm, REST, TONE_BASE, kinState, PP, firmAmt, CONTACT_SPECS, measureContact, handOf });
 
       // ============================================================ cameras: one object per shot, used by the storyboard too
       const cams = root.CNS5_CAMS(Object.assign({ V, P, SET, KIN, NEURO, TEST, TONE_BASE, kinState, REST, SOL, exAt, abdfState }, root.CNS5_WORLD));
@@ -906,9 +910,9 @@
         // the examiner
         applyEx('R', exAtT.R(tp)); applyEx('L', exAtT.L(tp));
         if (root.DEBUG_STATE) root.DEBUG_STATE(tp);
-        shoot(root.CAM_OVERRIDE || camAt(t));
-        L.set(still ? 0 : tp, cams.lights ? cams.lights(t, shotOf(t)) : {});
-        if (still) L.lamp.intensity = SET.LAMP.power;
+        if (still && !root.CAM_OVERRIDE) SET.shoot(S, SET.HOME_CNS); else shoot(root.CAM_OVERRIDE || camAt(t));   // the home hold: the README's own call
+        // the home hold: the lights exactly as shared/README.md (L.set(0, {}), the lamp at full power, no flicker)
+        if (still) { L.set(0, {}); L.lamp.intensity = SET.LAMP.power; } else L.set(tp, cams.lights ? cams.lights(t, shotOf(t)) : {});
       };
       const overlay = (ctx, t, W, Hh2) => {
         const on = root.CAPTIONS != null ? !!root.CAPTIONS : style.captions;

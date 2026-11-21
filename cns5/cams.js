@@ -13,7 +13,7 @@
     const restW = { R: REST.R.wrist, L: REST.L.wrist };
     const st = (name) => kinState('R', TEST[name].a, null);
     const tone = kinState('R', TONE_BASE, null);
-    const drift = NEURO.arm(P, 'R', 'outstretched', { drift: 0 });
+    const drift = W.DRIFT_ARM('R');
     const abd = st('abd'), elb = st('elbF'), wr = st('wrist'), grip = st('grip');
     const hand = (s) => s.wrist.clone().add(V(1, 0, 0).applyQuaternion(s.quat).multiplyScalar(0.55));
     const fing = W.abdfState('R', 0);
@@ -30,7 +30,9 @@
       // beats 3 and 4: the whole arm from the shoulder to the hand and both gloved hands, from his side
       toneR: shot(mid(shR, tone.wrist, 0.55).add(V(0.2, -0.2, 0.6)), V(-0.25, 0.42, 1), 13.5, { ap: 0.02 }),
       // beat 5: from the foot end, a little to his right, a little above shoulder height: both arms, both palms, his eyes
-      drift: shot(V(-2.4, 10.6, 0), V(1, 0.2, 0.2), 16.5, { ap: 0.012, focus: drift.wrist.clone().lerp(shR, 0.4) }),
+      // straight down the arms from the foot end, far back on a long lens, so the two parallel arms read parallel (a near camera
+      // spreads the nearer hands into a V)
+      drift: Object.assign(shot(V(-2.4, 10.6, 0), V(1, 0.2, 0), 40, { ap: 0.005, focus: drift.wrist.clone().lerp(shR, 0.4) }), { fov: 12 }),
       // beat 6: from the front a little above: the shoulder, the upper arm and the examiner's hand
       abdR: shot(mid(shR, abd.E, 0.6).add(V(0.35, 0.85, 0)), V(0.6, 0.6, 0.75), 11.5, { ap: 0.015 }),
       // beats 7 and 8: from his side at elbow height, the whole arm and the biceps

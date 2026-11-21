@@ -12,7 +12,8 @@
 //
 // Both LOAD solved.json (made once with node tools/solve.mjs) and never solve; they stop with a clear message if it is
 // missing or out of date. Frames already on disk are skipped, so if a render stops, running it again carries on.
-// Other options: --samples N  --w W --h H  --frames a-b  --remake (remake the MP4s from the frames on disk)
+// Other options: --samples N  --w W --h H  --frames a-b[,c-d]  --frames-only (stop after the frames)  --out DIR
+//                --remake (remake the MP4s from the frames on disk)
 //                --software (no GPU: SwiftShader, very slow)   CHROME_PATH=... to use a particular Chrome
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -29,7 +30,7 @@ const PREVIEW = flag('preview');
 const W = +opt('w', PREVIEW ? 960 : 1920), H = +opt('h', PREVIEW ? 540 : 1080), FPS = 30;
 const SAMPLES = +opt('samples', PREVIEW ? 8 : 0);           // 0 = the style's own (SET.RENDER: 64)
 const VERSIONS = PREVIEW ? ['captions'] : ['captions', 'clean'];
-const OUT = path.join(ROOT, 'out', PREVIEW ? 'preview' : '');
+const OUT = opt('out', '') ? path.resolve(opt('out')) : path.join(ROOT, 'out', PREVIEW ? 'preview' : '');
 const FR = { clean: path.join(OUT, 'frames', 'clean'), captions: path.join(OUT, 'frames', 'captions') };
 for (const v of VERSIONS) fs.mkdirSync(FR[v], { recursive: true });
 fs.mkdirSync(path.join(OUT, 'beats'), { recursive: true });
@@ -51,7 +52,7 @@ const NF = Math.round(info.D * FPS);
 const beatFrames = (b) => [Math.round(b.t0 * FPS), Math.round(b.t1 * FPS) - 1];
 // which frames: all, a range, or some beats
 let ranges = [[0, NF - 1]];
-if (opt('frames', '')) ranges = [opt('frames').split('-').map(Number)];
+if (opt('frames', '')) ranges = opt('frames').split(',').map((r) => { const [a, b] = r.split('-').map(Number); return [a, b == null || isNaN(b) ? a : b]; });
 const beatsSel = (opt('beats', '') || opt('beat', '')).split(',').filter(Boolean).map(Number);
 if (beatsSel.length) ranges = beatsSel.map((n) => beatFrames(info.beats.find((b) => b.n === n)));
 
@@ -78,6 +79,8 @@ for (const i of todo) {
   done++;
   if (done % 10 === 0 || done === todo.length) { const per = (Date.now() - t1) / done / 1000; console.log(`frame ${i + 1}/${NF}  ${per.toFixed(2)} s/frame  about ${((todo.length - done) * per / 60).toFixed(0)} min left`); }
 }
+
+if (flag('frames-only')) { console.log(`frames done in ${el()} (--frames-only: no sound, no MP4)`); await browser.close(); process.exit(0); }
 
 // 2. the sound, from the same score as the player, normalised to about -15 LUFS
 const wav = path.join(OUT, 'sound.wav');
