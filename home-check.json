@@ -1,0 +1,32 @@
+{
+ "size": [
+  960,
+  540
+ ],
+ "samples": 16,
+ "frames": {
+  "first": 0,
+  "last": 2699,
+  "fps": 30
+ },
+ "reference": "check/homeref-style.js: shared/README.md \"The CNS home shot\" recipe, rendered alone",
+ "firstVsLast": {
+  "meanDiff": 0,
+  "maxDiff": 0,
+  "differingPixels": 0,
+  "pixels": 518400
+ },
+ "firstVsReadmeHome": {
+  "meanDiff": 0,
+  "maxDiff": 0,
+  "differingPixels": 0,
+  "pixels": 518400
+ },
+ "lastVsReadmeHome": {
+  "meanDiff": 0,
+  "maxDiff": 0,
+  "differingPixels": 0,
+  "pixels": 518400
+ },
+ "pass": true
+}
