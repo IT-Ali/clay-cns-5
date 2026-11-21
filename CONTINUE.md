@@ -8,7 +8,7 @@
 - Round 2 (the user's fixes): elbow cup re-solved (hand turn searched, every pose frame, every finger pad on the skin, joints capped);
   every finger/thumb contact also measured at its pad; handshake, elbow-flexion thumb and grip-thumb pads on the skin; all 114
   contacts pass (nearest points 0.00-1.20 mm, pads 0.05-1.09 mm).
-- Storyboard: `storyboard/storyboard.html` (published as an artifact). STOPPED for the user's review of the storyboard.
+- Storyboard: `storyboard/storyboard.html` (published: https://claude.ai/artifact/D9STZVowSwsMJjB4XJpfzx). STOPPED for the user's review of the storyboard.
 
 ## Left to do (after the storyboard is approved)
 - story_vs_anim.png (beats 3, 5, 6, 7, 10), the transitions scan (`node tools/transitions.mjs`, strips in
