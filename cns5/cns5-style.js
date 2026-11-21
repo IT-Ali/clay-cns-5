@@ -354,8 +354,9 @@
         }
         // ---- the cup at EVERY pose frame his arm takes while it is held (the arm moves on twos, so these are the only angles
         // it shows): no blending between solved poses, which let the fingers sink into the elbow between them.
-        // Blocks cupF0..cupF3 each solve a quarter of the frames (so they can run side by side); cupF solves all four.
-        for (let q = 0; q < 4; q++) if (want('cupF' + q) || want('cupF')) {
+        // Blocks cupF0..cupF3 each solve a quarter of the frames (so they can run side by side); cupF solves all four; cupFix
+        // solves again only the stored frames with a part outside 0.03-1.5 mm.
+        for (let q = 0; q < 4; q++) if (want('cupF' + q) || want('cupF') || want('cupFix')) {
           const pp = SOL.ppose.shake, frames = toneFrameAngles().filter((_, i) => i % 4 === q);
           SOL.cupFrames = SOL.cupFrames || {}; let worst = 0, n = 0;
           const cupLayF = (aa, offs, sides, prevPose) => {
@@ -369,9 +370,22 @@
           // the cup's place on his elbow (from the cup block; searched the same way here if this solved.json predates it)
           if (!SOL.cupBase) { const b0 = cupLayF(TONE_BASE, [-0.3, -0.2, -0.1, 0, 0.1], [-0.35, -0.2, -0.05, 0.1], POSE.cup); SOL.cupBase = { so: b0.so, sd: b0.sd, pose: b0.st.pose }; }
           const B = SOL.cupBase;
-          for (const aa of frames) {
+          // a part left touching at under 0.03 mm (or just inside) is lifted off along the skin normal to 0.05 mm
+          const liftClear = (r) => {
+            const S0 = surfArm('R', r.at, 1.8), need = ['palm'].concat(F4);
+            for (let k = 0; k < 4; k++) { const lo = Math.min(...need.map((x) => r.g[x])); if (lo >= 0.0003) break; r.st.wrist.addScaledVector(r.n, 0.0005 - lo); applyEx('L', r.st); r.g = handGaps('L', S0, need); }
+            return r;
+          };
+          const solveFrame = (aa) => {
             let r = cupLayF(aa, [B.so], [B.sd], B.pose);
             if (err(r) > 0.006) { const r2 = cupLayF(aa, [B.so - 0.15, B.so, B.so + 0.15], [B.sd - 0.15, B.sd, B.sd + 0.15], B.pose); if (r2.e < r.e) r = r2; }
+            return liftClear(r);
+          };
+          // cupFix: only the frames already in solved.json with a part outside 0.03-1.5 mm
+          const fixOnly = only && only.includes('cupFix');
+          for (const aa of frames) {
+            if (fixOnly) { const old = SOL.cupFrames[angKey(aa)]; if (old && Object.values(old.g).every((v) => v >= 0.03 && v <= 1.5)) continue; }
+            const r = solveFrame(aa);
             const fr = KIN.frames(P, aa).elbow, rel = relTo(fr, r.st.wrist, r.st.quat, r.st.back);
             worst = Math.max(worst, err(r)); n++;
             SOL.cupFrames[angKey(aa)] = { p: A(rel.p), q: [rel.q.x, rel.q.y, rel.q.z, rel.q.w], back: A(rel.back), pose: r.st.pose, g: Object.fromEntries(Object.entries(r.g).map(([k, v]) => [k, +(v * 100).toFixed(2)])) };
