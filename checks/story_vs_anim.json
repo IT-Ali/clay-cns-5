@@ -1,0 +1,72 @@
+[
+ {
+  "n": 3,
+  "id": "b03",
+  "name": "Tone - right arm",
+  "t": 16.6,
+  "frame": 498,
+  "animFile": "checks/story_vs_anim/render/frames/captions/000498.png",
+  "panelFile": "storyboard/img/b03.jpg",
+  "animT": 16.6,
+  "meanDiff": 1.8618,
+  "maxDiff": 73,
+  "differingPixels": 499685,
+  "pixels": 518400
+ },
+ {
+  "n": 5,
+  "id": "b05",
+  "name": "Pronator drift",
+  "t": 36,
+  "frame": 1080,
+  "animFile": "checks/story_vs_anim/render/frames/captions/001080.png",
+  "panelFile": "storyboard/img/b05.jpg",
+  "animT": 36,
+  "meanDiff": 1.5908,
+  "maxDiff": 51,
+  "differingPixels": 494919,
+  "pixels": 518400
+ },
+ {
+  "n": 6,
+  "id": "b06",
+  "name": "Shoulder abduction C5",
+  "t": 45.51,
+  "frame": 1365,
+  "animFile": "checks/story_vs_anim/render/frames/captions/001365.png",
+  "panelFile": "storyboard/img/b06.jpg",
+  "animT": 45.5,
+  "meanDiff": 1.8515,
+  "maxDiff": 81,
+  "differingPixels": 503038,
+  "pixels": 518400
+ },
+ {
+  "n": 7,
+  "id": "b07",
+  "name": "Elbow flexion C5 C6",
+  "t": 53.51,
+  "frame": 1605,
+  "animFile": "checks/story_vs_anim/render/frames/captions/001605.png",
+  "panelFile": "storyboard/img/b07.jpg",
+  "animT": 53.5,
+  "meanDiff": 1.6538,
+  "maxDiff": 68,
+  "differingPixels": 497260,
+  "pixels": 518400
+ },
+ {
+  "n": 10,
+  "id": "b10",
+  "name": "Finger flexion C8",
+  "t": 75.88,
+  "frame": 2276,
+  "animFile": "checks/story_vs_anim/render/frames/captions/002276.png",
+  "panelFile": "storyboard/img/b10.jpg",
+  "animT": 75.8667,
+  "meanDiff": 1.5671,
+  "maxDiff": 62,
+  "differingPixels": 493961,
+  "pixels": 518400
+ }
+]
