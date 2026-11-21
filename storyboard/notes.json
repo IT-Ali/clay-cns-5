@@ -8,11 +8,11 @@
   "Checked against the full prompt: update(t) no longer keeps any state between calls (the examiner's hand used to remember the last arm angles while his arm moved to or from rest; it now uses the fixed test position), so frames are identical in any render order.",
   "His arm now holds the test position until the examiner's hand has left it (no arm moving under a hand).",
   "Every rustle starts on the exact pose frame of its event (the arm leaving or reaching the mattress), from the same schedule as the picture.",
-  "Elbow cup (tone): the palm and the index, middle, ring and little fingers wrapped round the back of the elbow, each finger searched over its joint ratios, solved on a grid of elbow angles and forearm turns; measured at several moments through the moves (table below).",
+  "Elbow cup (tone): the palm and the index, middle, ring and little fingers wrapped round the back of the elbow, solved at every pose frame his arm takes while the examiner holds it (149 frames, the arm moves on twos), so nothing is blended between solved poses; before, the fingers sank up to 15 mm into the elbow between them. Every finger pad now rests 0.03-1.07 mm from the skin.",
   "Grip: his thumb starts from NEURO.HAND.grip and its two joints are flexed until its pad rests on the gloved fingers (table below)."
  ],
  "checks": [
-  "Contacts: every contact is measured on the meshes of the rendered frames (not the intended values): the table at the bottom lists each one, at every moment it holds (the tone contacts at several moments through the moves).",
+  "Contacts: every contact is measured on the meshes of the rendered frames (not the intended values): the table at the bottom lists each one; the tone contacts (handshake and elbow cup) at every pose frame from the start of the moves until the examiner lets go, the power tests at mid-press.",
   "Hand rules: fingers together in every contact (each finger may turn at most 0.15 rad toward its neighbours to reach the skin), no V (the two gloved fingers of the grip side by side), no upright hand on the bed, no hand on its edge except the pointing hand of finger abduction, whose index comes down onto the side of his finger from above.",
   "His RIGHT and LEFT: checked in the plan panel (a); every left-side test is filmed from his left with the examiner on his left (the sleeves leave the frame on that side); the bedside table is on his left near his head and no camera passes through it or the bed.",
   "No text in the scene: only the caption plaque (off in the review panels, which carry review labels only).",
