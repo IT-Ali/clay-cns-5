@@ -2,221 +2,481 @@
  {
   "id": "shake-histhumb-R",
   "t": 15.8,
-  "gapMM": 0.615
+  "gapMM": 0.615,
+  "padMM": 0.615
  },
  {
   "id": "shake-his-index-R",
   "t": 15.8,
-  "gapMM": 0.508
+  "gapMM": 0.508,
+  "padMM": 0.508
  },
  {
   "id": "shake-his-middle-R",
   "t": 15.8,
-  "gapMM": 0.5
+  "gapMM": 0.5,
+  "padMM": 0.5
  },
  {
   "id": "shake-his-ring-R",
   "t": 15.8,
-  "gapMM": 0.514
+  "gapMM": 0.514,
+  "padMM": 0.78
  },
  {
   "id": "shake-palm-R",
   "t": 15.8,
-  "gapMM": 0.482
+  "gapMM": 0.482,
+  "padMM": null
  },
  {
   "id": "shake-his-little-R",
   "t": 15.8,
-  "gapMM": 0.492
+  "gapMM": 0.492,
+  "padMM": 0.492
  },
  {
   "id": "shake-ex-little-R",
   "t": 15.8,
-  "gapMM": 0.301
+  "gapMM": 0.301,
+  "padMM": 0.301
  },
  {
   "id": "shake-ex-ring-R",
   "t": 15.8,
-  "gapMM": 0.301
+  "gapMM": 0.301,
+  "padMM": 0.301
  },
  {
   "id": "shake-ex-middle-R",
   "t": 15.8,
-  "gapMM": 0.03
+  "gapMM": 0.03,
+  "padMM": 0.773
  },
  {
   "id": "shake-ex-index-R",
   "t": 15.8,
-  "gapMM": 0.501
+  "gapMM": 0.501,
+  "padMM": 0.501
  },
  {
   "id": "shake-exthumb-R",
   "t": 15.8,
-  "gapMM": 0.612
+  "gapMM": 0.612,
+  "padMM": 0.612
  },
  {
   "id": "cup-palm-R",
   "t": 15.8,
-  "gapMM": 0.512
+  "gapMM": 0.512,
+  "padMM": null
  },
  {
   "id": "cup-index-R",
   "t": 15.8,
-  "gapMM": 0.5
+  "gapMM": 0.5,
+  "padMM": 0.5
  },
  {
   "id": "cup-middle-R",
   "t": 15.8,
-  "gapMM": 0.5
+  "gapMM": 0.5,
+  "padMM": 0.5
  },
  {
   "id": "cup-ring-R",
   "t": 15.8,
-  "gapMM": 0.5
+  "gapMM": 0.5,
+  "padMM": 0.5
  },
  {
   "id": "cup-little-R",
   "t": 15.8,
-  "gapMM": 0.5
+  "gapMM": 0.5,
+  "padMM": 0.5
  },
  {
   "id": "shake-his-little-L",
   "t": 23.95,
-  "gapMM": 0.492
+  "gapMM": 0.492,
+  "padMM": 0.492
  },
  {
   "id": "shake-palm-L",
   "t": 23.95,
-  "gapMM": 0.482
+  "gapMM": 0.482,
+  "padMM": null
  },
  {
   "id": "shake-his-ring-L",
   "t": 23.95,
-  "gapMM": 0.514
+  "gapMM": 0.514,
+  "padMM": 0.78
  },
  {
   "id": "shake-his-middle-L",
   "t": 23.95,
-  "gapMM": 0.5
+  "gapMM": 0.5,
+  "padMM": 0.5
  },
  {
   "id": "shake-his-index-L",
   "t": 23.95,
-  "gapMM": 0.508
+  "gapMM": 0.508,
+  "padMM": 0.508
  },
  {
   "id": "shake-histhumb-L",
   "t": 23.95,
-  "gapMM": 0.615
+  "gapMM": 0.615,
+  "padMM": 0.615
  },
  {
   "id": "shake-exthumb-L",
   "t": 23.95,
-  "gapMM": 0.612
+  "gapMM": 0.612,
+  "padMM": 0.612
  },
  {
   "id": "shake-ex-index-L",
   "t": 23.95,
-  "gapMM": 0.502
+  "gapMM": 0.502,
+  "padMM": 0.502
  },
  {
   "id": "shake-ex-middle-L",
   "t": 23.95,
-  "gapMM": 0.031
+  "gapMM": 0.031,
+  "padMM": 0.776
  },
  {
   "id": "shake-ex-ring-L",
   "t": 23.95,
-  "gapMM": 0.301
+  "gapMM": 0.301,
+  "padMM": 0.301
  },
  {
   "id": "shake-ex-little-L",
   "t": 23.95,
-  "gapMM": 0.301
+  "gapMM": 0.301,
+  "padMM": 0.301
  },
  {
   "id": "cup-middle-L",
   "t": 23.95,
-  "gapMM": 0.5
+  "gapMM": 0.5,
+  "padMM": 0.5
  },
  {
   "id": "cup-index-L",
   "t": 23.95,
-  "gapMM": 0.5
+  "gapMM": 0.5,
+  "padMM": 0.5
  },
  {
   "id": "cup-palm-L",
   "t": 23.95,
-  "gapMM": 0.512
+  "gapMM": 0.512,
+  "padMM": null
  },
  {
   "id": "cup-little-L",
   "t": 23.95,
-  "gapMM": 0.499
+  "gapMM": 0.499,
+  "padMM": 0.499
  },
  {
   "id": "cup-ring-L",
   "t": 23.95,
-  "gapMM": 0.5
+  "gapMM": 0.5,
+  "padMM": 0.5
  },
  {
   "id": "elbF-palm-R",
   "t": 53.507999999999996,
-  "gapMM": 0.446
+  "gapMM": 0.446,
+  "padMM": null
  },
  {
   "id": "elbF-little-R",
   "t": 53.507999999999996,
-  "gapMM": 0.501
+  "gapMM": 0.501,
+  "padMM": 0.501
  },
  {
   "id": "elbF-ring-R",
   "t": 53.507999999999996,
-  "gapMM": 0.5
+  "gapMM": 0.5,
+  "padMM": 0.5
  },
  {
   "id": "elbF-middle-R",
   "t": 53.507999999999996,
-  "gapMM": 0.501
+  "gapMM": 0.501,
+  "padMM": 0.501
  },
  {
   "id": "elbF-index-R",
   "t": 53.507999999999996,
-  "gapMM": 0.501
+  "gapMM": 0.501,
+  "padMM": 0.501
  },
  {
   "id": "elbF-thumb-R",
   "t": 53.507999999999996,
-  "gapMM": 0.5
+  "gapMM": 0.5,
+  "padMM": 0.5
  },
  {
   "id": "elbF-ring-L",
   "t": 56.44799999999999,
-  "gapMM": 0.505
+  "gapMM": 0.505,
+  "padMM": 0.505
  },
  {
   "id": "elbF-little-L",
   "t": 56.44799999999999,
-  "gapMM": 0.503
+  "gapMM": 0.503,
+  "padMM": 0.503
  },
  {
   "id": "elbF-palm-L",
   "t": 56.44799999999999,
-  "gapMM": 0.446
+  "gapMM": 0.446,
+  "padMM": null
  },
  {
   "id": "elbF-thumb-L",
   "t": 56.44799999999999,
-  "gapMM": 0.5
+  "gapMM": 0.5,
+  "padMM": 0.5
  },
  {
   "id": "elbF-index-L",
   "t": 56.44799999999999,
-  "gapMM": 0.501
+  "gapMM": 0.501,
+  "padMM": 0.501
  },
  {
   "id": "elbF-middle-L",
   "t": 56.44799999999999,
-  "gapMM": 0.511
+  "gapMM": 0.511,
+  "padMM": 0.511
+ },
+ {
+  "id": "grip-two-R",
+  "t": 75.8775,
+  "gapMM": 0.501,
+  "padMM": null
+ },
+ {
+  "id": "grip-histhumb-R",
+  "t": 75.8775,
+  "gapMM": 0.002,
+  "padMM": 0.05
+ },
+ {
+  "id": "grip-his-index-R",
+  "t": 75.8775,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-his-middle-R",
+  "t": 75.8775,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-his-ring-R",
+  "t": 75.8775,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-his-little-R",
+  "t": 75.8775,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-his-index-L",
+  "t": 78.76500000000001,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-histhumb-L",
+  "t": 78.76500000000001,
+  "gapMM": 0.002,
+  "padMM": 0.05
+ },
+ {
+  "id": "grip-two-L",
+  "t": 78.76500000000001,
+  "gapMM": 0.501,
+  "padMM": null
+ },
+ {
+  "id": "grip-his-little-L",
+  "t": 78.76500000000001,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-his-ring-L",
+  "t": 78.76500000000001,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-his-middle-L",
+  "t": 78.76500000000001,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-two-R",
+  "t": 75.8775,
+  "gapMM": 0.501,
+  "padMM": null
+ },
+ {
+  "id": "grip-histhumb-R",
+  "t": 75.8775,
+  "gapMM": 0.002,
+  "padMM": 0.05
+ },
+ {
+  "id": "grip-his-index-R",
+  "t": 75.8775,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-his-middle-R",
+  "t": 75.8775,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-his-ring-R",
+  "t": 75.8775,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-his-little-R",
+  "t": 75.8775,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-histhumb-R",
+  "t": 75.8775,
+  "gapMM": 0.002,
+  "padMM": 0.05
+ },
+ {
+  "id": "grip-two-R",
+  "t": 75.8775,
+  "gapMM": 0.501,
+  "padMM": null
+ },
+ {
+  "id": "grip-his-index-R",
+  "t": 75.8775,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-his-middle-R",
+  "t": 75.8775,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-his-ring-R",
+  "t": 75.8775,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-his-little-R",
+  "t": 75.8775,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-his-index-L",
+  "t": 78.76500000000001,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-histhumb-L",
+  "t": 78.76500000000001,
+  "gapMM": 0.002,
+  "padMM": 0.05
+ },
+ {
+  "id": "grip-two-L",
+  "t": 78.76500000000001,
+  "gapMM": 0.501,
+  "padMM": null
+ },
+ {
+  "id": "grip-his-little-L",
+  "t": 78.76500000000001,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-his-ring-L",
+  "t": 78.76500000000001,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-his-middle-L",
+  "t": 78.76500000000001,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-his-index-L",
+  "t": 78.76500000000001,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-two-L",
+  "t": 78.76500000000001,
+  "gapMM": 0.501,
+  "padMM": null
+ },
+ {
+  "id": "grip-histhumb-L",
+  "t": 78.76500000000001,
+  "gapMM": 0.002,
+  "padMM": 0.05
+ },
+ {
+  "id": "grip-his-little-L",
+  "t": 78.76500000000001,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-his-ring-L",
+  "t": 78.76500000000001,
+  "gapMM": 0.5,
+  "padMM": 0.5
+ },
+ {
+  "id": "grip-his-middle-L",
+  "t": 78.76500000000001,
+  "gapMM": 0.5,
+  "padMM": 0.5
  }
 ]

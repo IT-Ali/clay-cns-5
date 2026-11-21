@@ -39,7 +39,7 @@
       // the nearest point, and the pad (end bone) when the label is for a finger or thumb and its pad sits further off
       const gp = r.c.pad ? W.measureContact(Object.assign({}, r.c, { part: r.c.pad })) : null, pmm = gp ? gp.gap * 100 : null;
       const mm = r.g.gap * 100, ok = mm >= 0 && mm <= 1.5 && (pmm == null || (pmm >= 0 && pmm <= 1.5));
-      const padTxt = pmm != null && Math.abs(pmm - mm) >= 0.05 ? `, pad ${pmm.toFixed(2)}` : '';
+      const padTxt = pmm != null && (Math.abs(pmm - mm) >= 0.05 || /thumb/.test(r.c.id)) ? `, pad ${pmm.toFixed(2)}` : '';
       const at = label(ctx, lx, ly, `${o.names ? o.names(r.c) : r.c.finger || short(r.c)}: ${mm.toFixed(2)} mm${padTxt}`, { size: 12.5, ink: ok ? '#1b6b2f' : '#b3261e' });
       arrow(ctx, at[0], at[1], r.p[0], r.p[1], ok ? '#1b6b2f' : '#b3261e');
       MEASURED.push({ id: r.c.id, t, gapMM: +mm.toFixed(3), padMM: pmm == null ? null : +pmm.toFixed(3) });
