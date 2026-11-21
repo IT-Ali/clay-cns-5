@@ -107,7 +107,7 @@ const enc = PREVIEW ? ['-c:v', 'libx264', '-preset', 'medium', '-crf', '20', '-p
   : ['-c:v', 'libx264', '-preset', 'slow', '-crf', '15', '-pix_fmt', 'yuv420p', '-r', String(FPS), '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart'];
 const have = (v, a, n) => { for (let i = a; i < a + n; i++) if (!fs.existsSync(path.join(FR[v], pad(i) + '.png'))) return false; return true; };
 const clip = (v, s, n, file, fade) => ff(['-framerate', String(FPS), '-start_number', String(s), '-i', path.join(FR[v], '%06d.png'), '-ss', (s / FPS).toFixed(4), '-t', (n / FPS).toFixed(4), '-i', wav,
-  '-map', '0:v', '-map', '1:a', '-frames:v', String(n), ...enc, ...(fade ? ['-af', 'afade=t=in:d=0.04,afade=t=out:st=' + (n / FPS - 0.04).toFixed(3) + ':d=0.04'] : []), file]);
+  '-map', '0:v', '-map', '1:a', '-frames:v', String(n), ...enc, ...(fade ? (() => { const d = Math.min(0.04, n / FPS / 2); return ['-af', `afade=t=in:d=${d.toFixed(4)},afade=t=out:st=${Math.max(0, n / FPS - d).toFixed(4)}:d=${d.toFixed(4)}`]; })() : []), file]);
 let made = 0;
 for (const v of VERSIONS) {
   for (const b of info.beats) {
@@ -138,6 +138,9 @@ if (PREVIEW) {
     const dur = /Duration: (\d+):(\d+):([\d.]+)/.exec(log), I = /Integrated loudness:\s*\n\s*I:\s*(-?[\d.]+) LUFS/.exec(log);
     check.file = path.basename(probe); check.durationS = dur ? +dur[1] * 3600 + +dur[2] * 60 + +dur[3] : null; check.loudnessLUFS = I ? +I[1] : null;
   }
+  // the whole sound track (normalised to about -15 LUFS), whatever was rendered
+  { const log = ff(['-i', wav, '-af', 'ebur128', '-f', 'null', '-'], false), I = /Integrated loudness:\s*\n\s*I:\s*(-?[\d.]+) LUFS/.exec(log), d = /Duration: (\d+):(\d+):([\d.]+)/.exec(log);
+    check.soundTrack = { file: 'sound.wav', loudnessLUFS: I ? +I[1] : null, durationS: d ? +d[1] * 3600 + +d[2] * 60 + +d[3] : null }; }
   fs.writeFileSync(path.join(OUT, 'check.json'), JSON.stringify(check, null, 1));
   // the sheet: a frame every 2 s with its time stamp
   const picks = []; for (let t = 0; t < info.D; t += 2) { const i = Math.min(NF - 1, Math.round(t * FPS)); if (fs.existsSync(path.join(FR[v], pad(i) + '.png'))) picks.push([i, t]); }

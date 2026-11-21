@@ -1,0 +1,19 @@
+{
+ "frames": 2700,
+ "rendered": 2,
+ "size": [
+  960,
+  540
+ ],
+ "samples": 8,
+ "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+ "firstVsLast": "first or last frame not rendered in this run (see home-check.json)",
+ "file": "cns5_preview_beat05_pronator-drift_test.mp4",
+ "durationS": 0.03,
+ "loudnessLUFS": -70,
+ "soundTrack": {
+  "file": "sound.wav",
+  "loudnessLUFS": -14.9,
+  "durationS": 90
+ }
+}
