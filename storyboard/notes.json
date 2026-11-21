@@ -5,6 +5,8 @@
   "lib/stage.js (39688 bytes, md5 980404cad405873f5891ccafbd6e2065), lib/sound.js (22800, 99b0970f88de7265655ccf2a16b5b65c) and lib/text3d.js (54931, c3aa8d0fb28b30af3ebb61a1f631bc4c) come unchanged from part 4 (IT-Ali/clay-cns-4); the zip has no lib/."
  ],
  "changes": [
+  "Round 3 - pronator drift: both arms straight forward and parallel, the hands exactly shoulder-width apart (the kit's 'outstretched' brings each hand 2.5 cm in; here the hand is straight ahead of the shoulder), palms up, the same height (108.2 cm both, difference 0.0 mm; palms 0.0 deg). The foot-end camera is now far back on a long lens (7 deg), so the near hands no longer spread into a V by perspective.",
+  "Round 3 - his fist (shoulder abduction, elbow flexion and extension, wrist extension; both sides): a proper closed fist, searched on the meshes: each fingertip curled onto the palm (0.45-0.56 mm), the thumb across the middle bones of the index and middle fingers (0.00 mm), its shaft in front of the index so no ring shows from the thumb side. Measured as contacts (fist-*). The wrist test was solved again on the new fist (the examiner's fingers 0.50 mm on the back of it).",
   "Checked against the full prompt: update(t) no longer keeps any state between calls (the examiner's hand used to remember the last arm angles while his arm moved to or from rest; it now uses the fixed test position), so frames are identical in any render order.",
   "His arm now holds the test position until the examiner's hand has left it (no arm moving under a hand).",
   "Every rustle starts on the exact pose frame of its event (the arm leaving or reaching the mattress), from the same schedule as the picture.",
@@ -14,7 +16,7 @@
   "Cup panel (b): filmed from above the inner side of the elbow, where the fingers wrap (the old camera was inside the mattress)."
  ],
  "checks": [
-  "Contacts: every contact is measured on the meshes of the rendered frames (not the intended values), at its nearest point and, for fingers and thumbs, at its pad; the table at the bottom lists each one: the tone contacts (handshake and elbow cup) at every pose frame from the start of the moves until the examiner lets go, the power tests at mid-press. All 114 pass (nearest points 0.00-1.20 mm, pads 0.05-1.09 mm).",
+  "Contacts: every contact is measured on the meshes of the rendered frames, at its nearest point and, for fingers and thumbs, at its pad; the tone contacts at every pose frame of the moves, the power tests at mid-press, his own fist at the four tests that use it. All 124 pass (0-1.5 mm).",
   "Hand rules: fingers together in every contact (each finger may turn at most 0.15 rad toward its neighbours to reach the skin), no V (the two gloved fingers of the grip side by side), no upright hand on the bed, no hand on its edge except the pointing hand of finger abduction, whose index comes down onto the side of his finger from above.",
   "His RIGHT and LEFT: checked in the plan panel (a); every left-side test is filmed from his left with the examiner on his left (the sleeves leave the frame on that side); the bedside table is on his left near his head and no camera passes through it or the bed.",
   "No text in the scene: only the caption plaque (off in the review panels, which carry review labels only).",

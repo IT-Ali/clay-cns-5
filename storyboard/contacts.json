@@ -1992,6 +1992,91 @@
   "worstAt": null
  },
  {
+  "id": "fist-thumb-R",
+  "name": "His fist right: his thumb across the middle bones of his index and middle fingers",
+  "group": "fist",
+  "side": "R",
+  "times": [
+   45.508,
+   53.508,
+   61.225,
+   68.301
+  ],
+  "minMM": 0.001,
+  "maxMM": 0.001,
+  "padMinMM": null,
+  "padMaxMM": null,
+  "worstAt": null
+ },
+ {
+  "id": "fist-index-R",
+  "name": "His fist right: the tip of his index finger on his palm",
+  "group": "fist",
+  "side": "R",
+  "times": [
+   45.508,
+   53.508,
+   61.225,
+   68.301
+  ],
+  "minMM": 0.493,
+  "maxMM": 0.493,
+  "padMinMM": null,
+  "padMaxMM": null,
+  "worstAt": null
+ },
+ {
+  "id": "fist-middle-R",
+  "name": "His fist right: the tip of his middle finger on his palm",
+  "group": "fist",
+  "side": "R",
+  "times": [
+   45.508,
+   53.508,
+   61.225,
+   68.301
+  ],
+  "minMM": 0.508,
+  "maxMM": 0.508,
+  "padMinMM": null,
+  "padMaxMM": null,
+  "worstAt": null
+ },
+ {
+  "id": "fist-ring-R",
+  "name": "His fist right: the tip of his ring finger on his palm",
+  "group": "fist",
+  "side": "R",
+  "times": [
+   45.508,
+   53.508,
+   61.225,
+   68.301
+  ],
+  "minMM": 0.505,
+  "maxMM": 0.505,
+  "padMinMM": null,
+  "padMaxMM": null,
+  "worstAt": null
+ },
+ {
+  "id": "fist-little-R",
+  "name": "His fist right: the tip of his little finger on his palm",
+  "group": "fist",
+  "side": "R",
+  "times": [
+   45.508,
+   53.508,
+   61.225,
+   68.301
+  ],
+  "minMM": 0.521,
+  "maxMM": 0.521,
+  "padMinMM": null,
+  "padMaxMM": null,
+  "worstAt": null
+ },
+ {
   "id": "grip-his-index-R",
   "name": "Grip right: his index finger round the gloved fingers",
   "group": "grip",
@@ -3797,10 +3882,10 @@
   "times": [
    71.058
   ],
-  "minMM": 0.5,
-  "maxMM": 0.5,
-  "padMinMM": 0.5,
-  "padMaxMM": 0.5,
+  "minMM": 0.425,
+  "maxMM": 0.425,
+  "padMinMM": 0.425,
+  "padMaxMM": 0.425,
   "worstAt": null
  },
  {
@@ -3843,6 +3928,91 @@
   "maxMM": 0.499,
   "padMinMM": 0.499,
   "padMaxMM": 0.499,
+  "worstAt": null
+ },
+ {
+  "id": "fist-thumb-L",
+  "name": "His fist left: his thumb across the middle bones of his index and middle fingers",
+  "group": "fist",
+  "side": "L",
+  "times": [
+   48.448,
+   56.448,
+   63.85,
+   71.058
+  ],
+  "minMM": 0.001,
+  "maxMM": 0.001,
+  "padMinMM": null,
+  "padMaxMM": null,
+  "worstAt": null
+ },
+ {
+  "id": "fist-index-L",
+  "name": "His fist left: the tip of his index finger on his palm",
+  "group": "fist",
+  "side": "L",
+  "times": [
+   48.448,
+   56.448,
+   63.85,
+   71.058
+  ],
+  "minMM": 0.499,
+  "maxMM": 0.499,
+  "padMinMM": null,
+  "padMaxMM": null,
+  "worstAt": null
+ },
+ {
+  "id": "fist-middle-L",
+  "name": "His fist left: the tip of his middle finger on his palm",
+  "group": "fist",
+  "side": "L",
+  "times": [
+   48.448,
+   56.448,
+   63.85,
+   71.058
+  ],
+  "minMM": 0.452,
+  "maxMM": 0.452,
+  "padMinMM": null,
+  "padMaxMM": null,
+  "worstAt": null
+ },
+ {
+  "id": "fist-ring-L",
+  "name": "His fist left: the tip of his ring finger on his palm",
+  "group": "fist",
+  "side": "L",
+  "times": [
+   48.448,
+   56.448,
+   63.85,
+   71.058
+  ],
+  "minMM": 0.558,
+  "maxMM": 0.558,
+  "padMinMM": null,
+  "padMaxMM": null,
+  "worstAt": null
+ },
+ {
+  "id": "fist-little-L",
+  "name": "His fist left: the tip of his little finger on his palm",
+  "group": "fist",
+  "side": "L",
+  "times": [
+   48.448,
+   56.448,
+   63.85,
+   71.058
+  ],
+  "minMM": 0.52,
+  "maxMM": 0.52,
+  "padMinMM": null,
+  "padMaxMM": null,
   "worstAt": null
  },
  {

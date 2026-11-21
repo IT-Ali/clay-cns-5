@@ -1,218 +1,31 @@
 [
  {
-  "id": "grip-two-R",
-  "t": 75.8775,
-  "gapMM": 0.501,
-  "padMM": null
- },
- {
-  "id": "grip-histhumb-R",
-  "t": 75.8775,
-  "gapMM": 0.002,
-  "padMM": 0.05
- },
- {
-  "id": "grip-his-index-R",
-  "t": 75.8775,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-his-middle-R",
-  "t": 75.8775,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-his-ring-R",
-  "t": 75.8775,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-his-little-R",
-  "t": 75.8775,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-his-index-L",
-  "t": 78.76500000000001,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-histhumb-L",
-  "t": 78.76500000000001,
-  "gapMM": 0.002,
-  "padMM": 0.05
- },
- {
-  "id": "grip-two-L",
-  "t": 78.76500000000001,
-  "gapMM": 0.501,
-  "padMM": null
- },
- {
-  "id": "grip-his-little-L",
-  "t": 78.76500000000001,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-his-ring-L",
-  "t": 78.76500000000001,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-his-middle-L",
-  "t": 78.76500000000001,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-two-R",
-  "t": 75.8775,
-  "gapMM": 0.501,
-  "padMM": null
- },
- {
-  "id": "grip-histhumb-R",
-  "t": 75.8775,
-  "gapMM": 0.002,
-  "padMM": 0.05
- },
- {
-  "id": "grip-his-index-R",
-  "t": 75.8775,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-his-middle-R",
-  "t": 75.8775,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-his-ring-R",
-  "t": 75.8775,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-his-little-R",
-  "t": 75.8775,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-histhumb-R",
-  "t": 75.8775,
-  "gapMM": 0.002,
-  "padMM": 0.05
- },
- {
-  "id": "grip-two-R",
-  "t": 75.8775,
-  "gapMM": 0.501,
-  "padMM": null
- },
- {
-  "id": "grip-his-index-R",
-  "t": 75.8775,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-his-middle-R",
-  "t": 75.8775,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-his-ring-R",
-  "t": 75.8775,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-his-little-R",
-  "t": 75.8775,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-his-index-L",
-  "t": 78.76500000000001,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-histhumb-L",
-  "t": 78.76500000000001,
-  "gapMM": 0.002,
-  "padMM": 0.05
- },
- {
-  "id": "grip-two-L",
-  "t": 78.76500000000001,
-  "gapMM": 0.501,
-  "padMM": null
- },
- {
-  "id": "grip-his-little-L",
-  "t": 78.76500000000001,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-his-ring-L",
-  "t": 78.76500000000001,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-his-middle-L",
-  "t": 78.76500000000001,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-his-index-L",
-  "t": 78.76500000000001,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-two-L",
-  "t": 78.76500000000001,
-  "gapMM": 0.501,
-  "padMM": null
- },
- {
-  "id": "grip-histhumb-L",
-  "t": 78.76500000000001,
-  "gapMM": 0.002,
-  "padMM": 0.05
- },
- {
-  "id": "grip-his-little-L",
-  "t": 78.76500000000001,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-his-ring-L",
-  "t": 78.76500000000001,
-  "gapMM": 0.5,
-  "padMM": 0.5
- },
- {
-  "id": "grip-his-middle-L",
-  "t": 78.76500000000001,
-  "gapMM": 0.5,
-  "padMM": 0.5
+  "id": "c-driftFoot",
+  "drift": [
+   {
+    "R": {
+     "y": 10.81640223051427,
+     "ang": 0,
+     "roll": 0
+    },
+    "L": {
+     "y": 10.81640223051427,
+     "ang": 0,
+     "roll": 0
+    }
+   },
+   {
+    "R": {
+     "y": 10.81640223051427,
+     "ang": 0,
+     "roll": 0
+    },
+    "L": {
+     "y": 10.81640223051427,
+     "ang": 0,
+     "roll": 0
+    }
+   }
+  ]
  }
 ]

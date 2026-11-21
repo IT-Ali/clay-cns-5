@@ -32,7 +32,7 @@
       // beat 5: from the foot end, a little to his right, a little above shoulder height: both arms, both palms, his eyes
       // straight down the arms from the foot end, far back on a long lens, so the two parallel arms read parallel (a near camera
       // spreads the nearer hands into a V)
-      drift: Object.assign(shot(V(-2.4, 10.6, 0), V(1, 0.2, 0), 40, { ap: 0.005, focus: drift.wrist.clone().lerp(shR, 0.4) }), { fov: 12 }),
+      drift: Object.assign(shot(V(-2.4, 10.6, 0), V(1, 0.2, 0), 70, { ap: 0.003, focus: drift.wrist.clone().lerp(shR, 0.4) }), { fov: 7 }),
       // beat 6: from the front a little above: the shoulder, the upper arm and the examiner's hand
       abdR: shot(mid(shR, abd.E, 0.6).add(V(0.35, 0.85, 0)), V(0.6, 0.6, 0.75), 11.5, { ap: 0.015 }),
       // beats 7 and 8: from his side at elbow height, the whole arm and the biceps
