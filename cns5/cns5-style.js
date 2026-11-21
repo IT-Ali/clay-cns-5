@@ -784,7 +784,7 @@
             const outSide = Object.assign({}, outTop, { wrist: outTop.wrist.clone().add(V(0.4, 0.6, -3.2)) });
             const tIn = ww.exIn, tOut = ww.exOut, gi = tIn[0] - 0.25;
             k.push([gi, rest], [gi + 0.28, outSide, { relax: 0.5 }], [gi + 0.5, outTop, { relax: 0.4 }], [tIn[1], g, { ease: K.ease.out }],
-              [tOut[0], g], [tOut[0] + 0.25, outTop, { ease: K.ease.in }], [tOut[0] + 0.44, outSide, { relax: 0.4 }], [tOut[1] + 0.25, rest, { relax: 0.5 }]);
+              [tOut[0], g], [tOut[0] + 0.25, outTop, { ease: K.ease.in }], [tOut[0] + 0.44, outSide, { relax: 0.4 }]);   // it stays out of frame until the cut (the walk back)
           } else k.push([ww.exIn[0], rest], [ww.exIn[1], g, { arc: up(0.5, 0.5 * dz), relax: 0.7 }], [ww.exOut[0], g], [ww.exOut[1] + 0.25, rest, { arc: up(0.5, 0.5 * dz), relax: 0.7 }]);
         }
         for (const h of ['R', 'L']) EK[h].push([T.fing.cutR, EXR[h], { jump: true }], [D, EXR[h]]);

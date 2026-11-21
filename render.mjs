@@ -4,7 +4,7 @@
 //                         (SET.RENDER: 64 samples, 1920x1080, 30 fps):
 //                           out/cns5_captions.mp4, out/cns5_clean.mp4
 //                           out/beats/cns5_beatNN_<name>_captions.mp4 / _clean.mp4
-//   npm run preview       the preview on the GPU: 960x540, 30 fps, 8 samples, captions on: beats 5 and 10 (one MP4 each)
+//   npm run preview       the preview on the GPU: 960x540, 30 fps, 8 samples, captions on: beats 3, 4, 5 and 10 (one MP4 each)
 //                         and the first and last frames; npm run preview -- --beats all = the whole part as one MP4
 //                           out/preview/cns5_preview.mp4 (frames in out/preview/frames, separate from the final render)
 //                           out/preview/check.json (first vs last frame pixel difference, mean loudness, duration)
@@ -55,8 +55,8 @@ const beatFrames = (b) => [Math.round(b.t0 * FPS), Math.round(b.t1 * FPS) - 1];
 // which frames: all, a range, or some beats
 let ranges = [[0, NF - 1]];
 if (opt('frames', '')) ranges = opt('frames').split(',').map((r) => { const [a, b] = r.split('-').map(Number); return [a, b == null || isNaN(b) ? a : b]; });
-// the preview's default: beats 5 and 10, plus the first and the last frame (for check.json); --beats all = the whole part
-const beatsArg = opt('beats', '') || opt('beat', '') || (PREVIEW && !opt('frames', '') ? '5,10' : '');
+// the preview's default: beats 3, 4, 5 and 10, plus the first and the last frame (for check.json); --beats all = the whole part
+const beatsArg = opt('beats', '') || opt('beat', '') || (PREVIEW && !opt('frames', '') ? '3,4,5,10' : '');
 const beatsSel = beatsArg === 'all' ? [] : beatsArg.split(',').filter(Boolean).map(Number);
 if (beatsSel.length) ranges = beatsSel.map((n) => beatFrames(info.beats.find((b) => b.n === n))).concat(PREVIEW ? [[0, 0], [NF - 1, NF - 1]] : []);
 // --test N: only the first N frames of each chosen beat (a quick check of the whole pipeline: frames, sound, MP4, checks)

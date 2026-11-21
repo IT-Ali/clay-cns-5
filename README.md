@@ -29,8 +29,8 @@ npm approve-scripts ffmpeg-static
 npm rebuild ffmpeg-static
 ```
 
-4. The preview: Chrome on the graphics card, 960x540, 30 fps, 8 samples, captions on. By default it renders beats 5
-   (pronator drift) and 10 (finger flexion), one MP4 each, plus the first and last frames:
+4. The preview: Chrome on the graphics card, 960x540, 30 fps, 8 samples, captions on. By default it renders beats 3 and 4
+   (tone, right and left), 5 (pronator drift) and 10 (finger flexion), one MP4 each, plus the first and last frames:
 
 ```bash
 npm run preview
@@ -57,7 +57,7 @@ If `npm approve-scripts` is not a command in your npm version, skip step 2: olde
 step 3 makes sure ffmpeg.exe is there. If the render says Chrome is not using the graphics card, turn on "Use graphics
 acceleration when available" in Chrome's settings.
 
-Options: `--samples 32` (faster), `--frames 900-1200[,1500-1600]`, `--beats 5,10|all`, `--test N` (only the first N frames
+Options: `--samples 32` (faster), `--frames 900-1200[,1500-1600]`, `--beats 3,4,5,10|all`, `--test N` (only the first N frames
 of each chosen beat, encoded to short test MP4s), `--remake` (remake the MP4s from the frames on disk), `--software` (no
 graphics card, very slow); set `CHROME_PATH` to use a particular Chrome.
 
