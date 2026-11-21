@@ -1,9 +1,9 @@
 // node tools/frame-scan.mjs [from=0] [to=last] : a per-frame scan of the WHOLE part (every frame at 30 fps), measured on the
 // scene itself (no picture is rendered except a small colour mask):
-//   - lens: the nearest examiner vertex (glove, forearm, sleeve) to the camera; flagged under 15 cm (1.5 units), which also
+//   - lens: the nearest point on the examiner's surface (glove, forearm, sleeve: every triangle) to the camera; flagged under 15 cm (1.5 units), which also
 //     catches any part passing through the camera plane near the lens
 //   - examiner share: the part of the frame the examiner actually covers (a 192x108 mask render with depth: his body hides
-//     what is behind it); flagged over 35 %
+//     what is behind it; both faces of every surface, so a camera inside a sleeve sees it); flagged over 35 %
 //   - caption over his face: the caption plaque's rectangle (the layout of shared/caption.js) over his face, in front
 //   - cup frames: every tone frame finds its solved elbow cup (solved.json cupFrames), never the fallback
 // Writes checks/transitions/frame-scan.json (every flag, and the worst value of each measure per second) and merges the
@@ -23,7 +23,7 @@ await page.evaluate(({ W, H }) => {
   const W5 = window.CNS5_WORLD, THREE = window.THREE, S = W5.S, R = S.renderer;
   const exMeshes = []; for (const s of ['R', 'L']) W5.EX[s].group.traverse((m) => { if (m.isMesh) exMeshes.push(m); });
   const exSet = new Set(exMeshes), all = []; S.scene.traverse((m) => { if (m.isMesh) all.push(m); });
-  const white = new THREE.MeshBasicMaterial({ color: 0xffffff }), black = new THREE.MeshBasicMaterial({ color: 0x000000 });
+  const white = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide }), black = new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.DoubleSide }), tri = new THREE.Triangle();
   const rt = new THREE.WebGLRenderTarget(192, 108), buf = new Uint8Array(192 * 108 * 4), v = new THREE.Vector3();
   const cx = document.createElement('canvas').getContext('2d');
   const plaque = (t) => { for (const c of W5.CAPTIONS) if (t >= c.t0 && t <= c.t1) { const place = c.place || 'top', k = W / 1920, fs = 56 * k, padX = 40 * k, padY = 22 * k, lh = fs * 1.22, margin = 54 * k, corner = place.length === 2, maxW = (corner ? 860 : 1500) * k; cx.font = `600 ${fs}px "Fredoka", sans-serif`; const words = c.text.split(' '), lines = []; let cur = ''; for (const wd of words) { const nn = cur ? cur + ' ' + wd : wd; if (cx.measureText(nn).width > maxW && cur) { lines.push(cur); cur = wd; } else cur = nn; } if (cur) lines.push(cur); const tw = Math.max(...lines.map((l) => cx.measureText(l).width)), bw = tw + padX * 2, bh = lines.length * lh + padY * 2; let x = (W - bw) / 2, y = margin; if (place === 'bottom') y = H - margin - bh; if (place === 'tl') { x = margin; y = margin; } else if (place === 'tr') { x = W - margin - bw; y = margin; } else if (place === 'bl') { x = margin; y = H - margin - bh; } else if (place === 'br') { x = W - margin - bw; y = H - margin - bh; } return [x, y, bw, bh]; } return null; };
@@ -36,7 +36,12 @@ await page.evaluate(({ W, H }) => {
     const cam = S.camera; cam.updateMatrixWorld(true); const cp = cam.getWorldPosition(new THREE.Vector3());
     let near = 1e9, nearName = '';
     for (const m of exMeshes) { let vis = true, o = m; while (o) { if (!o.visible) { vis = false; break; } o = o.parent; } if (!vis) continue;
-      const P = m.geometry.attributes.position; for (let i = 0; i < P.count; i += 2) { v.fromBufferAttribute(P, i).applyMatrix4(m.matrixWorld); const d = v.distanceTo(cp); if (d < near) { near = d; nearName = m.name || m.parent.name || 'examiner'; } } }
+      // the nearest point on the mesh's SURFACE (every triangle: a long sleeve tube has its rings far apart)
+      const inv = m.matrixWorld.clone().invert(), lp = cp.clone().applyMatrix4(inv), sc = m.matrixWorld.getMaxScaleOnAxis();
+      const P = m.geometry.attributes.position, I = m.geometry.index, nT = I ? I.count / 3 : P.count / 3;
+      for (let k = 0; k < nT; k++) { const ia = I ? I.getX(3 * k) : 3 * k, ib = I ? I.getX(3 * k + 1) : 3 * k + 1, ic = I ? I.getX(3 * k + 2) : 3 * k + 2;
+        tri.a.fromBufferAttribute(P, ia); tri.b.fromBufferAttribute(P, ib); tri.c.fromBufferAttribute(P, ic); tri.closestPointToPoint(lp, v);
+        const d = v.applyMatrix4(m.matrixWorld).distanceTo(cp); if (d < near) { near = d; nearName = (m.material && m.material.name) || m.parent.name || 'examiner'; } } }
     // the mask: examiner white, everything else black, with depth
     const keep = all.map((m) => m.material), bg = S.scene.background, fog = S.scene.fog;
     all.forEach((m) => { m.material = exSet.has(m) ? white : black; });

@@ -1454,47 +1454,14 @@
  ],
  "frameScan": {
   "frames": [
-   420,
-   480
+   680,
+   730
   ],
-  "flags": 4,
+  "flags": 0,
   "limits": {
    "lensCm": 15,
    "examinerPct": 35
   },
-  "flagged": [
-   {
-    "frame": 477,
-    "t": 15.9,
-    "shot": "toneR",
-    "why": [
-     "caption over his face"
-    ]
-   },
-   {
-    "frame": 478,
-    "t": 15.933,
-    "shot": "toneR",
-    "why": [
-     "caption over his face"
-    ]
-   },
-   {
-    "frame": 479,
-    "t": 15.967,
-    "shot": "toneR",
-    "why": [
-     "caption over his face"
-    ]
-   },
-   {
-    "frame": 480,
-    "t": 16,
-    "shot": "toneR",
-    "why": [
-     "caption over his face"
-    ]
-   }
-  ]
+  "flagged": []
  }
 }

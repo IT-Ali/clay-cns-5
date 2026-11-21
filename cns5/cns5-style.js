@@ -62,15 +62,16 @@
     [0.42, { elbow: 112 }], [0.6, { elbow: 28 }], [0.32, { elbow: 96 }], [0.36, { elbow: 55 }],
     [0.36, { abd: 30 }], [0.45, { abd: 4 }], [0.28, { abd: 22 }], [0.3, { abd: 10 }],
   ];
+  // each caption placed where it never covers his face (checked on every frame: tools/caption-place.mjs, tools/frame-scan.mjs)
   const CAPTIONS = [
-    { t0: 1.4, t1: 4.8, text: 'Motor system: the arms', place: 'top' },
-    { t0: 7.5, t1: 12.75, text: 'Look: no wasting, no fasciculation, no tremor (ask about pain first)', place: 'top' },
-    { t0: 15.9, t1: 22.6, text: 'Tone: let it go floppy - wrist, forearm, elbow, shoulder: normal', place: 'top' },
-    { t0: 24.0, t1: 29.3, text: 'Same on the left: normal tone', place: 'top' },
+    { t0: 1.4, t1: 4.8, text: 'Motor system: the arms', place: 'tr' },
+    { t0: 7.5, t1: 12.2, text: 'Look: no wasting, no fasciculation, no tremor (ask about pain first)', place: 'tr' },
+    { t0: 15.9, t1: 22.6, text: 'Tone: let it go floppy - wrist, forearm, elbow, shoulder: normal', place: 'bl' },
+    { t0: 24.0, t1: 29.3, text: 'Same on the left: normal tone', place: 'tl' },
     { t0: 32.7, t1: 39.5, text: 'Pronator drift: arms out, palms up, eyes closed - no drift', place: 'bottom' },
-    { t0: T.abd.R.press[0], t1: T.abd.L.exOut[1], text: 'Shoulder abduction (C5): against gravity, then against my hand - full power', place: 'top' },
-    { t0: T.elbF.R.press[0], t1: T.elbF.L.exOut[1], text: 'Elbow flexion (C5, C6): pull me towards you - full power', place: 'bottom' },
-    { t0: T.elbE.R.press[0], t1: T.elbE.L.exOut[1], text: 'Elbow extension (C7): push me away - full power', place: 'bottom' },
+    { t0: T.abd.R.press[0], t1: T.abd.L.exOut[1], text: 'Shoulder abduction (C5): against gravity, then against my hand - full power', place: 'br' },
+    { t0: T.elbF.R.press[0], t1: T.elbF.L.exOut[1], text: 'Elbow flexion (C5, C6): pull me towards you - full power', place: 'top' },
+    { t0: T.elbE.R.press[0], t1: T.elbE.L.exOut[1], text: 'Elbow extension (C7): push me away - full power', place: 'top' },
     { t0: T.wrist.R.press[0], t1: T.wrist.L.exOut[1], text: "Wrist extension (C6, C7): don't let me push it down - full power", place: 'top' },
     { t0: T.grip.R.press[0], t1: T.grip.L.exOut[1], text: 'Finger flexion (C8): squeeze my fingers - full power', place: 'top' },
     { t0: T.fing.R.press[0], t1: T.fing.L.exOut[1], text: "Finger abduction (T1): spread them, don't let me push them in - full power", place: 'top' },
@@ -160,7 +161,10 @@
       const withGive = (a, give, u) => { const o = Object.assign({}, a); for (const [k, v] of Object.entries(give || {})) o[k] = (o[k] || 0) + v * u; return o; };
 
       // ------------------------------------------------------------ examiner helpers
-      const applyEx = (side, st) => { HANDS.SLEEVE_DIR = SLEEVE[st.left ? 'L' : 'R']; HOME.applyEx(EX, side, st); HANDS.SLEEVE_DIR = SLEEVE.R; };
+      // st.sleeve (world, optional): where the upper sleeve leaves from the elbow (the handshake: straight on from the forearm, so
+      // it leaves the frame at the side with no bend and no sleeve end in view)
+      const sleeveOf = (st) => st.sleeve || SLEEVE[st.left ? 'L' : 'R'];
+      const applyEx = (side, st) => { HANDS.SLEEVE_DIR = sleeveOf(st); HOME.applyEx(EX, side, st); HANDS.SLEEVE_DIR = SLEEVE.R; };
       const relTo = (fr, wrist, quat, back) => { const iq = fr.q.clone().invert(); return { p: wrist.clone().sub(fr.p).applyQuaternion(iq), q: iq.clone().multiply(quat), back: back.clone().applyQuaternion(iq) }; };
       const fromRel = (fr, rel) => ({ wrist: fr.p.clone().add(toV(rel.p).applyQuaternion(fr.q)), quat: fr.q.clone().multiply(toQ(rel.q)), back: toV(rel.back).applyQuaternion(fr.q).normalize(), pose: rel.pose });
       const POSE = {
@@ -644,7 +648,11 @@
         const ta = a.thumb || [0.15, 0, 0.12, 0.08], tb = b.thumb || [0.15, 0, 0.12, 0.08];
         return { curl, fan, thumb: ta.map((v, i) => K.lerp(v, tb[i], u)) };
       }
-      const lerpEx = (a, b, u) => ({ wrist: a.wrist.clone().lerp(b.wrist, u), quat: a.quat.clone().slerp(b.quat, u), pose: blendPose(a.pose, b.pose, u), back: a.back.clone().lerp(b.back, u).normalize(), left: u < 0.5 ? a.left : b.left });
+      const lerpEx = (a, b, u) => {
+        const o = { wrist: a.wrist.clone().lerp(b.wrist, u), quat: a.quat.clone().slerp(b.quat, u), pose: blendPose(a.pose, b.pose, u), back: a.back.clone().lerp(b.back, u).normalize(), left: u < 0.5 ? a.left : b.left };
+        if (a.sleeve || b.sleeve) { const sa = V(...sleeveOf(a)).normalize(), sb = V(...sleeveOf(b)).normalize(); o.sleeve = sa.lerp(sb, u).normalize().toArray(); }
+        return o;
+      };
       // a patient arm state: { kin: angles, pose } (joint angles, blended joint by joint) or a plain state (rest, the thigh)
       const armOf = (side, s) => (s.kin ? Object.assign(kinState(side, s.kin, s.pose), { kin: s.kin }) : s);
       const lerpArm = (side) => (a, b, u) => {
@@ -734,6 +742,7 @@
       const shakeAt = (side) => (tp) => {
         const a = anglesAt(side, tp) || TONE_BASE, st = exAt('shake', a, side), si = SOL.shakeIndex;
         if (si) { const [j0, j1, u] = pathPos(a, side, tp), t = K.lerp(si.t[j0], si.t[j1], u); st.pose = clonePose(st.pose); st.pose.curl.index = si.base.map((v, i) => v + t * [0.5, 1, 0.8][i]); }
+        st.sleeve = st.back.clone().normalize().toArray();     // the sleeve straight on from the forearm
         return st;
       };
       const EK = { R: [[0, EXR.R]], L: [[0, EXR.L]] };

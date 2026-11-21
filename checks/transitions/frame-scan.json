@@ -1,85 +1,32 @@
 {
  "frames": [
-  420,
-  480
+  680,
+  730
  ],
  "fps": 30,
  "limits": {
   "lensCm": 15,
   "examinerPct": 35
  },
- "flags": 4,
- "flagged": [
-  {
-   "frame": 477,
-   "t": 15.9,
-   "shot": "toneR",
-   "nearCm": 105.2,
-   "nearPart": "examiner",
-   "examinerPct": 10.8,
-   "captionOverFace": 2,
-   "cupMiss": 0,
-   "why": [
-    "caption over his face"
-   ]
-  },
-  {
-   "frame": 478,
-   "t": 15.933,
-   "shot": "toneR",
-   "nearCm": 105.2,
-   "nearPart": "examiner",
-   "examinerPct": 11.4,
-   "captionOverFace": 2,
-   "cupMiss": 0,
-   "why": [
-    "caption over his face"
-   ]
-  },
-  {
-   "frame": 479,
-   "t": 15.967,
-   "shot": "toneR",
-   "nearCm": 105.2,
-   "nearPart": "examiner",
-   "examinerPct": 11.4,
-   "captionOverFace": 2,
-   "cupMiss": 0,
-   "why": [
-    "caption over his face"
-   ]
-  },
-  {
-   "frame": 480,
-   "t": 16,
-   "shot": "toneR",
-   "nearCm": 105.2,
-   "nearPart": "examiner",
-   "examinerPct": 11.7,
-   "captionOverFace": 2,
-   "cupMiss": 0,
-   "why": [
-    "caption over his face"
-   ]
-  }
- ],
+ "flags": 0,
+ "flagged": [],
  "perSecond": {
-  "14": {
-   "minNearCm": 119.1,
+  "22": {
+   "minNearCm": 118.9,
    "maxExaminerPct": 1.3,
    "captionOverFace": 0,
    "cupMiss": 0
   },
-  "15": {
+  "23": {
    "minNearCm": 105,
-   "maxExaminerPct": 11.4,
-   "captionOverFace": 3,
+   "maxExaminerPct": 9.9,
+   "captionOverFace": 0,
    "cupMiss": 0
   },
-  "16": {
-   "minNearCm": 105.2,
-   "maxExaminerPct": 11.7,
-   "captionOverFace": 1,
+  "24": {
+   "minNearCm": 105.1,
+   "maxExaminerPct": 11.8,
+   "captionOverFace": 0,
    "cupMiss": 0
   }
  }
