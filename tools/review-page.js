@@ -70,7 +70,7 @@
   for (const s of ['R', 'L']) {
     const isTone = (c) => c.group === 'tone' && c.side === s;
     PANELS['b-shake' + s] = { t: toneT(s), cam: () => shot(centreAt((c) => isTone(c) && /shake/.test(c.id), toneT(s)), mirDir(s, V(-0.1, 0.55, 1)), 3.6), draw: (ctx, t, w, h) => { callouts((c) => isTone(c) && /shake/.test(c.id), { r: 175, names: (c) => (c.his ? 'his ' : 'ex. ') + (c.finger || (/thumb/.test(c.id) ? 'thumb' : 'palm')) })(ctx, t, w, h); title(ctx, `Tone, his ${sideName(s)} hand: the handshake (palm to palm, fingers round the backs of the hands, thumbs crossing)`); } };
-    PANELS['b-cup' + s] = { t: toneT(s), cam: () => shot(centreAt((c) => isTone(c) && /cup/.test(c.id), toneT(s)), mirDir(s, V(0.5, 0.2, 1)), 4.5), draw: (ctx, t, w, h) => { callouts((c) => isTone(c) && /cup/.test(c.id), { r: 150, names: (c) => c.finger || 'palm' })(ctx, t, w, h); title(ctx, `Tone, his ${sideName(s)} arm: the examiner's palm cupping the back of his elbow`); } };
+    PANELS['b-cup' + s] = { t: toneT(s), cam: () => shot(centreAt((c) => isTone(c) && /cup/.test(c.id), toneT(s)), mirDir(s, V(0.6, 0.8, -0.6)), 4.5), draw: (ctx, t, w, h) => { callouts((c) => isTone(c) && /cup/.test(c.id), { r: 150, names: (c) => c.finger || 'palm' })(ctx, t, w, h); title(ctx, `Tone, his ${sideName(s)} arm: the examiner's palm cupping the back of his elbow`); } };
   }
   // the grip round the two gloved fingers, from the side and from below
   for (const s of ['R', 'L']) {
