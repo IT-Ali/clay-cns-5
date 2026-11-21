@@ -77,6 +77,9 @@ for (const e of events) {
   report.push({ name, ...e, frames: ts.length, flags: r.flags });
   console.log(name, r.flags.length ? r.flags.length + ' flags: ' + [...new Set(r.flags.map((f) => f.what))].join('; ') : 'clean');
 }
-fs.writeFileSync(path.join(OUT, 'report.json'), JSON.stringify(report, null, 1));
+{ const rp = path.join(OUT, 'report.json'); let rep = {}; try { rep = JSON.parse(fs.readFileSync(rp, 'utf8')); } catch (e) { /* none yet */ }
+  if (Array.isArray(rep)) rep = {};
+  rep.transitions = report;   // the strips' automatic flags (bounding-sphere based: the eye and frame-scan.json decide)
+  fs.writeFileSync(rp, JSON.stringify(rep, null, 1)); }
 await b.close();
 console.log('done', ((Date.now() - T0) / 1000).toFixed(0), 's');

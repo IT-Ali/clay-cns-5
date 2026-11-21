@@ -16,6 +16,9 @@
   // ================================================================ CONTENT (the story, in order; times in seconds)
   const D = 90;
   const HOME_HOLD = 1.0;              // the CNS home shot, still, at both ends
+  // every cut lands on the pose grid (the patient and the examiner move on twos, 15 poses a second; the camera follows t):
+  // a cut at a time off the grid would show the old pose for one frame under the new camera
+  const G = (x) => Math.ceil(x * 15 - 1e-6) / 15;
   const BEATS = [
     { n: 1, name: 'Position', t0: 0, t1: 5 },
     { n: 2, name: 'Inspection', t0: 5, t1: 13, hold: [5.3, 6.8] },
@@ -25,8 +28,8 @@
     { n: 6, name: 'Shoulder abduction C5', t0: 42, t1: 50, hold: [42.3, 43.8] },
     { n: 7, name: 'Elbow flexion C5 C6', t0: 50, t1: 58, hold: [50.3, 51.8] },
     { n: 8, name: 'Elbow extension C7', t0: 58, t1: 65, hold: [58.2, 59.7] },
-    { n: 9, name: 'Wrist extension C6 C7', t0: 65, t1: 72.5, hold: [65.2, 66.7] },
-    { n: 10, name: 'Finger flexion C8', t0: 72.5, t1: 80, hold: [72.7, 74.2] },
+    { n: 9, name: 'Wrist extension C6 C7', t0: 65, t1: G(72.5), hold: [65.2, 66.7] },
+    { n: 10, name: 'Finger flexion C8', t0: G(72.5), t1: 80, hold: [72.7, 74.2] },
     { n: 11, name: 'Finger abduction T1', t0: 80, t1: 87, hold: [80.2, 81.7] },
     { n: 12, name: 'End', t0: 87, t1: 90 },
   ];
@@ -35,17 +38,18 @@
   const power = (n, k = 1, kL = k) => {
     const b = B(n), h1 = b.hold[1];
     const R = { pose: [h1 + 0.05, h1 + 0.6 * k], exIn: [h1 + 0.35 * k, h1 + 0.95 * k], press: [h1 + 0.95 * k, h1 + 2.1 * k], exOut: [h1 + 2.1 * k, h1 + 2.4 * k], down: [h1 + 2.38 * k, h1 + 2.78 * k] };
-    const c = h1 + 2.85 * k;
+    const c = G(h1 + 2.85 * k);                 // the cut to his left, on the pose grid
     const L = { pose: [c + 0.05, c + 0.5 * kL], exIn: [c + 0.3 * kL, c + 0.8 * kL], press: [c + 0.8 * kL, c + 1.8 * kL], exOut: [c + 1.8 * kL, c + 2.08 * kL], down: [c + 2.06 * kL, c + 2.4 * kL] };
-    return { R, L, cutL: c, cutR: b.t1 };
+    return { R, L, cutL: c, cutR: G(b.t1) };
   };
   // every event of the part: the picture and the sound both read this table
   const T = {
     push: [1.0, 5.0],
     no: 6.85, inspect: [7.35, 12.7],
-    // tone, right: he offers his hand, the examiner takes it (handshake) and cups the elbow, then moves it
-    toneR: { offer: [14.9, 15.55], exIn: [14.95, 15.7], moves: 15.8, speed: 1.16, release: [21.6, 22.15], down: [21.7, 22.45] },
-    toneL: { cut: 23.0, offer: [23.15, 23.7], exIn: [23.2, 23.85], moves: 23.95, speed: 1.52, release: [28.42, 28.9], down: [28.5, 29.15], cutR: 29.6 },
+    // tone, right: the examiner's hands go to where the handshake and the elbow cup will be and wait; his hand rises into the
+    // grip (exIn ends before his offer does); then the examiner moves the arm
+    toneR: { offer: [14.9, 15.55], exIn: [14.8, 15.45], moves: 15.8, speed: 1.16, release: [21.6, 22.15], down: [21.7, 22.45] },
+    toneL: { cut: 23.0, offer: [23.15, 23.7], exIn: [23.05, 23.6], moves: 23.95, speed: 1.52, release: [28.42, 28.9], down: [28.5, 29.15], cutR: 29.6 },
     drift: { lift: [31.5, 32.5], close: [32.25, 32.55], still: [32.6, 39.6], open: [39.6, 39.8], lower: [39.9, 40.95] },
     abd: power(6, 1.12), elbF: power(7, 1.12), elbE: power(8), wrist: power(9, 1.05), grip: power(10, 1.1), fing: power(11),
     end: { cam: 87.0, pull: [87.25, 89.0] },
@@ -615,7 +619,7 @@
       };
       const cupAt = (a, side, tp) => {
         // solved at this very pose frame (every frame the examiner holds his arm); before and after the hold, his arm is at TONE_BASE
-        const rel = SOL.cupFrames[angKey(a)] || SOL.cupFrames[angKey(TONE_BASE)];
+        const rel = SOL.cupFrames[angKey(a)] || ((root.CUP_MISS = (root.CUP_MISS || 0) + 1), SOL.cupFrames[angKey(TONE_BASE)]);   // CUP_MISS: counted by tools/frame-scan.mjs (must stay 0)
         const st = fromRel(KIN.frames(P, a).elbow, rel);
         st.back = st.back.clone().lerp(WORLD_BACK.cup[0], WORLD_BACK.cup[1]).normalize();
         return side === 'L' ? Object.assign(KIN.mirrorState(st), { left: true }) : st;
@@ -736,10 +740,13 @@
       {
         const tr = T.toneR, tl = T.toneL;
         // tone right: R hand shakes his hand, L hand under his elbow
-        EK.R.push([tr.exIn[0], EXR.R], [tr.exIn[1], shakeAt('R'), { arc: up(0.6, 0.5), relax: 0.6 }], [tr.release[0], shakeAt('R')], [tr.release[1], EXR.R, { arc: up(0.5, 0.6), relax: 0.6 }]);
+        // the gloves reach the handshake and the cup where his hand and elbow will arrive (at the end of his offer) and wait
+        // there; from the moment his hand is in the grip they follow it (a hold key, not a cut: the two states are the same then)
+        const meet = (side) => shakeAt(side)(tr.offer[1] + 0.07), meetL = (side) => shakeAt(side)(tl.offer[1] + 0.07);
+        EK.R.push([tr.exIn[0], EXR.R], [tr.exIn[1], meet('R'), { arc: up(0.6, 0.5), relax: 0.6 }], [tr.offer[1], shakeAt('R'), { jump: true, hold: true }], [tr.release[0], shakeAt('R')], [tr.release[1], EXR.R, { arc: up(0.5, 0.6), relax: 0.6 }]);
         EK.L.push([tr.exIn[0], EXR.L], [tr.exIn[1], cup('R'), { arc: up(0.3, 0.6), relax: 0.6 }], [tr.release[0], cup('R')], [tr.release[1], EXR.L, { arc: up(0.3, 0.6), relax: 0.6 }]);
         // tone left: walked round; his L hand is shaken by the examiner's L hand, the R hand cups the elbow
-        EK.L.push([tl.cut, EXL.L, { jump: true }], [tl.exIn[0], EXL.L], [tl.exIn[1], shakeAt('L'), { arc: up(0.6, -0.5), relax: 0.6 }], [tl.release[0], shakeAt('L')], [tl.release[1], EXL.L, { arc: up(0.5, -0.6), relax: 0.6 }], [tl.cutR, EXR.L, { jump: true }]);
+        EK.L.push([tl.cut, EXL.L, { jump: true }], [tl.exIn[0], EXL.L], [tl.exIn[1], meetL('L'), { arc: up(0.6, -0.5), relax: 0.6 }], [tl.offer[1], shakeAt('L'), { jump: true, hold: true }], [tl.release[0], shakeAt('L')], [tl.release[1], EXL.L, { arc: up(0.5, -0.6), relax: 0.6 }], [tl.cutR, EXR.L, { jump: true }]);
         EK.R.push([tl.cut, EXL.R, { jump: true }], [tl.exIn[0], EXL.R], [tl.exIn[1], cup('L'), { arc: up(0.3, -0.6), relax: 0.6 }], [tl.release[0], cup('L')], [tl.release[1], EXL.R, { arc: up(0.3, -0.6), relax: 0.6 }], [tl.cutR, EXR.R, { jump: true }]);
         // the power tests: the main hand (R on his right, L on his left) to the named point; the other hand rests
         const main = (name, w, side, hand, rel, sup) => {
@@ -764,6 +771,8 @@
         for (const h of ['R', 'L']) EK[h].push([T.fing.cutR, EXR[h], { jump: true }], [D, EXR[h]]);
         for (const k of [EK.R, EK.L]) k.sort((a, b) => a[0] - b[0]);
       }
+      // every jump (a cut: the examiner walked round) must be on the pose grid, so it lands on the camera's cut frame
+      for (const k of [EK.R, EK.L, ARM_KEYS.R, ARM_KEYS.L]) for (const [t, , o] of k) if (o && o.jump && !o.hold && Math.abs(t * 15 - Math.round(t * 15)) > 1e-6) throw new Error('a jump off the pose grid at ' + t + ' s');
       const exAtT = { R: keyed(EK.R, lerpEx), L: keyed(EK.L, lerpEx) };
 
       // ---- the muscle working: a subtle firming of the belly while he holds against the hand (no lump; about 1 mm)
@@ -926,6 +935,7 @@
         if (on) CAPTION.at(ctx, t, CAPTIONS, W, Hh2);
         if (root.REVIEW_OVERLAY) root.REVIEW_OVERLAY(ctx, t, W, Hh2);
       };
+      root.CNS5_UPDATE = update;      // the frame without rendering it (tools/frame-scan.mjs measures every frame this way)
       return { update, overlay };
     },
 

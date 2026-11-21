@@ -57,12 +57,14 @@
     const CAM_KEYS = [
       [0, 'home'], [1.0, 'home'], [T.push[1], 'upper'],
       [T.inspect[0], 'upper'], [8.6, 'inspSh'], [10.0, 'inspArm'], [11.3, 'inspFore'], [T.inspect[1], 'inspHands'],
-      [13.0, 'toneR', cut], [23.0, 'toneL', cut], [29.6, 'drift', cut],
-      [42.0, 'abdR', cut], [T.abd.cutL, 'abdL', cut], [50.0, 'elbR', cut], [T.elbF.cutL, 'elbL', cut], [58.0, 'elbR', cut], [T.elbE.cutL, 'elbL', cut],
-      [65.0, 'wristR', cut], [T.wrist.cutL, 'wristL', cut], [72.5, 'gripWideR', cut], [T.grip.R.pose[0], 'gripWideR'], [T.grip.R.pose[1], 'gripR'], [T.grip.R.down[0], 'gripR'], [T.grip.R.down[1], 'gripWideR'],
-      [T.grip.cutL, 'gripWideL', cut], [T.grip.L.pose[0], 'gripWideL'], [T.grip.L.pose[1], 'gripL'], [T.grip.L.down[0], 'gripL'], [T.grip.L.down[1], 'gripWideL'], [80.0, 'fingR', cut], [T.fing.cutL, 'fingL', cut],
+      [BEATS[2].t0, 'toneR', cut], [T.toneL.cut, 'toneL', cut], [BEATS[4].t0, 'drift', cut],
+      [BEATS[5].t0, 'abdR', cut], [T.abd.cutL, 'abdL', cut], [BEATS[6].t0, 'elbR', cut], [T.elbF.cutL, 'elbL', cut], [BEATS[7].t0, 'elbR', cut], [T.elbE.cutL, 'elbL', cut],
+      [BEATS[8].t0, 'wristR', cut], [T.wrist.cutL, 'wristL', cut], [BEATS[9].t0, 'gripWideR', cut], [T.grip.R.pose[0], 'gripWideR'], [T.grip.R.pose[1], 'gripR'], [T.grip.R.down[0], 'gripR'], [T.grip.R.down[1], 'gripWideR'],
+      [T.grip.cutL, 'gripWideL', cut], [T.grip.L.pose[0], 'gripWideL'], [T.grip.L.pose[1], 'gripL'], [T.grip.L.down[0], 'gripL'], [T.grip.L.down[1], 'gripWideL'], [BEATS[10].t0, 'fingR', cut], [T.fing.cutL, 'fingL', cut],
       [T.end.cam, 'endR', cut], [T.end.pull[0], 'endR'], [T.end.pull[1], 'home'], [90, 'home'],
     ];
+    // every cut on the pose grid (1/15 s), where the patient's and the examiner's poses change too
+    for (const [t, , o] of CAM_KEYS) if (o && o.cut && Math.abs(t * 15 - Math.round(t * 15)) > 1e-6) throw new Error('a camera cut off the pose grid at ' + t + ' s');
     // the shadow maps tightened round the subject of the close shots (crisp contact shadows)
     const lights = (t, name) => {
       if (name === 'home' || name === 'upper' || name === 'endR') return {};
