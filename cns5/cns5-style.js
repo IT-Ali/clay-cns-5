@@ -775,7 +775,17 @@
           const hand = side, k = EK[hand], rest = side === 'R' ? EXR[hand] : EXL[hand], dz = side === 'R' ? 1 : -1;
           const g = (tp) => fingEx(side, seg(tp, [ww.press[0], ww.press[0] + 0.3], K.ease.out) * (1 - seg(tp, [ww.exOut[0], ww.exOut[0] + 0.15])));
           if (side === 'L') for (const h of ['R', 'L']) EK[h].push([T.fing.cutL, EXL[h], { jump: true }]);
-          k.push([ww.exIn[0], rest], [ww.exIn[1], g, { arc: up(0.5, 0.5 * dz), relax: 0.7 }], [ww.exOut[0], g], [ww.exOut[1] + 0.25, rest, { arc: up(0.5, 0.5 * dz), relax: 0.7 }]);
+          if (side === 'L') {
+            // his left: the camera looks down on the thigh and the examiner's arm leaves the frame by its top edge, so the hand
+            // comes in and goes out along its own forearm from beyond that edge (round by the side, outside the frame), the
+            // sleeve leaving the frame close by; it never sweeps across the shot
+            const f0 = fingEx(side, 0), b = f0.back.clone().normalize();
+            const outTop = Object.assign({}, f0, { wrist: f0.wrist.clone().addScaledVector(b, 3.6), pose: POSE.travel });
+            const outSide = Object.assign({}, outTop, { wrist: outTop.wrist.clone().add(V(0.4, 0.6, -3.2)) });
+            const tIn = ww.exIn, tOut = ww.exOut, gi = tIn[0] - 0.25;
+            k.push([gi, rest], [gi + 0.28, outSide, { relax: 0.5 }], [gi + 0.5, outTop, { relax: 0.4 }], [tIn[1], g, { ease: K.ease.out }],
+              [tOut[0], g], [tOut[0] + 0.25, outTop, { ease: K.ease.in }], [tOut[0] + 0.44, outSide, { relax: 0.4 }], [tOut[1] + 0.25, rest, { relax: 0.5 }]);
+          } else k.push([ww.exIn[0], rest], [ww.exIn[1], g, { arc: up(0.5, 0.5 * dz), relax: 0.7 }], [ww.exOut[0], g], [ww.exOut[1] + 0.25, rest, { arc: up(0.5, 0.5 * dz), relax: 0.7 }]);
         }
         for (const h of ['R', 'L']) EK[h].push([T.fing.cutR, EXR[h], { jump: true }], [D, EXR[h]]);
         for (const k of [EK.R, EK.L]) k.sort((a, b) => a[0] - b[0]);
