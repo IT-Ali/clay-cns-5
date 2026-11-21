@@ -70,7 +70,7 @@
   for (const s of ['R', 'L']) {
     const isTone = (c) => c.group === 'tone' && c.side === s;
     PANELS['b-shake' + s] = { t: toneT(s), cam: () => shot(centreAt((c) => isTone(c) && /shake/.test(c.id), toneT(s)), mirDir(s, V(-0.1, 0.55, 1)), 3.6), draw: (ctx, t, w, h) => { callouts((c) => isTone(c) && /shake/.test(c.id), { r: 175, names: (c) => (c.his ? 'his ' : 'ex. ') + (c.finger || (/thumb/.test(c.id) ? 'thumb' : 'palm')) })(ctx, t, w, h); title(ctx, `Tone, his ${sideName(s)} hand: the handshake (palm to palm, fingers round the backs of the hands, thumbs crossing)`); } };
-    PANELS['b-cup' + s] = { t: toneT(s), cam: () => shot(centreAt((c) => isTone(c) && /cup/.test(c.id), toneT(s)), mirDir(s, V(-0.75, -0.15, 0.65)), 4.2), draw: (ctx, t, w, h) => { callouts((c) => isTone(c) && /cup/.test(c.id), { r: 150, names: (c) => c.finger || 'palm' })(ctx, t, w, h); title(ctx, `Tone, his ${sideName(s)} arm: the examiner's palm cupping the back of his elbow`); } };
+    PANELS['b-cup' + s] = { t: toneT(s), cam: () => shot(centreAt((c) => isTone(c) && /cup/.test(c.id), toneT(s)), mirDir(s, V(0.5, 0.2, 1)), 4.5), draw: (ctx, t, w, h) => { callouts((c) => isTone(c) && /cup/.test(c.id), { r: 150, names: (c) => c.finger || 'palm' })(ctx, t, w, h); title(ctx, `Tone, his ${sideName(s)} arm: the examiner's palm cupping the back of his elbow`); } };
   }
   // the grip round the two gloved fingers, from the side and from below
   for (const s of ['R', 'L']) {
@@ -139,9 +139,12 @@
       for (const c of W.CONTACT_SPECS) { st.set(c, { mn: 1e9, mx: -1e9, worst: null }); for (const t of c.ts) { const k = t.toFixed(4); if (!at.has(k)) at.set(k, { t, cs: [] }); at.get(k).cs.push(c); } }
       for (const { t, cs } of [...at.values()].sort((a, b) => a.t - b.t)) {
         window.seek(t, 1);
-        for (const c of cs) { const g = W.measureContact(c); if (!g) continue; const s = st.get(c); if (g.gap < s.mn) { s.mn = g.gap; if (g.gap < 0) s.worst = t; } if (g.gap > s.mx) { s.mx = g.gap; if (g.gap > 0.015) s.worst = t; } }
+        for (const c of cs) {
+          const g = W.measureContact(c); if (!g) continue; const s = st.get(c); if (g.gap < s.mn) { s.mn = g.gap; if (g.gap < 0) s.worst = t; } if (g.gap > s.mx) { s.mx = g.gap; if (g.gap > 0.015) s.worst = t; }
+          if (c.pad) { const gp = W.measureContact(Object.assign({}, c, { part: c.pad })); if (gp) { s.pmn = Math.min(s.pmn == null ? 1e9 : s.pmn, gp.gap); s.pmx = Math.max(s.pmx == null ? -1e9 : s.pmx, gp.gap); if (gp.gap > 0.015 || gp.gap < 0) s.worst = t; } }
+        }
       }
-      const res = W.CONTACT_SPECS.map((c) => { const s = st.get(c); return { id: c.id, name: c.name, group: c.group, side: c.side, times: c.ts.map((x) => +x.toFixed(3)), minMM: +(s.mn * 100).toFixed(3), maxMM: +(s.mx * 100).toFixed(3), worstAt: s.worst }; });
+      const res = W.CONTACT_SPECS.map((c) => { const s = st.get(c); return { id: c.id, name: c.name, group: c.group, side: c.side, times: c.ts.map((x) => +x.toFixed(3)), minMM: +(s.mn * 100).toFixed(3), maxMM: +(s.mx * 100).toFixed(3), padMinMM: s.pmn == null ? null : +(s.pmn * 100).toFixed(3), padMaxMM: s.pmx == null ? null : +(s.pmx * 100).toFixed(3), worstAt: s.worst }; });
       return res;
     },
   };

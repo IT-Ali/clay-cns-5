@@ -9,10 +9,11 @@ const notes = fs.existsSync(path.join(SB, 'notes.json')) ? JSON.parse(fs.readFil
 const img = (id) => { const f = path.join(SB, 'img', id + '.jpg'); return fs.existsSync(f) ? 'data:image/jpeg;base64,' + fs.readFileSync(f).toString('base64') : ''; };
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const LIMIT = 1.5;
+const rng = (a, b) => (Math.abs(b - a) < 0.005 ? a.toFixed(2) : a.toFixed(2) + ' – ' + b.toFixed(2)) + ' mm';
 const row = (c) => {
-  const ok = c.minMM >= 0 && c.maxMM <= LIMIT;
-  const v = Math.abs(c.maxMM - c.minMM) < 0.005 ? c.minMM.toFixed(2) : c.minMM.toFixed(2) + ' – ' + c.maxMM.toFixed(2);
-  return `<tr class="${ok ? 'ok' : 'bad'}"><td>${esc(c.name)}</td><td class="num">${v} mm</td><td class="num">${c.times.length > 1 ? c.times.length + " pose frames" : c.times[0].toFixed(2) + ' s'}</td><td><span class="pill">${ok ? 'pass' : 'check'}</span></td></tr>`;
+  const hasPad = c.padMinMM != null;
+  const ok = c.minMM >= 0 && c.maxMM <= LIMIT && (!hasPad || (c.padMinMM >= 0 && c.padMaxMM <= LIMIT));
+  return `<tr class="${ok ? 'ok' : 'bad'}"><td>${esc(c.name)}</td><td class="num">${rng(c.minMM, c.maxMM)}</td><td class="num">${hasPad ? rng(c.padMinMM, c.padMaxMM) : '–'}</td><td class="num">${c.times.length > 1 ? c.times.length + ' pose frames' : c.times[0].toFixed(2) + ' s'}</td><td><span class="pill">${ok ? 'pass' : 'check'}</span></td></tr>`;
 };
 const groups = [...new Set(REVIEW.map((r) => r.group))];
 const html = `<title>CNS Part 5 Storyboard</title>
@@ -84,7 +85,7 @@ ${REVIEW.filter((r) => r.group === g).map((r) => `    <article class="panel"><im
 <section>
   <h2>Every solved contact</h2>
   <p style="margin:0;color:var(--muted);max-width:80ch">Smallest signed distance from the touching part's vertices to the triangles of the surface it touches, measured on the meshes of the rendered frames (negative would mean sinking in). The tone contacts are measured at several moments through the moves (smallest – largest). Each contact is solved to 0.5 mm; the rule is 0 to ${LIMIT} mm.</p>
-  <div class="tablewrap"><table><thead><tr><th>Contact</th><th>Gap (measured)</th><th>When</th><th>Result</th></tr></thead><tbody>
+  <div class="tablewrap"><table><thead><tr><th>Contact</th><th>Nearest point</th><th>Pad (end bone)</th><th>When</th><th>Result</th></tr></thead><tbody>
 ${contacts.map(row).join('\n')}
   </tbody></table></div>
 </section>

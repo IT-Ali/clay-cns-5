@@ -202,6 +202,19 @@
         // a finger settled onto a surface: bent at its three joints until its smallest gap is 0.5 mm; if it cannot reach,
         // it is turned a little toward its neighbours (never more than 0.15 rad, so the fingers stay together)
         const fanOf = (pose, k) => (pose.fan && pose.fan[k] != null ? pose.fan[k] : HANDS.FINGERS[k].spread * (pose.spread == null ? 1 : pose.spread) * 2.2);
+        // the pad (the end bone) of a finger or thumb
+        const padMeshes = (hand, f) => C5.meshesUnder(f === 'thumb' ? hand.thumb.ip : hand.fingers[f].dip);
+        const PAD_MAX = 0.012;   // a pad further than 1.2 mm from the skin is bent onto it
+        // bend the two end joints of a finger (the middle one 0.6 as much as the end one) until its pad is at the target gap on
+        // every surface of Ss, with no part of the finger sinking in; place(i) puts the hand where surface i is measured
+        const padTo = (hand, pose, f, Ss, place = () => {}) => {
+          const c0 = pose.curl[f].slice(), tMax = Math.max(0, Math.min(1.6, (1.95 - c0[1]) / 0.6, 1.45 - c0[2]));
+          const at = (t) => { pose.curl[f] = [c0[0], c0[1] + 0.6 * t, c0[2] + t]; let pad = -1e9, whole = 1e9; Ss.forEach((S, i) => { place(i); hand.pose(pose); hand.group.updateMatrixWorld(true); pad = Math.max(pad, C5.gap(padMeshes(hand, f), S).gap); whole = Math.min(whole, C5.gap(C5.parts(hand, f), S).gap); }); return { pad, whole }; };
+          let lo = 0, hi = tMax;
+          const rHi = at(hi); if (rHi.pad > C5.TARGET && rHi.whole >= 0.0003) lo = hi;
+          else for (let k = 0; k < 16; k++) { const m = (lo + hi) / 2, r = at(m); if (r.pad > C5.TARGET && r.whole >= 0.0003) lo = m; else hi = m; }
+          const r = at(lo); place(0); hand.pose(pose); hand.group.updateMatrixWorld(true); return r;
+        };
         const settleFinger = (hand, pose, f, S0, o = {}) => {
           const fans = {}; for (const k of F4) fans[k] = fanOf(pose, k); pose.fan = fans;
           if (!pose.curl) { pose.curl = {}; for (const k of F4) pose.curl[k] = (pose.all || [0.12, 0.18, 0.1]).slice(); }
@@ -215,7 +228,9 @@
             if (r.gap >= 0 && r.gap <= 0.009) break search;
           }
           pose.fan[f] = f0 + best.df; pose.curl[f] = best.curl; hand.pose(pose); hand.group.updateMatrixWorld(true);
-          return best.gap;
+          // the pad too: a finger touching only along its middle bones has its two end joints bent further until the pad rests on the skin
+          if (C5.gap(padMeshes(hand, f), S0).gap > PAD_MAX) padTo(hand, pose, f, [S0]);
+          return C5.gap(C5.parts(hand, f), S0).gap;
         };
         // lay a gloved hand on a surface: the contact settled to 0.5 mm along n, then each finger (and the thumb) onto it
         const layHand = (side, contact, at, n, fingerDir, base, S0, back, o = {}) => {
@@ -320,7 +335,11 @@
               const set = (t) => { pose.curl[f] = base[f].map((v, i) => v + t * [0.5, 1, 0.8][i]); };
               let lo = -0.7, hi = 0.6; set(lo); let g = gapsFor(f);
               if (Math.min(...g) >= 0.003) { for (let k = 0; k < 14; k++) { const m = (lo + hi) / 2; set(m); const gm = gapsFor(f); if (Math.min(...gm) >= 0.003) { lo = m; g = gm; } else hi = m; } set(lo); }
-              msg.push(`${f} ${(Math.min(...g) * 100).toFixed(2)}-${(Math.max(...g) * 100).toFixed(2)}`);
+              // and its pad onto the back of his hand on every pose (the end joints bent further)
+              const place = (i) => { ex.group.position.copy(smp[i].st.wrist); ex.group.quaternion.copy(smp[i].st.quat); };
+              const pr = padTo(ex, pose, f, smp.map((x) => x.S), place);
+              g = gapsFor(f);
+              msg.push(`${f} ${(Math.min(...g) * 100).toFixed(2)}-${(Math.max(...g) * 100).toFixed(2)} (pad up to ${(pr.pad * 100).toFixed(2)})`);
             }
             // the index finger, which wraps nearest his wrist, is bent again at every pose of the path (0.5 mm each)
             { const f = 'index', b0 = pose.curl.index.slice(), ts = [], gs = [];
@@ -333,9 +352,9 @@
             log(`tone: the examiner's fingers over the ${smp.length} poses of the moves (mm): ${msg.join(', ')}`);
           }
         }
-        // ---- the cup under the back of the elbow (the examiner's other hand): solved at every pose of the tone moves and halfway
-        // between (the skin of the elbow changes as the elbow bends and the forearm turns); at each the palm is laid on and the
-        // fingers bent round onto the skin; the animation follows the same path
+        // ---- the cup under the back of the elbow (the examiner's other hand): here only where it sits (searched at the start of
+        // the moves); it is then solved at every pose frame of the moves (cupF below), as the skin of the elbow changes when the
+        // elbow bends and the forearm turns: at each the palm is laid on and the fingers (and their pads) bent round onto the skin
         if (want('cup')) {
           const a = TONE_BASE, pp = SOL.ppose.shake;
           const cupLay = (aa, offs, prevPose, sides) => {
@@ -347,10 +366,7 @@
           };
           const b0 = cupLay(a, [-0.3, -0.2, -0.1, 0, 0.1], null, [-0.35, -0.2, -0.05, 0.1]);
           log(`tone: elbow cup offset ${b0.so.toFixed(2)} across, ${b0.sd.toFixed(2)} along the arm: ${fmt(b0.g)}`);
-          const path = []; let worst = 0;
-          for (const aa of TONE_PATH) { let r = cupLay(aa, [b0.so], b0.st.pose, [b0.sd]); if (Math.max(...Object.values(r.g).map((v) => Math.abs(v - C5.TARGET))) > 0.006) { const r2 = cupLay(aa, [b0.so - 0.15, b0.so, b0.so + 0.15], b0.st.pose, [b0.sd - 0.15, b0.sd, b0.sd + 0.15]); if (r2.e < r.e) r = r2; log(`tone: cup at ${JSON.stringify(aa)} searched again: ${fmt(r.g)}`); } const fr = KIN.frames(P, aa).elbow, rel = relTo(fr, r.st.wrist, r.st.quat, r.st.back); worst = Math.max(worst, ...Object.values(r.g).map((v) => Math.abs(v - C5.TARGET))); path.push({ p: A(rel.p), q: [rel.q.x, rel.q.y, rel.q.z, rel.q.w], back: A(rel.back), pose: r.st.pose }); }
-          SOL.cupPath = path; delete SOL.cup; SOL.cupBase = { so: b0.so, sd: b0.sd, pose: b0.st.pose };
-          log(`tone: elbow cup solved on the ${path.length} poses of the moves (largest error from 0.5 mm: ${(worst * 100).toFixed(2)} mm)`);
+          SOL.cupBase = { so: b0.so, sd: b0.sd, pose: b0.st.pose }; delete SOL.cupPath; delete SOL.cup; delete SOL.cupFrames;   // the frames are solved again from this base (cupF)
         }
         // ---- the cup at EVERY pose frame his arm takes while it is held (the arm moves on twos, so these are the only angles
         // it shows): no blending between solved poses, which let the fingers sink into the elbow between them.
@@ -366,7 +382,7 @@
             const fd = Lat.clone().negate().addScaledVector(ux, 0.15);
             return searchLay('L', 'palm', h.p, h.n, [fd], offs, sides, prevPose, (p) => surfArm('R', p, 1.8), V(0.15, -0.62, 1), { rounds: 2 }, ['palm'].concat(F4), (from, dir) => hitArm('R', from, dir));
           };
-          const err = (r) => Math.max(...Object.values(r.g).map((v) => Math.abs(v - C5.TARGET)));
+          const err = (r) => Math.max(...['palm'].concat(F4).map((k) => Math.abs(r.g[k] - C5.TARGET)));
           // the cup's place on his elbow (from the cup block; searched the same way here if this solved.json predates it)
           if (!SOL.cupBase) { const b0 = cupLayF(TONE_BASE, [-0.3, -0.2, -0.1, 0, 0.1], [-0.35, -0.2, -0.05, 0.1], POSE.cup); SOL.cupBase = { so: b0.so, sd: b0.sd, pose: b0.st.pose }; }
           const B = SOL.cupBase;
@@ -375,8 +391,8 @@
           const liftClear = (r) => {
             const S0 = surfArm('R', r.at, 1.8), need = ['palm'].concat(F4);
             for (let k = 0; k < 4 && r.g.palm < 0.0003; k++) { r.st.wrist.addScaledVector(r.n, 0.0005 - r.g.palm); applyEx('L', r.st); r.g = handGaps('L', S0, need); }
-            for (const f of F4) if (r.g[f] < 0.0003 || r.g[f] > 0.012) { applyEx('L', r.st); settleFinger(handOf('L'), r.st.pose, f, S0); applyEx('L', r.st); }
-            r.g = handGaps('L', S0, need);
+            for (const f of F4) if (r.g[f] < 0.0003 || r.g[f] > 0.012 || C5.gap(padMeshes(handOf('L'), f), S0).gap > PAD_MAX) { applyEx('L', r.st); settleFinger(handOf('L'), r.st.pose, f, S0); applyEx('L', r.st); }
+            r.g = handGaps('L', S0, need); for (const f of F4) r.g[f + 'Pad'] = C5.gap(padMeshes(handOf('L'), f), S0).gap;
             return r;
           };
           const solveFrame = (aa) => {
@@ -559,7 +575,6 @@
         return side === 'L' ? Object.assign(KIN.mirrorState(st), { left: true }) : st;
       };
       // the cup under the elbow: the solution at the poses of the tone path either side of his current angles
-      const blendRel = (r1, r2, u) => { const q = toQ(r1.q).slerp(toQ(r2.q), u); return { p: r1.p.map((v, i) => K.lerp(v, r2.p[i], u)), q: [q.x, q.y, q.z, q.w], back: r1.back.map((v, i) => K.lerp(v, r2.back[i], u)), pose: blendPose(r1.pose, r2.pose, u) }; };
       // where his arm is on the tone path: the two path poses either side and how far between them
       const pathPos = (a, side, tp) => {
         const keys = side === 'R' ? TONE_R : TONE_L, n = 2 * keys.length - 1;
@@ -571,8 +586,8 @@
         const j = 2 * i; return pr < 0.5 ? [j, j + 1, pr * 2] : [j + 1, j + 2, (pr - 0.5) * 2];
       };
       const cupAt = (a, side, tp) => {
-        const Lp = SOL.cupPath, fr0 = SOL.cupFrames && SOL.cupFrames[angKey(a)];   // solved at this very pose frame
-        const rel = fr0 || (() => { const [j0, j1, u] = pathPos(a, side, tp); return blendRel(Lp[j0], Lp[j1], u); })();
+        // solved at this very pose frame (every frame the examiner holds his arm); before and after the hold, his arm is at TONE_BASE
+        const rel = SOL.cupFrames[angKey(a)] || SOL.cupFrames[angKey(TONE_BASE)];
         const st = fromRel(KIN.frames(P, a).elbow, rel);
         st.back = st.back.clone().lerp(WORLD_BACK.cup[0], WORLD_BACK.cup[1]).normalize();
         return side === 'L' ? Object.assign(KIN.mirrorState(st), { left: true }) : st;
@@ -770,6 +785,7 @@
       {
         const exP = (h, name) => () => C5.parts(handOf(h), name);
         const hisF = (s, f) => () => (f === 'thumb' ? C5.meshesUnder(P.arms[s].hand.thumb.mcp) : C5.meshesUnder(P.arms[s].hand.fingers[f].mcp));
+        const hisPad = (s, f) => () => C5.meshesUnder(f === 'thumb' ? P.arms[s].hand.thumb.ip : P.arms[s].hand.fingers[f].dip);   // the pad (end bone)
         const skin = (s) => () => armSkin(s), glove = (h) => () => gloveMeshes(h);
         const sideName = (s) => (s === 'R' ? 'right' : 'left');
         const add = (o) => CONTACT_SPECS.push(o);
@@ -780,28 +796,28 @@
           const tw = s === 'R' ? T.toneR : T.toneL, tt = [];
           for (let f = Math.ceil(tw.moves * POSES - 1e-6); f / POSES < tw.release[0]; f++) tt.push(f / POSES);
           add({ id: 'shake-palm-' + s, group: 'tone', side: s, ts: tt, name: `Tone ${sd}: examiner's palm on his palm`, part: exP(main, 'palm'), surf: skin(s) });
-          for (const f of F4) add({ id: `shake-ex-${f}-${s}`, group: 'tone', side: s, ts: tt, name: `Tone ${sd}: examiner's ${f} finger round the back of his hand`, part: exP(main, f), surf: skin(s), finger: f });
-          add({ id: 'shake-exthumb-' + s, group: 'tone', side: s, ts: tt, name: `Tone ${sd}: examiner's thumb over the back of his hand`, part: exP(main, 'thumb'), surf: skin(s) });
-          for (const f of F4) add({ id: `shake-his-${f}-${s}`, group: 'tone', side: s, ts: tt, name: `Tone ${sd}: his ${f} finger round the examiner's hand`, part: hisF(s, f), surf: glove(main), finger: f, his: true });
-          add({ id: 'shake-histhumb-' + s, group: 'tone', side: s, ts: tt, name: `Tone ${sd}: his thumb over the back of the examiner's hand`, part: hisF(s, 'thumb'), surf: glove(main), his: true });
+          for (const f of F4) add({ id: `shake-ex-${f}-${s}`, group: 'tone', side: s, ts: tt, name: `Tone ${sd}: examiner's ${f} finger round the back of his hand`, part: exP(main, f), pad: exP(main, f + 'Tip'), surf: skin(s), finger: f });
+          add({ id: 'shake-exthumb-' + s, group: 'tone', side: s, ts: tt, name: `Tone ${sd}: examiner's thumb over the back of his hand`, part: exP(main, 'thumb'), pad: exP(main, 'thumbTip'), surf: skin(s) });
+          for (const f of F4) add({ id: `shake-his-${f}-${s}`, group: 'tone', side: s, ts: tt, name: `Tone ${sd}: his ${f} finger round the examiner's hand`, part: hisF(s, f), pad: hisPad(s, f), surf: glove(main), finger: f, his: true });
+          add({ id: 'shake-histhumb-' + s, group: 'tone', side: s, ts: tt, name: `Tone ${sd}: his thumb over the back of the examiner's hand`, part: hisF(s, 'thumb'), pad: hisPad(s, 'thumb'), surf: glove(main), his: true });
           add({ id: 'cup-palm-' + s, group: 'tone', side: s, ts: tt, name: `Tone ${sd}: examiner's palm cupping the back of his elbow`, part: exP(sup, 'palm'), surf: skin(s) });
-          for (const f of F4) add({ id: `cup-${f}-${s}`, group: 'tone', side: s, ts: tt, name: `Tone ${sd}: examiner's ${f} finger round his elbow`, part: exP(sup, f), surf: skin(s), finger: f });
+          for (const f of F4) add({ id: `cup-${f}-${s}`, group: 'tone', side: s, ts: tt, name: `Tone ${sd}: examiner's ${f} finger round his elbow`, part: exP(sup, f), pad: exP(sup, f + 'Tip'), surf: skin(s), finger: f });
           // the power tests: in the middle of the hold (after the 2-3 mm give)
           const holdT = (w) => (w[s].press[0] + w[s].press[1]) / 2;
-          const lay = (test, w, label, hand, parts) => { for (const pt of parts) add({ id: `${test}-${pt}-${s}`, group: test, side: s, ts: [holdT(w)], name: `${label} ${sd}: examiner's ${pt === 'palm' ? 'palm' : pt === 'thumb' ? 'thumb' : pt + ' finger'}`, part: exP(hand, pt), surf: skin(s), finger: pt }); };
+          const lay = (test, w, label, hand, parts) => { for (const pt of parts) add({ id: `${test}-${pt}-${s}`, group: test, side: s, ts: [holdT(w)], name: `${label} ${sd}: examiner's ${pt === 'palm' ? 'palm' : pt === 'thumb' ? 'thumb' : pt + ' finger'}`, part: exP(hand, pt), pad: pt === 'palm' ? null : exP(hand, pt + 'Tip'), surf: skin(s), finger: pt }); };
           lay('abd', T.abd, 'Shoulder abduction', main, ['palm', 'index', 'middle', 'ring', 'little', 'thumb']);
           lay('elbF', T.elbF, 'Elbow flexion', main, ['palm', 'index', 'middle', 'ring', 'little', 'thumb']);
           lay('elbE', T.elbE, 'Elbow extension', main, ['palm', 'index', 'middle', 'ring', 'little', 'thumb']);
           lay('wrist', T.wrist, 'Wrist extension (on the back of the fist)', main, F4);
           lay('wristSup', T.wrist, 'Wrist extension (support under the forearm)', sup, ['palm', 'index', 'middle', 'ring', 'little', 'thumb']);
           const gt = [holdT(T.grip)];
-          for (const f of F4) add({ id: `grip-his-${f}-${s}`, group: 'grip', side: s, ts: gt, name: `Grip ${sd}: his ${f} finger round the gloved fingers`, part: hisF(s, f), surf: glove(main), finger: f, his: true });
-          add({ id: 'grip-histhumb-' + s, group: 'grip', side: s, ts: gt, name: `Grip ${sd}: his thumb over the gloved fingers`, part: hisF(s, 'thumb'), surf: glove(main), his: true });
+          for (const f of F4) add({ id: `grip-his-${f}-${s}`, group: 'grip', side: s, ts: gt, name: `Grip ${sd}: his ${f} finger round the gloved fingers`, part: hisF(s, f), pad: hisPad(s, f), surf: glove(main), finger: f, his: true });
+          add({ id: 'grip-histhumb-' + s, group: 'grip', side: s, ts: gt, name: `Grip ${sd}: his thumb over the gloved fingers`, part: hisF(s, 'thumb'), pad: hisPad(s, 'thumb'), surf: glove(main), his: true });
           add({ id: 'grip-two-' + s, group: 'grip', side: s, ts: gt, name: `Grip ${sd}: the examiner's index and middle fingers on his palm`, part: () => C5.parts(handOf(main), 'index').concat(C5.parts(handOf(main), 'middle')), surf: () => [P.arms[s].armMesh] });
           const ft = [holdT(T.fing)];
           add({ id: 'fing-ex-' + s, group: 'fing', side: s, ts: ft, name: `Finger abduction ${sd}: the pad of the examiner's index on the thumb side of his index finger`, part: exP(main, 'indexTip'), surf: hisF(s, 'index') });
           add({ id: 'fing-palm-' + s, group: 'fing', side: s, ts: ft, name: `Finger abduction ${sd}: his palm resting on his thigh`, part: () => [P.arms[s].armMesh], surf: legMeshes, his: true, near: true });
-          for (const f of F4.concat(['thumb'])) add({ id: `fing-${f}-${s}`, group: 'fing', side: s, ts: ft, name: `Finger abduction ${sd}: his ${f === 'thumb' ? 'thumb' : f + ' finger'} resting on his thigh`, part: hisF(s, f), surf: legMeshes, his: true, finger: f });
+          for (const f of F4.concat(['thumb'])) add({ id: `fing-${f}-${s}`, group: 'fing', side: s, ts: ft, name: `Finger abduction ${sd}: his ${f === 'thumb' ? 'thumb' : f + ' finger'} resting on his thigh`, part: hisF(s, f), pad: hisPad(s, f), surf: legMeshes, his: true, finger: f });
         }
       }
       // measure one contact now: the smallest signed gap (negative = sinking in) from the part's vertices to the surface
