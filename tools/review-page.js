@@ -36,10 +36,13 @@
     res.forEach((r, i) => {
       const ang = n === 1 ? (o.ang == null ? -2.2 : o.ang) : a0 + span * (i + 0.5) / n;
       const lx = cx + Math.cos(ang) * R * (o.sx || 1), ly = cy + Math.sin(ang) * R * 0.62;
-      const mm = r.g.gap * 100, ok = mm >= 0 && mm <= 1.5;
-      const at = label(ctx, lx, ly, `${o.names ? o.names(r.c) : r.c.finger || short(r.c)}: ${mm.toFixed(2)} mm`, { size: 12.5, ink: ok ? '#1b6b2f' : '#b3261e' });
+      // the nearest point, and the pad (end bone) when the label is for a finger or thumb and its pad sits further off
+      const gp = r.c.pad ? W.measureContact(Object.assign({}, r.c, { part: r.c.pad })) : null, pmm = gp ? gp.gap * 100 : null;
+      const mm = r.g.gap * 100, ok = mm >= 0 && mm <= 1.5 && (pmm == null || (pmm >= 0 && pmm <= 1.5));
+      const padTxt = pmm != null && Math.abs(pmm - mm) >= 0.05 ? `, pad ${pmm.toFixed(2)}` : '';
+      const at = label(ctx, lx, ly, `${o.names ? o.names(r.c) : r.c.finger || short(r.c)}: ${mm.toFixed(2)} mm${padTxt}`, { size: 12.5, ink: ok ? '#1b6b2f' : '#b3261e' });
       arrow(ctx, at[0], at[1], r.p[0], r.p[1], ok ? '#1b6b2f' : '#b3261e');
-      MEASURED.push({ id: r.c.id, t, gapMM: +mm.toFixed(3) });
+      MEASURED.push({ id: r.c.id, t, gapMM: +mm.toFixed(3), padMM: pmm == null ? null : +pmm.toFixed(3) });
     });
   };
   const shot = (at, dir, d, ap = 0.004) => { const v = dir.clone().normalize(); return { pos: at.clone().addScaledVector(v, d).toArray(), target: at.toArray(), fov: 28, focus: at.toArray(), aperture: ap }; };

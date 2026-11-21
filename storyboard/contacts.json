@@ -93,8 +93,8 @@
    21.467,
    21.533
   ],
-  "minMM": 0.188,
-  "maxMM": 0.188,
+  "minMM": 0.482,
+  "maxMM": 0.482,
   "padMinMM": null,
   "padMaxMM": null,
   "worstAt": null
@@ -793,11 +793,11 @@
    21.467,
    21.533
   ],
-  "minMM": 0.03,
-  "maxMM": 0.03,
-  "padMinMM": 1.768,
-  "padMaxMM": 1.768,
-  "worstAt": 21.533333333333335
+  "minMM": 0.5,
+  "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
+  "worstAt": null
  },
  {
   "id": "shake-his-ring-R",
@@ -1763,9 +1763,9 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
-  "padMinMM": 3.248,
-  "padMaxMM": 3.248,
-  "worstAt": 53.507999999999996
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
+  "worstAt": null
  },
  {
   "id": "elbE-palm-R",
@@ -2247,8 +2247,8 @@
    28.333,
    28.4
   ],
-  "minMM": 0.188,
-  "maxMM": 0.188,
+  "minMM": 0.482,
+  "maxMM": 0.482,
   "padMinMM": null,
   "padMaxMM": null,
   "worstAt": null
@@ -2807,11 +2807,11 @@
    28.333,
    28.4
   ],
-  "minMM": 0.03,
-  "maxMM": 0.03,
-  "padMinMM": 1.768,
-  "padMaxMM": 1.768,
-  "worstAt": 28.4
+  "minMM": 0.5,
+  "maxMM": 0.5,
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
+  "worstAt": null
  },
  {
   "id": "shake-his-ring-L",
@@ -3617,9 +3617,9 @@
   ],
   "minMM": 0.5,
   "maxMM": 0.5,
-  "padMinMM": 3.248,
-  "padMaxMM": 3.248,
-  "worstAt": 56.44799999999999
+  "padMinMM": 0.5,
+  "padMaxMM": 0.5,
+  "worstAt": null
  },
  {
   "id": "elbE-palm-L",
