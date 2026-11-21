@@ -2,9 +2,10 @@
 > clay-cns-5@1.0.0 preview
 > node render.mjs --preview --software --test 1
 
-solved.json 292a63878e317149 (solved 2026-11-21T10:21:02.707Z) - loaded, not solved again
-built in 0.9 min | 960x540, 8 samples | GPU: ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)
-0 frames to render (captions)
-check.json: {"frames":2700,"rendered":2,"size":[960,540],"samples":8,"gpu":"ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)","firstVsLast":"first or last frame not rendered in this run (see home-check.json)","file":"cns5_preview_beat05_pronator-drift_test.mp4","durationS":0.03,"loudnessLUFS":-70}
-not every frame is rendered yet: run again to carry on (2 MP4s made this time)
-done in 0.9 min: /home/user/clay-cns-5/out/preview
+solved.json a2a0a27163a1efc1 (solved 2026-11-21T14:36:19.287Z) - loaded, not solved again
+built in 1.3 min | 960x540, 8 samples | GPU: ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)
+4 frames to render (captions)
+frame 2177/2700  53.85 s/frame  about 0 min left
+check.json: {"frames":2700,"rendered":4,"size":[960,540],"samples":8,"gpu":"ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)","firstVsLast":"first or last frame not rendered in this run (see home-check.json)","file":"cns5_preview_beat03_tone-right-arm_test.mp4","durationS":0.03,"loudnessLUFS":-70,"soundTrack":{"file":"sound.wav","loudnessLUFS":-14.9,"durationS":90}}
+not every frame is rendered yet: run again to carry on (4 MP4s made this time)
+done in 5.0 min: /home/user/clay-cns-5/out/preview
